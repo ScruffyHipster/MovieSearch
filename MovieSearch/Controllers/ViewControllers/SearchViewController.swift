@@ -8,7 +8,9 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class SearchViewController: UIViewController {
+	
+	weak var coordinator: SearchCoordinator?
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -18,3 +20,6 @@ class ViewController: UIViewController {
 
 }
 
+extension SearchViewController: Storyboarded {
+	
+}

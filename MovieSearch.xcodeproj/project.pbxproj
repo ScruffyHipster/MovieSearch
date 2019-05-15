@@ -8,12 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		4A16757F228C0AC300127036 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16757E228C0AC300127036 /* AppDelegate.swift */; };
-		4A167581228C0AC300127036 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A167580228C0AC300127036 /* ViewController.swift */; };
+		4A167581228C0AC300127036 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A167580228C0AC300127036 /* SearchViewController.swift */; };
 		4A167584228C0AC300127036 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A167582228C0AC300127036 /* Main.storyboard */; };
 		4A167587228C0AC300127036 /* MovieSearch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4A167585228C0AC300127036 /* MovieSearch.xcdatamodeld */; };
 		4A167589228C0AC400127036 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A167588228C0AC400127036 /* Assets.xcassets */; };
 		4A16758C228C0AC400127036 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A16758A228C0AC400127036 /* LaunchScreen.storyboard */; };
 		4A167597228C0AC400127036 /* MovieSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A167596228C0AC400127036 /* MovieSearchTests.swift */; };
+		4A1675A4228C0ACC00127036 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1675A3228C0ACC00127036 /* CloudKit.framework */; };
+		4A1675AF228C0BDD00127036 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1675AE228C0BDD00127036 /* Coordinator.swift */; };
+		4A1675B1228C0C2200127036 /* Storyboarded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1675B0228C0C2200127036 /* Storyboarded.swift */; };
+		4A1675B4228C0DB800127036 /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1675B3228C0DB800127036 /* SearchCoordinator.swift */; };
+		4A1675B6228C114A00127036 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1675B5228C114A00127036 /* MainTabBarController.swift */; };
+		4A1675BA228C12EB00127036 /* SavedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1675B9228C12EB00127036 /* SavedViewController.swift */; };
+		4A1675BC228C167100127036 /* SavedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1675BB228C167100127036 /* SavedCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,7 +36,7 @@
 /* Begin PBXFileReference section */
 		4A16757B228C0AC300127036 /* MovieSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A16757E228C0AC300127036 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4A167580228C0AC300127036 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4A167580228C0AC300127036 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		4A167583228C0AC300127036 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4A167586228C0AC300127036 /* MovieSearch.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MovieSearch.xcdatamodel; sourceTree = "<group>"; };
 		4A167588228C0AC400127036 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -38,6 +45,14 @@
 		4A167592228C0AC400127036 /* MovieSearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieSearchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A167596228C0AC400127036 /* MovieSearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchTests.swift; sourceTree = "<group>"; };
 		4A167598228C0AC400127036 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4A1675A1228C0ACA00127036 /* MovieSearch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MovieSearch.entitlements; sourceTree = "<group>"; };
+		4A1675A3228C0ACC00127036 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		4A1675AE228C0BDD00127036 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		4A1675B0228C0C2200127036 /* Storyboarded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboarded.swift; sourceTree = "<group>"; };
+		4A1675B3228C0DB800127036 /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
+		4A1675B5228C114A00127036 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		4A1675B9228C12EB00127036 /* SavedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SavedViewController.swift; path = MovieSearch/Controllers/ViewControllers/SavedViewController.swift; sourceTree = SOURCE_ROOT; };
+		4A1675BB228C167100127036 /* SavedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A1675A4228C0ACC00127036 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +80,7 @@
 				4A16757D228C0AC300127036 /* MovieSearch */,
 				4A167595228C0AC400127036 /* MovieSearchTests */,
 				4A16757C228C0AC300127036 /* Products */,
+				4A1675A2228C0ACC00127036 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,13 +96,16 @@
 		4A16757D228C0AC300127036 /* MovieSearch */ = {
 			isa = PBXGroup;
 			children = (
-				4A16757E228C0AC300127036 /* AppDelegate.swift */,
-				4A167580228C0AC300127036 /* ViewController.swift */,
-				4A167582228C0AC300127036 /* Main.storyboard */,
-				4A167588228C0AC400127036 /* Assets.xcassets */,
-				4A16758A228C0AC400127036 /* LaunchScreen.storyboard */,
-				4A16758D228C0AC400127036 /* Info.plist */,
-				4A167585228C0AC300127036 /* MovieSearch.xcdatamodeld */,
+				4A1675A1228C0ACA00127036 /* MovieSearch.entitlements */,
+				4A1675B2228C0D9E00127036 /* Protocols */,
+				4A1675A9228C0B0600127036 /* AppDelegate */,
+				4A1675AB228C0B2900127036 /* Assets */,
+				4A1675A5228C0AEB00127036 /* Controllers */,
+				4A1675A8228C0AFB00127036 /* Coordinators */,
+				4A1675AD228C0B5500127036 /* Misc */,
+				4A1675A7228C0AF400127036 /* Models */,
+				4A1675AC228C0B3E00127036 /* Persistence */,
+				4A1675A6228C0AF000127036 /* Views */,
 			);
 			path = MovieSearch;
 			sourceTree = "<group>";
@@ -97,6 +117,114 @@
 				4A167598228C0AC400127036 /* Info.plist */,
 			);
 			path = MovieSearchTests;
+			sourceTree = "<group>";
+		};
+		4A1675A2228C0ACC00127036 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4A1675A3228C0ACC00127036 /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4A1675A5228C0AEB00127036 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4A1675B8228C115D00127036 /* ViewControllers */,
+				4A1675B7228C115100127036 /* TabBarController */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		4A1675A6228C0AF000127036 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4A1675AA228C0B1500127036 /* Storyboards */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4A1675A7228C0AF400127036 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4A1675A8228C0AFB00127036 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				4A1675B3228C0DB800127036 /* SearchCoordinator.swift */,
+				4A1675BB228C167100127036 /* SavedCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		4A1675A9228C0B0600127036 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				4A16757E228C0AC300127036 /* AppDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		4A1675AA228C0B1500127036 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				4A167582228C0AC300127036 /* Main.storyboard */,
+				4A16758A228C0AC400127036 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		4A1675AB228C0B2900127036 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				4A167588228C0AC400127036 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		4A1675AC228C0B3E00127036 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				4A167585228C0AC300127036 /* MovieSearch.xcdatamodeld */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		4A1675AD228C0B5500127036 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				4A16758D228C0AC400127036 /* Info.plist */,
+			);
+			path = Misc;
+			sourceTree = "<group>";
+		};
+		4A1675B2228C0D9E00127036 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				4A1675AE228C0BDD00127036 /* Coordinator.swift */,
+				4A1675B0228C0C2200127036 /* Storyboarded.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		4A1675B7228C115100127036 /* TabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				4A1675B5228C114A00127036 /* MainTabBarController.swift */,
+			);
+			path = TabBarController;
+			sourceTree = "<group>";
+		};
+		4A1675B8228C115D00127036 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				4A167580228C0AC300127036 /* SearchViewController.swift */,
+				4A1675B9228C12EB00127036 /* SavedViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,6 +277,14 @@
 				TargetAttributes = {
 					4A16757A228C0AC300127036 = {
 						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					4A167591228C0AC400127036 = {
 						CreatedOnToolsVersion = 10.2.1;
@@ -200,8 +336,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A167581228C0AC300127036 /* ViewController.swift in Sources */,
+				4A1675BC228C167100127036 /* SavedCoordinator.swift in Sources */,
+				4A1675AF228C0BDD00127036 /* Coordinator.swift in Sources */,
+				4A1675B4228C0DB800127036 /* SearchCoordinator.swift in Sources */,
+				4A167581228C0AC300127036 /* SearchViewController.swift in Sources */,
+				4A1675B6228C114A00127036 /* MainTabBarController.swift in Sources */,
+				4A1675B1228C0C2200127036 /* Storyboarded.swift in Sources */,
 				4A167587228C0AC300127036 /* MovieSearch.xcdatamodeld in Sources */,
+				4A1675BA228C12EB00127036 /* SavedViewController.swift in Sources */,
 				4A16757F228C0AC300127036 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -364,9 +506,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MovieSearch/MovieSearch.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2392YT52CQ;
-				INFOPLIST_FILE = MovieSearch/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/MovieSearch/Misc/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -382,9 +525,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MovieSearch/MovieSearch.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2392YT52CQ;
-				INFOPLIST_FILE = MovieSearch/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/MovieSearch/Misc/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
