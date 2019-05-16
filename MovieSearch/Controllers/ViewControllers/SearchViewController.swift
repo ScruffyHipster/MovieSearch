@@ -12,9 +12,20 @@ class SearchViewController: UIViewController {
 	
 	weak var coordinator: SearchCoordinator?
 
+	var searchView: SearchView!
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		// Do any additional setup after loading the view.
+		setUpView()
+	}
+	
+	///Sets up the view initially
+	func setUpView() {
+		self.navigationController?.navigationBar.isHidden = true
+		
+		searchView = SearchView(frame: self.view.bounds)
+		
+		view.addSubview(searchView)
 	}
 
 

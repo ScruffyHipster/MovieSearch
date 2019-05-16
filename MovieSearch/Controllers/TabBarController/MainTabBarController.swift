@@ -16,14 +16,24 @@ class MainTabBarController: UITabBarController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		tabBarSetUp()
 		startViewControllers()
 		viewControllers = [searchCoordinator.navigationController, savedCoordinator.navigationController]
-        // Do any additional setup after loading the view.
     }
 	
 	func startViewControllers() {
 		searchCoordinator.start()
 		savedCoordinator.start()
+	}
+	
+	///Set the tab bar to a transparent state
+	func tabBarSetUp() {
+		self.tabBar.backgroundImage = UIImage()
+		self.tabBar.layer.borderColor = UIColor.clear.cgColor
+		tabBar.layer.borderWidth = 0.5
+		tabBar.clipsToBounds = true
+		self.tabBar.barTintColor = .clear
+		self.tabBar.tintColor = .white
 	}
 	
 	
