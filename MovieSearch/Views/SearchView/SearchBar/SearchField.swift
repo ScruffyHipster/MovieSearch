@@ -11,6 +11,7 @@ import UIKit
 ///Custom reusable search field
 class SearchField: UITextField {
 	
+	//MARK:- Properties
 	var bottomLine: UIView = {
 		let view = UIView(frame: .zero)
 		view.backgroundColor = UsableColours.lineColor
@@ -45,7 +46,6 @@ extension SearchField {
 		setUpStyle()
 		setupBottomLine()
 		setUpPlaceHolderText()
-		self.delegate = self
 	}
 	
 	private func setUpStyle() {
@@ -80,33 +80,3 @@ extension SearchField {
 	
 }
 
-extension SearchField: UITextFieldDelegate {
-	
-	
-	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-		return resignFirstResponder()
-	}
-
-	func textFieldDidBeginEditing(_ textField: UITextField) {
-		if self.text!.isEmpty {
-			self.layoutIfNeeded()
-			UIView.animate(withDuration: 0.5) {
-				self.placeHolderLabel.alpha = 0.0
-				self.placeHolderLabel.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
-				self.layoutIfNeeded()
-			}
-		}
-	}
-	
-	
-	func textFieldDidEndEditing(_ textField: UITextField) {
-		if text!.isEmpty {
-				self.layoutIfNeeded()
-			UIView.animate(withDuration: 0.5, animations: {
-				self.placeHolderLabel.alpha = 1.0
-				self.placeHolderLabel.transform = .identity
-				self.layoutIfNeeded()
-			}, completion: nil)
-		}
-	}
-}
