@@ -18,6 +18,8 @@ class SearchCoordinator: Coordinator {
 	
 	var searchViewController: SearchViewController?
 	
+	var resultDataHandler = ResultsDataHandler()
+	
 	func start() {
 		//starts up the starting View Controller and then adds it to the navcontroller.
 		initiateSearchVC()
@@ -32,6 +34,13 @@ class SearchCoordinator: Coordinator {
 		guard let searchVC = searchViewController else {return}
 		searchVC.tabBarItem = UITabBarItem(title: "search", image: UIImage(named: "searchIcon"), tag: 0)
 		searchVC.coordinator = self
+		
+		//Populate data this will come from cloudkit eventually
+		resultDataHandler.populateDataWith(data: ["One", "Two", "Three"])
+		
+		//Pass the delegate the resultHandler object
+		searchVC.prevTableViewDelegate.resultsHandler = resultDataHandler
+		
 		navigationController.viewControllers = [searchVC]
 	}
 	

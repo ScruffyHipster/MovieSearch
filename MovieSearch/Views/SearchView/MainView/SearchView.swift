@@ -23,10 +23,13 @@ class SearchView: UIView {
 		return SearchField(frame: .zero)
 	}()
 	
-	lazy var lastResultsTableView: UITableView = {
-		var tableView = UITableView(frame: .zero)
+	lazy var prevResultsTableView: UITableView = {
+		var tableView = UITableView(frame: .zero, style: .plain)
 		tableView.backgroundColor = .clear
-		tableView.separatorColor = UIColor.white
+		tableView.register(PrevResultTableViewCell.self, forCellReuseIdentifier: TableViewCellIdentifier.prevResultsCell.identity)
+		tableView.isScrollEnabled = false
+		tableView.alpha = 0.0
+		tableView.translatesAutoresizingMaskIntoConstraints = false
 		return tableView
 	}()
 	
@@ -63,6 +66,9 @@ class SearchView: UIView {
 	var searchBarTopConstraint: NSLayoutConstraint?
 	var searchBarLeadingConstraint: NSLayoutConstraint?
 	var searchBarTrailingConstraint: NSLayoutConstraint?
+	
+	//Constraint for the tableview height so we can change this upon loading of data
+	var prevTableViewHeight: NSLayoutConstraint?
 
 	//MARK:- Init methods
 	
@@ -77,7 +83,8 @@ class SearchView: UIView {
 	
 	override func layoutSubviews() {
 		super.layoutSubviews()
-		gradientLayer.frame = backgroundContainerView.bounds
+	 	gradientLayer.frame = backgroundContainerView.bounds
+		prevResultsTableView.backgroundColor = .clear
 	}
 	
 	//MARK:- Methods
@@ -87,15 +94,16 @@ class SearchView: UIView {
 		setUpTitle()
 		setUpSearchField()
 		setUpBlurView()
+		setupTableView()
 	}
 	
-	private func toggleBlurView(_ show: Bool) {
+	func toggleBlurView(_ show: Bool) {
 		UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0.0, options: .curveEaseIn, animations: {
 			self.blurView.alpha = show ? 1.0 : 0.0
 		}, completion: nil)
 	}
 	
-	private func moveSearchBar(searching: Bool) {
+	func moveSearchBar(searching: Bool) {
 		self.searchBarTopConstraint?.isActive = false
 		UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0.5, options: .curveEaseInOut, animations: {
 			self.searchBarTopConstraint?.constant = searching ? 100 : 237
@@ -110,7 +118,7 @@ class SearchView: UIView {
 //View layer setups
 extension SearchView {
 	
-	func setupBackground() {
+	private func setupBackground() {
 		addSubview(backgroundContainerView)
 		backgroundContainerView.layer.addSublayer(gradientLayer)
 		backgroundContainerView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
@@ -122,19 +130,18 @@ extension SearchView {
 			])
 	}
 	
-	func setUpTitle() {
+	private func setUpTitle() {
 		backgroundContainerView.addSubview(titleLabel)
 		NSLayoutConstraint.activate([
 			titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 35),
 			titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -35),
 			titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 100),
-			titleLabel.heightAnchor.constraint(equalToConstant: 60)
+			titleLabel.heightAnchor.constraint(equalToConstant: 100)
 			])
 	}
 	
-	func setUpSearchField() {
-		addSubview(searchField)
-		searchField.delegate = self
+	private func setUpSearchField() {
+		backgroundContainerView.addSubview(searchField)
 		searchBarTopConstraint = searchField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 237)
 		searchBarLeadingConstraint = searchField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 34)
 		searchBarTrailingConstraint = searchField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -34)
@@ -145,7 +152,7 @@ extension SearchView {
 			])
 	}
 	
-	func setUpBlurView() {
+	private func setUpBlurView() {
 		backgroundContainerView.insertSubview(blurView, belowSubview: searchField)
 		blurView.translatesAutoresizingMaskIntoConstraints = false
 		blurView.alpha = 0.0
@@ -157,39 +164,16 @@ extension SearchView {
 			])
 	}
 	
-}
-
-//MARK:- TextField delegate
-extension SearchView: UITextFieldDelegate {
-	
-	
-	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-		return searchField.resignFirstResponder()
+	func setupTableView() {
+		backgroundContainerView.addSubview(prevResultsTableView)
+		prevTableViewHeight = prevResultsTableView.heightAnchor.constraint(equalToConstant: 100)
+		NSLayoutConstraint.activate([
+			prevTableViewHeight!,
+			prevResultsTableView.topAnchor.constraint(equalTo: searchField.bottomAnchor, constant: 20),
+			prevResultsTableView.safeAreaLayoutGuide.leadingAnchor.constraint(equalTo: self.searchField.leadingAnchor),
+			prevResultsTableView.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: self.searchField.trailingAnchor)
+			])
 	}
 	
-	func textFieldDidBeginEditing(_ textField: UITextField) {
-		if self.searchField.text!.isEmpty {
-			moveSearchBar(searching: true)
-			toggleBlurView(true)
-			UsableAniamtions.fade(layer: titleLabel.layer, from: 1.0, to: 0.6, duration: 0.5)
-			UsableAniamtions.scaleDownFade(view: self.searchField.placeHolderLabel, direction: .down).startAnimation()
-			UIView.animate(withDuration: 0.5) {
-				self.layoutIfNeeded()
-			}
-		}
-	}
-	
-	
-	func textFieldDidEndEditing(_ textField: UITextField) {
-		if searchField.text!.isEmpty {
-			moveSearchBar(searching: false)
-			toggleBlurView(false)
-			UsableAniamtions.fade(layer: titleLabel.layer, from: 0.6, to: 1.0, duration: 0.5)
-			UsableAniamtions.scaleDownFade(view: self.searchField.placeHolderLabel, direction: .up).startAnimation()
-			UIView.animate(withDuration: 0.5) {
-				self.layoutIfNeeded()
-			}
-		}
-	}
 }
 

@@ -29,3 +29,14 @@ enum Direction {
 	case up
 	case down
 }
+
+enum TableViewCellIdentifier {
+	case prevResultsCell
+	
+	var identity: String {
+		switch self {
+		case .prevResultsCell:
+			return "PrevResultsCell"
+		}
+	}
+}
