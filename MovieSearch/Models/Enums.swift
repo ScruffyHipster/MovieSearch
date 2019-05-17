@@ -23,3 +23,9 @@ enum GradientColors {
 		}
 	}
 }
+
+///Used to add readability to some animations
+enum Direction {
+	case up
+	case down
+}

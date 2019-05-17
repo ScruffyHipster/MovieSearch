@@ -95,6 +95,14 @@ class SearchView: UIView {
 		}, completion: nil)
 	}
 	
+	private func moveSearchBar(searching: Bool) {
+		self.searchBarTopConstraint?.isActive = false
+		UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0.5, options: .curveEaseInOut, animations: {
+			self.searchBarTopConstraint?.constant = searching ? 100 : 237
+			self.searchBarTopConstraint?.isActive = true
+		}, completion: nil)
+	}
+	
 	
 
 }
@@ -161,10 +169,12 @@ extension SearchView: UITextFieldDelegate {
 	
 	func textFieldDidBeginEditing(_ textField: UITextField) {
 		if self.searchField.text!.isEmpty {
+			moveSearchBar(searching: true)
+			toggleBlurView(true)
+			UsableAniamtions.fade(layer: titleLabel.layer, from: 1.0, to: 0.6, duration: 0.5)
+			UsableAniamtions.scaleDownFade(view: self.searchField.placeHolderLabel, direction: .down).startAnimation()
 			UIView.animate(withDuration: 0.5) {
-				self.toggleBlurView(true)
-				self.searchField.placeHolderLabel.alpha = 0.0
-				self.searchField.placeHolderLabel.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
+				self.layoutIfNeeded()
 			}
 		}
 	}
@@ -172,10 +182,11 @@ extension SearchView: UITextFieldDelegate {
 	
 	func textFieldDidEndEditing(_ textField: UITextField) {
 		if searchField.text!.isEmpty {
+			moveSearchBar(searching: false)
+			toggleBlurView(false)
+			UsableAniamtions.fade(layer: titleLabel.layer, from: 0.6, to: 1.0, duration: 0.5)
+			UsableAniamtions.scaleDownFade(view: self.searchField.placeHolderLabel, direction: .up).startAnimation()
 			UIView.animate(withDuration: 0.5) {
-				self.toggleBlurView(false)
-				self.searchField.placeHolderLabel.alpha = 1.0
-				self.searchField.placeHolderLabel.transform = .identity
 				self.layoutIfNeeded()
 			}
 		}

@@ -28,4 +28,31 @@ class UsableAniamtions {
 		position.fillMode = CAMediaTimingFillMode.forwards
 		layer.add(position, forKey: nil)
 	}
+	
+	static func fade(layer: CALayer, from: CGFloat, to: CGFloat, duration: Double) {
+		let fade = CABasicAnimation(keyPath: "opacity")
+		fade.toValue = to
+		fade.fromValue = from
+		fade.isRemovedOnCompletion = false
+		fade.fillMode = CAMediaTimingFillMode.forwards
+		layer.add(fade, forKey: nil)
+	}
+	
+	///Scale and fade animation
+	static func scaleDownFade(view: UIView, direction: Direction) -> UIViewPropertyAnimator {
+		let scale = UIViewPropertyAnimator(duration: 0.5, curve: .easeIn)
+		switch direction {
+		case .up:
+			scale.addAnimations {
+				view.transform = .identity
+				view.alpha = 1.0
+			}
+		case .down:
+			scale.addAnimations {
+				view.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
+				view.alpha = 0.0
+			}
+		}
+		return scale
+	}
 }
