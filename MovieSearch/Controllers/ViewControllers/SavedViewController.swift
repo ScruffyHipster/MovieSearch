@@ -27,7 +27,18 @@ class SavedViewController: UIViewController {
 		navigationController?.navigationBar.isHidden = true
 		setUpView()
     }
-    
+	
+	
+	override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+		if UIDevice.current.orientation.isLandscape {
+			savedView.landscape()
+		}
+		if UIDevice.current.orientation.isPortrait {
+			savedView.portrait()
+		}
+	}
+	
+	//MARK:- Methods
 
 	func setUpView() {
 		view.addSubview(savedView)

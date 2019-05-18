@@ -37,11 +37,9 @@ class SearchViewController: UIViewController {
 	
 	override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
 		if UIDevice.current.orientation.isLandscape {
-			print("landscape")
 			searchView.landscape()
 		}
 		if UIDevice.current.orientation.isPortrait {
-			print("portrait")
 			searchView.portrait()
 		}
 	}
