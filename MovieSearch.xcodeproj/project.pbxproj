@@ -30,6 +30,8 @@
 		4A1675D5228D5B3800127036 /* PrevSearchResultsTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1675D4228D5B3800127036 /* PrevSearchResultsTableViewDelegate.swift */; };
 		4A1675D8228D6EDB00127036 /* ResultsDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1675D7228D6EDB00127036 /* ResultsDataHandler.swift */; };
 		4AFB040E228EAD5900D08DE2 /* PrevResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB040D228EAD5900D08DE2 /* PrevResultTableViewCell.swift */; };
+		4AFB04402290491E00D08DE2 /* UIViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB043F2290491D00D08DE2 /* UIViewHelper.swift */; };
+		4AFB044222904D2700D08DE2 /* GradientContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB044122904D2700D08DE2 /* GradientContainerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,8 @@
 		4A1675D4228D5B3800127036 /* PrevSearchResultsTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrevSearchResultsTableViewDelegate.swift; sourceTree = "<group>"; };
 		4A1675D7228D6EDB00127036 /* ResultsDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsDataHandler.swift; sourceTree = "<group>"; };
 		4AFB040D228EAD5900D08DE2 /* PrevResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrevResultTableViewCell.swift; sourceTree = "<group>"; };
+		4AFB043F2290491D00D08DE2 /* UIViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIViewHelper.swift; path = MovieSearch/Usables/UIViewHelper.swift; sourceTree = SOURCE_ROOT; };
+		4AFB044122904D2700D08DE2 /* GradientContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientContainerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +164,7 @@
 		4A1675A6228C0AF000127036 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4AFB044122904D2700D08DE2 /* GradientContainerView.swift */,
 				4AFB040F228EAEFE00D08DE2 /* Cell */,
 				4A1675C1228C2B2F00127036 /* SearchView */,
 				4A1675AA228C0B1500127036 /* Storyboards */,
@@ -282,6 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				4A1675C2228C2B5B00127036 /* SearchView.swift */,
+				4AFB043F2290491D00D08DE2 /* UIViewHelper.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -437,6 +443,7 @@
 			files = (
 				4A1675BC228C167100127036 /* SavedCoordinator.swift in Sources */,
 				4A1675AF228C0BDD00127036 /* Coordinator.swift in Sources */,
+				4AFB044222904D2700D08DE2 /* GradientContainerView.swift in Sources */,
 				4A1675BE228C292800127036 /* Enums.swift in Sources */,
 				4A1675B4228C0DB800127036 /* SearchCoordinator.swift in Sources */,
 				4AFB040E228EAD5900D08DE2 /* PrevResultTableViewCell.swift in Sources */,
@@ -450,6 +457,7 @@
 				4A16757F228C0AC300127036 /* AppDelegate.swift in Sources */,
 				4A1675D5228D5B3800127036 /* PrevSearchResultsTableViewDelegate.swift in Sources */,
 				4A1675C3228C2B5B00127036 /* SearchView.swift in Sources */,
+				4AFB04402290491E00D08DE2 /* UIViewHelper.swift in Sources */,
 				4A1675CA228C42DB00127036 /* UsableColours.swift in Sources */,
 				4A1675CD228D3FF900127036 /* UsableAnimations.swift in Sources */,
 				4A1675D8228D6EDB00127036 /* ResultsDataHandler.swift in Sources */,

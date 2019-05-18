@@ -34,6 +34,17 @@ class SearchViewController: UIViewController {
 		self.navigationController?.navigationBar.isHidden = true
 		setUpSearchView()
 	}
+	
+	override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+		if UIDevice.current.orientation.isLandscape {
+			print("landscape")
+			searchView.landscape()
+		}
+		if UIDevice.current.orientation.isPortrait {
+			print("portrait")
+			searchView.portrait()
+		}
+	}
 }
 
 //MARK:- View setup methods
@@ -43,17 +54,13 @@ extension SearchViewController {
 		searchView.frame = self.view.bounds
 		searchView.searchField.delegate = self
 		view.addSubview(searchView)
-		NSLayoutConstraint.activate([
-			searchView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0),
-			searchView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0),
-			searchView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),
-			searchView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0)
-			])
+		
+		searchView.anchor(top: view.topAnchor, trailing: view.trailingAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor)
 		
 		//Pass the datasource to the tableView
 		searchView.prevResultsTableView.delegate = prevTableViewDelegate
 		searchView.prevResultsTableView.dataSource = prevTableViewDelegate
-		
+		//reloads tableview and adjust constraints dependant on data
 		reloadTableViewContent()
 	}
 	
@@ -87,7 +94,6 @@ extension SearchViewController: UITextFieldDelegate {
 			}
 		}
 	}
-	
 	
 	func textFieldDidEndEditing(_ textField: UITextField) {
 		if searchView.searchField.text!.isEmpty {

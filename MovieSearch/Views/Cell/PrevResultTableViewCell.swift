@@ -52,7 +52,7 @@ extension PrevResultTableViewCell {
 	private func setUpText() {
 		addSubview(titleLabel)
 		NSLayoutConstraint.activate([
-			titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+			titleLabel.widthAnchor.constraint(equalToConstant: self.bounds.size.width),
 			titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
 			titleLabel.heightAnchor.constraint(equalToConstant: 50)
 			])

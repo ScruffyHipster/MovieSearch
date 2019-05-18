@@ -23,6 +23,8 @@ class SearchField: UITextField {
 		let label = UILabel(frame: .zero)
 		label.text = "Search"
 		label.font = UsableFonts.searchFont
+		label.adjustsFontSizeToFitWidth = true
+		label.minimumScaleFactor = 40
 		label.textColor = UsableColours.searchPlaceholder
 		label.textAlignment = .left
 		label.translatesAutoresizingMaskIntoConstraints = false
@@ -73,7 +75,6 @@ extension SearchField {
 		NSLayoutConstraint.activate([
 			placeHolderLabel.leftAnchor.constraint(equalTo: self.leftAnchor),
 			placeHolderLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 1),
-			placeHolderLabel.topAnchor.constraint(equalTo: self.topAnchor),
 			placeHolderLabel.heightAnchor.constraint(equalToConstant: 50)
 			])
 	}

@@ -13,14 +13,23 @@ class SearchView: UIView {
 	
 	//MARK:- Properties
 	
-	var backgroundContainerView: UIView = {
-		let view = UIView(frame: .zero)
+	var backgroundGradientContainerView: GradientContainerView = {
+		let view = GradientContainerView(frame: .zero)
 		view.translatesAutoresizingMaskIntoConstraints = false
 		return view
 	}()
 	
 	var searchField: SearchField = {
 		return SearchField(frame: .zero)
+	}()
+	
+	var searchGroupStackView: UIStackView = {
+		var stack = UIStackView()
+		stack.axis = .vertical
+		stack.distribution = UIStackView.Distribution.equalSpacing
+		stack.spacing = 10
+		stack.translatesAutoresizingMaskIntoConstraints = false
+		return stack
 	}()
 	
 	lazy var prevResultsTableView: UITableView = {
@@ -31,12 +40,6 @@ class SearchView: UIView {
 		tableView.alpha = 0.0
 		tableView.translatesAutoresizingMaskIntoConstraints = false
 		return tableView
-	}()
-	
-	lazy var gradientLayer: CAGradientLayer = {
-		var gradient = CAGradientLayer()
-		gradient.colors = [GradientColors.blue.rgb.cgColor, GradientColors.green.rgb.cgColor]
-		return gradient
 	}()
 	
 	lazy var titleLabel: UILabel = {
@@ -63,15 +66,24 @@ class SearchView: UIView {
 	}()
 	
 	//Constraints are saved as variables so we can change the position of the search in landscape orientation.
-	var searchBarTopConstraint: NSLayoutConstraint?
-	var searchBarLeadingConstraint: NSLayoutConstraint?
-	var searchBarTrailingConstraint: NSLayoutConstraint?
+	var searchStackViewTop: NSLayoutConstraint?
+	var searchStackViewTrailing: NSLayoutConstraint?
+	var searchStackViewLeading: NSLayoutConstraint?
 	
+	var titleLabelTop: NSLayoutConstraint?
+	var titleLabelLeading: NSLayoutConstraint?
+	var titleLabelTrailing: NSLayoutConstraint?
+//
 	//Constraint for the tableview height so we can change this upon loading of data
 	var prevTableViewHeight: NSLayoutConstraint?
 
-	//MARK:- Init methods
+	var orientation: Bool {
+		get {
+			return UIDevice.current.orientation == .portrait ? true : false
+		}
+	}
 	
+	//MARK:- Init methods
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		configure()
@@ -83,18 +95,13 @@ class SearchView: UIView {
 	
 	override func layoutSubviews() {
 		super.layoutSubviews()
-	 	gradientLayer.frame = backgroundContainerView.bounds
 		prevResultsTableView.backgroundColor = .clear
 	}
 	
 	//MARK:- Methods
 	
 	func configure() {
-		setupBackground()
-		setUpTitle()
-		setUpSearchField()
-		setUpBlurView()
-		setupTableView()
+		setUpViews()
 	}
 	
 	func toggleBlurView(_ show: Bool) {
@@ -104,75 +111,140 @@ class SearchView: UIView {
 	}
 	
 	func moveSearchBar(searching: Bool) {
-		self.searchBarTopConstraint?.isActive = false
 		UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0.5, options: .curveEaseInOut, animations: {
-			self.searchBarTopConstraint?.constant = searching ? 100 : 237
-			self.searchBarTopConstraint?.isActive = true
+			if self.orientation {
+				//portrait
+				self.searchStackViewTop?.constant = searching ? 100 : 200
+			}
+			if !self.orientation {
+				//landscape
+				self.titleLabel.isHidden = searching ? true : false
+				self.searchStackViewTop?.constant = searching ? 20 : 90
+			}
 		}, completion: nil)
 	}
-	
-	
-
 }
 
 //View layer setups
 extension SearchView {
 	
+	///Set up all view in view
+	func setUpViews() {
+		//add to view
+		[backgroundGradientContainerView].forEach({addSubview($0)})
+		//add to container view
+		[titleLabel, searchField, blurView, prevResultsTableView, searchGroupStackView].forEach({backgroundGradientContainerView.addSubview($0)})
+		setupBackground()
+		setUpTitle()
+		setUpSearchField()
+		setUpBlurView()
+		setupTableView()
+		setUpStackView()
+	}
+	
 	private func setupBackground() {
-		addSubview(backgroundContainerView)
-		backgroundContainerView.layer.addSublayer(gradientLayer)
-		backgroundContainerView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-		NSLayoutConstraint.activate([
-			backgroundContainerView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
-			backgroundContainerView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-			backgroundContainerView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
-			backgroundContainerView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0)
-			])
+		backgroundGradientContainerView.anchor(top: topAnchor, trailing: trailingAnchor, bottom: bottomAnchor, leading: leadingAnchor)
 	}
 	
 	private func setUpTitle() {
-		backgroundContainerView.addSubview(titleLabel)
+		
+		titleLabelTop = titleLabel.topAnchor.constraint(equalTo: backgroundGradientContainerView.safeAreaLayoutGuide.topAnchor, constant: 100)
+		
+		titleLabelTrailing = titleLabel.trailingAnchor.constraint(equalTo: backgroundGradientContainerView.safeAreaLayoutGuide.trailingAnchor, constant: -35)
+		
+		titleLabelLeading = titleLabel.safeAreaLayoutGuide.leadingAnchor.constraint(equalTo: backgroundGradientContainerView.leadingAnchor, constant: 35)
+		
+		titleLabel.heightAnchor.constraint(equalToConstant: 60)
+		
 		NSLayoutConstraint.activate([
-			titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 35),
-			titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -35),
-			titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 100),
-			titleLabel.heightAnchor.constraint(equalToConstant: 100)
+			titleLabelLeading!,
+			titleLabelTrailing!, titleLabelTop!
 			])
 	}
 	
 	private func setUpSearchField() {
-		backgroundContainerView.addSubview(searchField)
-		searchBarTopConstraint = searchField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 237)
-		searchBarLeadingConstraint = searchField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 34)
-		searchBarTrailingConstraint = searchField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -34)
+		
 		NSLayoutConstraint.activate([
-			searchBarTopConstraint!,
-			searchBarLeadingConstraint!,
-			searchBarTrailingConstraint!
+			searchField.heightAnchor.constraint(equalToConstant: 65),
+			searchField.widthAnchor.constraint(equalTo: titleLabel.widthAnchor, constant: 0)
 			])
 	}
 	
 	private func setUpBlurView() {
-		backgroundContainerView.insertSubview(blurView, belowSubview: searchField)
-		blurView.translatesAutoresizingMaskIntoConstraints = false
+		blurView.anchor(top: topAnchor, trailing: trailingAnchor, bottom: bottomAnchor, leading: leadingAnchor)
 		blurView.alpha = 0.0
-		NSLayoutConstraint.activate([
-			blurView.topAnchor.constraint(equalTo: self.topAnchor),
-			blurView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-			blurView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-			blurView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-			])
 	}
 	
 	func setupTableView() {
-		backgroundContainerView.addSubview(prevResultsTableView)
-		prevTableViewHeight = prevResultsTableView.heightAnchor.constraint(equalToConstant: 100)
+		prevTableViewHeight = 	prevResultsTableView.heightAnchor.constraint(equalToConstant: 100)
 		NSLayoutConstraint.activate([
 			prevTableViewHeight!,
-			prevResultsTableView.topAnchor.constraint(equalTo: searchField.bottomAnchor, constant: 20),
-			prevResultsTableView.safeAreaLayoutGuide.leadingAnchor.constraint(equalTo: self.searchField.leadingAnchor),
-			prevResultsTableView.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: self.searchField.trailingAnchor)
+			prevResultsTableView.widthAnchor.constraint(equalTo: searchField.widthAnchor)
 			])
+	}
+	
+	func setUpStackView() {
+		searchGroupStackView.addArrangedSubview(searchField)
+		searchGroupStackView.addArrangedSubview(prevResultsTableView)
+		
+		searchStackViewTop = searchGroupStackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 200)
+		
+		searchStackViewTrailing = searchGroupStackView.trailingAnchor.constraint(equalTo: backgroundGradientContainerView.safeAreaLayoutGuide.trailingAnchor, constant: -35)
+		
+		searchStackViewLeading = searchGroupStackView.leadingAnchor.constraint(equalTo: backgroundGradientContainerView.safeAreaLayoutGuide.leadingAnchor, constant: 35)
+		
+		
+		searchStackViewTop?.isActive = true
+		searchStackViewTrailing?.isActive = true
+		searchStackViewLeading?.isActive = true
+		
+		
+	}
+	
+}
+
+extension SearchView {
+	
+	func landscape() {
+		
+		let stack = searchGroupStackView
+		let title = titleLabel
+		let container = backgroundGradientContainerView
+		
+		searchStackViewTop?.isActive = false
+		searchStackViewTrailing?.isActive = false
+		searchStackViewLeading?.isActive = false
+		
+		titleLabelTop?.isActive = false
+		titleLabelTrailing?.isActive = false
+		titleLabelLeading?.isActive = false
+		
+		searchStackViewTop = stack.topAnchor.constraint(equalTo: container.safeAreaLayoutGuide.topAnchor, constant: 90)
+		searchStackViewTrailing = stack.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: container.safeAreaLayoutGuide.trailingAnchor, constant: -35)
+		
+		titleLabelTop = title.topAnchor.constraint(equalTo: container.safeAreaLayoutGuide.topAnchor, constant: 100)
+		titleLabelLeading = title.leadingAnchor.constraint(equalTo: container.safeAreaLayoutGuide.leadingAnchor, constant: 35)
+		titleLabelTrailing = title.trailingAnchor.constraint(equalTo: stack.leadingAnchor, constant: -35)
+		
+		searchStackViewTop?.isActive = true
+		searchStackViewTrailing?.isActive = true
+		
+		titleLabelTop?.isActive = true
+		titleLabelTrailing?.isActive = true
+		titleLabelLeading?.isActive = true
+		
+	}
+	
+	func portrait() {
+		searchStackViewTop?.isActive = false
+		searchStackViewTrailing?.isActive = false
+		
+		titleLabelTop?.isActive = false
+		titleLabelTrailing?.isActive = false
+		titleLabelLeading?.isActive = false
+		
+		setUpTitle()
+		setUpStackView()
 	}
 	
 }
