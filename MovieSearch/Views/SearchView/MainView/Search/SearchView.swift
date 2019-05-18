@@ -68,7 +68,6 @@ class SearchView: UIView {
 	//Constraints are saved as variables so we can change the position of the search in landscape orientation.
 	var searchStackViewTop: NSLayoutConstraint?
 	var searchStackViewTrailing: NSLayoutConstraint?
-	var searchStackViewLeading: NSLayoutConstraint?
 	
 	var titleLabelTop: NSLayoutConstraint?
 	var titleLabelLeading: NSLayoutConstraint?
@@ -120,6 +119,7 @@ class SearchView: UIView {
 				//landscape
 				self.titleLabel.isHidden = searching ? true : false
 				self.searchStackViewTop?.constant = searching ? 20 : 90
+				
 			}
 		}, completion: nil)
 	}
@@ -191,14 +191,9 @@ extension SearchView {
 		
 		searchStackViewTrailing = searchGroupStackView.trailingAnchor.constraint(equalTo: backgroundGradientContainerView.safeAreaLayoutGuide.trailingAnchor, constant: -35)
 		
-		searchStackViewLeading = searchGroupStackView.leadingAnchor.constraint(equalTo: backgroundGradientContainerView.safeAreaLayoutGuide.leadingAnchor, constant: 35)
-		
 		
 		searchStackViewTop?.isActive = true
 		searchStackViewTrailing?.isActive = true
-		searchStackViewLeading?.isActive = true
-		
-		
 	}
 	
 }
@@ -213,7 +208,6 @@ extension SearchView {
 		
 		searchStackViewTop?.isActive = false
 		searchStackViewTrailing?.isActive = false
-		searchStackViewLeading?.isActive = false
 		
 		titleLabelTop?.isActive = false
 		titleLabelTrailing?.isActive = false

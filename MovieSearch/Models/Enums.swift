@@ -32,11 +32,13 @@ enum Direction {
 
 enum TableViewCellIdentifier {
 	case prevResultsCell
-	
+	case savedResultsCell
 	var identity: String {
 		switch self {
 		case .prevResultsCell:
 			return "PrevResultsCell"
+		case .savedResultsCell:
+			return "SavedResultsCell"
 		}
 	}
 }

@@ -12,22 +12,36 @@ class SavedViewController: UIViewController {
 	
 	weak var coordinator: SavedCoordinator?
 
+	lazy var savedTableViewDelegate: SavedResultsTableViewDelegate = {
+		var delegate = SavedResultsTableViewDelegate()
+		return delegate
+	}()
+	
+	var savedView: SavedView = {
+		var saved = SavedView()
+		return saved
+	}()
+	
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+		navigationController?.navigationBar.isHidden = true
+		setUpView()
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+	func setUpView() {
+		view.addSubview(savedView)
+		savedView.anchor(top: view.topAnchor, trailing: view.trailingAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor)
+		
+		savedView.savedMoviesTableView.delegate = savedTableViewDelegate
+		savedView.savedMoviesTableView.dataSource = savedTableViewDelegate
+		
+		savedView.savedMoviesTableView.reloadData()
+		savedView.savedResultsTableViewHeight?.isActive = false
+		savedView.savedResultsTableViewHeight?.constant = savedView.savedMoviesTableView.contentSize.height
+		savedView.savedResultsTableViewHeight?.isActive = true
+		
+	}
 
 }
 

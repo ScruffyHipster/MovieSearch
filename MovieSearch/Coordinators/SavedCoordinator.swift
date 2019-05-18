@@ -6,7 +6,6 @@
 //  Copyright © 2019 Tom Murray. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 ///Manges the Saved controller tab in the app
@@ -17,6 +16,8 @@ class SavedCoordinator: Coordinator {
 	var navigationController: UINavigationController
 	
 	var savedViewController: SavedViewController?
+	
+	var resultDataHandler = ResultsDataHandler()
 	
 	init(navController: UINavigationController = UINavigationController()) {
 		self.navigationController = navController
@@ -33,6 +34,13 @@ class SavedCoordinator: Coordinator {
 		savedVC.tabBarItem = UITabBarItem(title: "Saved", image: UIImage(named: "savedIcon"), tag: 1)
 		savedVC.coordinator = self
 
+		
+		let savedMovies = ["one", "two", "three"]
+		
+		resultDataHandler.populateDataWith(data: savedMovies)
+		
+		savedVC.savedTableViewDelegate.resultsHandler = resultDataHandler
+		
 		navigationController.viewControllers = [savedVC]
 	}
 	
