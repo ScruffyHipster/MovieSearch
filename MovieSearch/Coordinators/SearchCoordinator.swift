@@ -20,6 +20,8 @@ class SearchCoordinator: Coordinator {
 	
 	var resultDataHandler = ResultsDataHandler()
 	
+	var http = HttpAPI()
+	
 	func start() {
 		//starts up the starting View Controller and then adds it to the navcontroller.
 		initiateSearchVC()
@@ -45,5 +47,21 @@ class SearchCoordinator: Coordinator {
 	}
 	
 	
+}
+
+extension SearchCoordinator {
+	
+	func searchForMovies(searchTerm: String) {
+		let url = http.createUrl(searchParam: .search, searchTerm: searchTerm)
+		print("url is \(url)")
+		http.makeRequest(url: url, for: SearchResultDetails.self) { (success, results) -> (Void) in
+			if success {
+				print("success")
+				print(results)
+			} else {
+				print("failed")
+			}
+		}
+	}
 	
 }

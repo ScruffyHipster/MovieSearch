@@ -35,6 +35,9 @@
 		4AFB044422906F4300D08DE2 /* SavedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB044322906F4300D08DE2 /* SavedView.swift */; };
 		4AFB04482290728C00D08DE2 /* SavedMoviesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB04472290728C00D08DE2 /* SavedMoviesTableViewCell.swift */; };
 		4AFB044A2290750C00D08DE2 /* SavedResultsTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB04492290750C00D08DE2 /* SavedResultsTableViewDelegate.swift */; };
+		4AFB044E229158FA00D08DE2 /* MovieDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB044D229158FA00D08DE2 /* MovieDetails.swift */; };
+		4AFB04502291598E00D08DE2 /* SearchResultsDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB044F2291598E00D08DE2 /* SearchResultsDetails.swift */; };
+		4AFB045222915ADB00D08DE2 /* HttpAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB045122915ADB00D08DE2 /* HttpAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +84,9 @@
 		4AFB044322906F4300D08DE2 /* SavedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SavedView.swift; path = MovieSearch/Views/SearchView/MainView/Saved/SavedView.swift; sourceTree = SOURCE_ROOT; };
 		4AFB04472290728C00D08DE2 /* SavedMoviesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SavedMoviesTableViewCell.swift; path = MovieSearch/Views/Cell/SavedMoviesTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		4AFB04492290750C00D08DE2 /* SavedResultsTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedResultsTableViewDelegate.swift; sourceTree = "<group>"; };
+		4AFB044D229158FA00D08DE2 /* MovieDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetails.swift; sourceTree = "<group>"; };
+		4AFB044F2291598E00D08DE2 /* SearchResultsDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsDetails.swift; sourceTree = "<group>"; };
+		4AFB045122915ADB00D08DE2 /* HttpAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +111,7 @@
 		4A167572228C0AC300127036 = {
 			isa = PBXGroup;
 			children = (
+				4AFB045322915AE000D08DE2 /* API */,
 				4A1675C6228C2E2200127036 /* Extentions */,
 				4A1675A2228C0ACC00127036 /* Frameworks */,
 				4A16757D228C0AC300127036 /* MovieSearch */,
@@ -328,6 +335,8 @@
 			isa = PBXGroup;
 			children = (
 				4A1675D7228D6EDB00127036 /* ResultsDataHandler.swift */,
+				4AFB044D229158FA00D08DE2 /* MovieDetails.swift */,
+				4AFB044F2291598E00D08DE2 /* SearchResultsDetails.swift */,
 			);
 			path = ResultsData;
 			sourceTree = "<group>";
@@ -355,6 +364,14 @@
 				4AFB044322906F4300D08DE2 /* SavedView.swift */,
 			);
 			path = Saved;
+			sourceTree = "<group>";
+		};
+		4AFB045322915AE000D08DE2 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				4AFB045122915ADB00D08DE2 /* HttpAPI.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -467,6 +484,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A1675BC228C167100127036 /* SavedCoordinator.swift in Sources */,
+				4AFB04502291598E00D08DE2 /* SearchResultsDetails.swift in Sources */,
 				4A1675AF228C0BDD00127036 /* Coordinator.swift in Sources */,
 				4AFB044222904D2700D08DE2 /* GradientContainerView.swift in Sources */,
 				4A1675BE228C292800127036 /* Enums.swift in Sources */,
@@ -481,10 +499,12 @@
 				4A167587228C0AC300127036 /* MovieSearch.xcdatamodeld in Sources */,
 				4A1675BA228C12EB00127036 /* SavedViewController.swift in Sources */,
 				4A1675C8228C416F00127036 /* SearchField.swift in Sources */,
+				4AFB045222915ADB00D08DE2 /* HttpAPI.swift in Sources */,
 				4A16757F228C0AC300127036 /* AppDelegate.swift in Sources */,
 				4A1675D5228D5B3800127036 /* PrevSearchResultsTableViewDelegate.swift in Sources */,
 				4A1675C3228C2B5B00127036 /* SearchView.swift in Sources */,
 				4AFB04402290491E00D08DE2 /* UIViewHelper.swift in Sources */,
+				4AFB044E229158FA00D08DE2 /* MovieDetails.swift in Sources */,
 				4AFB044422906F4300D08DE2 /* SavedView.swift in Sources */,
 				4A1675CA228C42DB00127036 /* UsableColours.swift in Sources */,
 				4A1675CD228D3FF900127036 /* UsableAnimations.swift in Sources */,

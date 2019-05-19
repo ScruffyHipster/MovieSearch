@@ -42,3 +42,18 @@ enum TableViewCellIdentifier {
 		}
 	}
 }
+
+///used to ammend the url request for OMDB
+enum SearchParam {
+	case title
+	case search
+	
+	var term: String {
+		switch self {
+		case .search:
+			return "s"
+		case .title:
+			return "t"
+		}
+	}
+}

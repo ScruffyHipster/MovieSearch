@@ -122,7 +122,6 @@ class SearchView: UIView {
 				//landscape
 				self.titleLabel.isHidden = searching ? true : false
 				self.searchStackViewTop?.constant = searching ? 20 : 90
-				
 			}
 		}, completion: nil)
 	}
