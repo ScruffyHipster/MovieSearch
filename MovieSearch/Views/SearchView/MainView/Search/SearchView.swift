@@ -58,12 +58,15 @@ class SearchView: UIView {
 		return view
 	}()
 	
-	lazy var loadingIndicator: UIActivityIndicatorView = {
-		var indicator = UIActivityIndicatorView()
-		indicator.style = UIActivityIndicatorView.Style.white
-		indicator.alpha = 0.0
-		return indicator
+	lazy var cancelButton: UIButton = {
+		var button = UIButton(type: .custom)
+		button.frame = .zero
+		button.setImage(UIImage(named: "crossButton"), for: .normal)
+		button.alpha = 0.0
+		return button
 	}()
+	
+	
 	
 	//Constraints are saved as variables so we can change the position of the search in landscape orientation.
 	var searchStackViewTop: NSLayoutConstraint?
@@ -72,7 +75,7 @@ class SearchView: UIView {
 	var titleLabelTop: NSLayoutConstraint?
 	var titleLabelLeading: NSLayoutConstraint?
 	var titleLabelTrailing: NSLayoutConstraint?
-//
+
 	//Constraint for the tableview height so we can change this upon loading of data
 	var prevTableViewHeight: NSLayoutConstraint?
 
@@ -123,6 +126,39 @@ class SearchView: UIView {
 			}
 		}, completion: nil)
 	}
+	
+	func searchInitiatied() {
+		moveSearchBar(searching: false)
+		let move = UIViewPropertyAnimator(duration: 0.5, curve: .easeInOut) {
+			self.layoutIfNeeded()
+			self.prevResultsTableView.alpha = 0.0
+			self.searchField.loadingIndicator.alpha = 1.0
+			UsableAniamtions.rotate(layer: self.cancelButton.layer, reversed: true)
+			self.cancelButton.alpha = 1.0
+		}
+		move.startAnimation()
+	}
+	
+	func searchCancelled() {
+		let move = UIViewPropertyAnimator(duration: 0.5, curve: .easeInOut) {
+			self.layoutIfNeeded()
+			self.prevResultsTableView.alpha = 0.0
+			self.searchField.loadingIndicator.alpha = 0.0
+			UsableAniamtions.rotate(layer: self.cancelButton.layer, reversed: false)
+			self.cancelButton.alpha = 0.0
+			self.blurView.alpha = 0.0
+		}
+		move.startAnimation()
+		move.addCompletion { _ in
+			UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseInOut, animations: {
+				self.searchField.text?.removeAll()
+				self.searchField.placeHolderLabel.transform = .identity
+				self.searchField.placeHolderLabel.alpha = 1.0
+			}, completion: nil)
+			
+		}
+	}
+	
 }
 
 //View layer setups
@@ -133,13 +169,14 @@ extension SearchView {
 		//add to view
 		[backgroundGradientContainerView].forEach({addSubview($0)})
 		//add to container view
-		[titleLabel, searchField, blurView, prevResultsTableView, searchGroupStackView].forEach({backgroundGradientContainerView.addSubview($0)})
+		[titleLabel, searchField, blurView, prevResultsTableView, searchGroupStackView, cancelButton].forEach({backgroundGradientContainerView.addSubview($0)})
 		setupBackground()
 		setUpTitle()
 		setUpSearchField()
 		setUpBlurView()
 		setupTableView()
 		setUpStackView()
+		setUpCancelButton()
 	}
 	
 	private func setupBackground() {
@@ -163,7 +200,6 @@ extension SearchView {
 	}
 	
 	private func setUpSearchField() {
-		
 		NSLayoutConstraint.activate([
 			searchField.heightAnchor.constraint(equalToConstant: 65),
 			searchField.widthAnchor.constraint(equalTo: titleLabel.widthAnchor, constant: 0)
@@ -175,7 +211,7 @@ extension SearchView {
 		blurView.alpha = 0.0
 	}
 	
-	func setupTableView() {
+	private func setupTableView() {
 		prevTableViewHeight = 	prevResultsTableView.heightAnchor.constraint(equalToConstant: 100)
 		NSLayoutConstraint.activate([
 			prevTableViewHeight!,
@@ -183,7 +219,7 @@ extension SearchView {
 			])
 	}
 	
-	func setUpStackView() {
+	private func setUpStackView() {
 		searchGroupStackView.addArrangedSubview(searchField)
 		searchGroupStackView.addArrangedSubview(prevResultsTableView)
 		
@@ -195,6 +231,14 @@ extension SearchView {
 		searchStackViewTop?.isActive = true
 		searchStackViewTrailing?.isActive = true
 	}
+	
+	private func setUpCancelButton() {
+		cancelButton.anchor(top: searchField.bottomAnchor, trailing: nil, bottom: nil, leading: nil, padding: .init(top: 30, left: 0, bottom: 0, right: 0), size: .init(width: 100, height: 44))
+		
+		cancelButton.centerXAnchor.constraint(equalTo: searchField.centerXAnchor, constant: 0).isActive = true
+		
+	}
+	
 	
 }
 

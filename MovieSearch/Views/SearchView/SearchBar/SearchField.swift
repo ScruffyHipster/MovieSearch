@@ -30,6 +30,14 @@ class SearchField: UITextField {
 		label.translatesAutoresizingMaskIntoConstraints = false
 		return label
 	}()
+	
+	lazy var loadingIndicator: UIActivityIndicatorView = {
+		var indicator = UIActivityIndicatorView()
+		indicator.style = UIActivityIndicatorView.Style.whiteLarge
+		indicator.startAnimating()
+		indicator.alpha = 0.0
+		return indicator
+	}()
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -48,6 +56,7 @@ extension SearchField {
 		setUpStyle()
 		setupBottomLine()
 		setUpPlaceHolderText()
+		setUploadingIndicator()
 	}
 	
 	private func setUpStyle() {
@@ -77,6 +86,11 @@ extension SearchField {
 			placeHolderLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 1),
 			placeHolderLabel.heightAnchor.constraint(equalToConstant: 50)
 			])
+	}
+	
+	private func setUploadingIndicator() {
+		addSubview(loadingIndicator)
+		loadingIndicator.anchor(top: topAnchor, trailing: trailingAnchor, bottom: nil, leading: nil, padding: .init(top: 30, left: 0, bottom: 0, right: -10), size: .init(width: 10, height: 10))
 	}
 	
 }
