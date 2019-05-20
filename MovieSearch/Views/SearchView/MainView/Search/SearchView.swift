@@ -13,8 +13,8 @@ class SearchView: UIView {
 	
 	//MARK:- Properties
 	
-	var backgroundGradientContainerView: GradientContainerView = {
-		let view = GradientContainerView(frame: .zero)
+	var backgroundGradientContainerView: UIView = {
+		let view = UIView(frame: .zero)
 		view.translatesAutoresizingMaskIntoConstraints = false
 		return view
 	}()
@@ -139,6 +139,7 @@ class SearchView: UIView {
 	}
 	
 	func searchCancelled() {
+		UsableAniamtions.fade(layer: titleLabel.layer, from: 0.6, to: 1.0, duration: 0.5)
 		let move = UIViewPropertyAnimator(duration: 0.5, curve: .easeInOut) {
 			self.layoutIfNeeded()
 			self.prevResultsTableView.alpha = 0.0
@@ -179,7 +180,7 @@ extension SearchView {
 	}
 	
 	private func setupBackground() {
-		backgroundGradientContainerView.anchor(top: topAnchor, trailing: trailingAnchor, bottom: bottomAnchor, leading: leadingAnchor)
+		backgroundGradientContainerView.anchor(top: topAnchor, trailing: trailingAnchor, bottom: bottomAnchor, leading: leadingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0))
 	}
 	
 	private func setUpTitle() {

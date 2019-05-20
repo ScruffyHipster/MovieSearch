@@ -24,6 +24,10 @@ class SearchViewController: UIViewController {
 		return search
 	}()
 	
+	var gradientView: GradientContainerView = {
+		return GradientContainerView(frame: .zero)
+	}()
+	
 	//MARK:- Init Methods
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -51,6 +55,8 @@ class SearchViewController: UIViewController {
 extension SearchViewController {
 	
 	private func setUpSearchView() {
+		gradientView.frame = self.view.bounds
+		self.view.insertSubview(gradientView, at: 0)
 		searchView.frame = self.view.bounds
 		searchView.searchField.delegate = self
 		view.addSubview(searchView)

@@ -10,26 +10,25 @@ import UIKit
 
 ///Gradient layer view
 class GradientContainerView: UIView {
-	
-	lazy var gradientLayer: CAGradientLayer = {
-		var gradient = CAGradientLayer()
-		gradient.colors = [GradientColors.blue.rgb.cgColor, GradientColors.green.rgb.cgColor]
-		gradient.frame = self.bounds
-		return gradient
-	}()
+
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-		layer.addSublayer(gradientLayer)
+		setup()
+	}
+	
+	private func setup() {
 		autoresizingMask = [.flexibleWidth, .flexibleHeight]
+		guard let gradientLayer = self.layer as? CAGradientLayer else {return}
+		gradientLayer.colors = [GradientColors.blue.rgb.cgColor, GradientColors.green.rgb.cgColor]
+		gradientLayer.frame = self.bounds
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-	
-	override func layoutSubviews() {
-		gradientLayer.frame = bounds
-	}
 
+	override class var layerClass: AnyClass {
+		return CAGradientLayer.self
+	}
 }

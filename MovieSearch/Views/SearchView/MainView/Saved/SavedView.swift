@@ -49,6 +49,14 @@ class SavedView: UIView {
 	var mainTitleLeading: NSLayoutConstraint?
 	var mainTitletrailing: NSLayoutConstraint?
 	
+	var savedTableViewDelegate: SavedResultsTableViewDelegate? {
+		didSet {
+			self.savedMoviesTableView.delegate = self.savedTableViewDelegate
+			self.savedMoviesTableView.dataSource = self.savedTableViewDelegate
+			self.savedMoviesTableView.reloadData()
+		}
+	}
+	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		setUpViews()
@@ -65,7 +73,6 @@ class SavedView: UIView {
 	
 	//MARK:- Methods
 	func setUpViews() {
-		
 		[backgroundContainerView].forEach({addSubview($0)})
 		[mainTitle, savedMoviesTableView].forEach({addSubview($0)})
 		setUpContainerView()
@@ -100,6 +107,7 @@ extension SavedView {
 	}
 	
 	private func setUpSavedResultsTableView() {
+		
 		savedResultsTableViewHeight = savedMoviesTableView.heightAnchor.constraint(equalToConstant: savedMoviesTableView.contentSize.height)
 		
 		savedResultsTableViewTop = savedMoviesTableView.topAnchor.constraint(equalTo: mainTitle.bottomAnchor, constant: 106)

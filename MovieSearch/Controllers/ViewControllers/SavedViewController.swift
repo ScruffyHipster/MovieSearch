@@ -43,11 +43,6 @@ class SavedViewController: UIViewController {
 	func setUpView() {
 		view.addSubview(savedView)
 		savedView.anchor(top: view.topAnchor, trailing: view.trailingAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor)
-		
-		savedView.savedMoviesTableView.delegate = savedTableViewDelegate
-		savedView.savedMoviesTableView.dataSource = savedTableViewDelegate
-		
-		savedView.savedMoviesTableView.reloadData()
 		savedView.savedResultsTableViewHeight?.isActive = false
 		savedView.savedResultsTableViewHeight?.constant = savedView.savedMoviesTableView.contentSize.height
 		savedView.savedResultsTableViewHeight?.isActive = true

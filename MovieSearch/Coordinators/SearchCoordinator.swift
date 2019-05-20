@@ -60,6 +60,7 @@ extension SearchCoordinator {
 				print(results)
 			} else {
 				print("failed")
+				print(results)
 			}
 		}
 	}
