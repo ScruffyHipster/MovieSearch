@@ -13,8 +13,8 @@ class SearchView: UIView {
 	
 	//MARK:- Properties
 	
-	var backgroundGradientContainerView: UIView = {
-		let view = UIView(frame: .zero)
+	var backgroundContainerView: GradientContainerView = {
+		let view = GradientContainerView(frame: .zero)
 		view.translatesAutoresizingMaskIntoConstraints = false
 		return view
 	}()
@@ -46,6 +46,7 @@ class SearchView: UIView {
 		var label = UILabel(frame: .zero)
 		label.text = "Movie Search"
 		label.textAlignment = .left
+		label.allowsDefaultTighteningForTruncation = true
 		label.font = UsableFonts.titleFont
 		label.textColor = UIColor.white
 		label.translatesAutoresizingMaskIntoConstraints = false
@@ -79,7 +80,7 @@ class SearchView: UIView {
 	//Constraint for the tableview height so we can change this upon loading of data
 	var prevTableViewHeight: NSLayoutConstraint?
 
-	var orientation: Bool {
+	var orientationPortrait: Bool {
 		get {
 			return UIDevice.current.orientation == .portrait ? true : false
 		}
@@ -114,11 +115,11 @@ class SearchView: UIView {
 	
 	func moveSearchBar(searching: Bool) {
 		UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0.5, options: .curveEaseInOut, animations: {
-			if self.orientation {
+			if self.orientationPortrait {
 				//portrait
 				self.searchStackViewTop?.constant = searching ? 100 : 200
 			}
-			if !self.orientation {
+			if !self.orientationPortrait {
 				//landscape
 				self.titleLabel.isHidden = searching ? true : false
 				self.searchStackViewTop?.constant = searching ? 20 : 90
@@ -167,9 +168,9 @@ extension SearchView {
 	///Set up all view in view
 	func setUpViews() {
 		//add to view
-		[backgroundGradientContainerView].forEach({addSubview($0)})
+		[backgroundContainerView].forEach({addSubview($0)})
 		//add to container view
-		[titleLabel, searchField, blurView, prevResultsTableView, searchGroupStackView, cancelButton].forEach({backgroundGradientContainerView.addSubview($0)})
+		[titleLabel, searchField, blurView, prevResultsTableView, searchGroupStackView, cancelButton].forEach({backgroundContainerView.addSubview($0)})
 		setupBackground()
 		setUpTitle()
 		setUpSearchField()
@@ -180,16 +181,16 @@ extension SearchView {
 	}
 	
 	private func setupBackground() {
-		backgroundGradientContainerView.anchor(top: topAnchor, trailing: trailingAnchor, bottom: bottomAnchor, leading: leadingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0))
+		backgroundContainerView.anchor(top: topAnchor, trailing: trailingAnchor, bottom: bottomAnchor, leading: leadingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0))
 	}
 	
 	private func setUpTitle() {
 		
-		titleLabelTop = titleLabel.topAnchor.constraint(equalTo: backgroundGradientContainerView.safeAreaLayoutGuide.topAnchor, constant: 100)
+		titleLabelTop = titleLabel.topAnchor.constraint(equalTo: backgroundContainerView.safeAreaLayoutGuide.topAnchor, constant: 100)
 		
-		titleLabelTrailing = titleLabel.trailingAnchor.constraint(equalTo: backgroundGradientContainerView.safeAreaLayoutGuide.trailingAnchor, constant: -35)
+		titleLabelTrailing = titleLabel.trailingAnchor.constraint(equalTo: backgroundContainerView.safeAreaLayoutGuide.trailingAnchor, constant: -35)
 		
-		titleLabelLeading = titleLabel.safeAreaLayoutGuide.leadingAnchor.constraint(equalTo: backgroundGradientContainerView.leadingAnchor, constant: 35)
+		titleLabelLeading = titleLabel.safeAreaLayoutGuide.leadingAnchor.constraint(equalTo: backgroundContainerView.leadingAnchor, constant: 35)
 		
 		titleLabel.heightAnchor.constraint(equalToConstant: 60)
 		
@@ -225,7 +226,7 @@ extension SearchView {
 		
 		searchStackViewTop = searchGroupStackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 200)
 		
-		searchStackViewTrailing = searchGroupStackView.trailingAnchor.constraint(equalTo: backgroundGradientContainerView.safeAreaLayoutGuide.trailingAnchor, constant: -35)
+		searchStackViewTrailing = searchGroupStackView.trailingAnchor.constraint(equalTo: backgroundContainerView.safeAreaLayoutGuide.trailingAnchor, constant: -35)
 		
 		
 		searchStackViewTop?.isActive = true
@@ -248,7 +249,7 @@ extension SearchView {
 		
 		let stack = searchGroupStackView
 		let title = titleLabel
-		let container = backgroundGradientContainerView
+		let container = backgroundContainerView
 		
 		searchStackViewTop?.isActive = false
 		searchStackViewTrailing?.isActive = false

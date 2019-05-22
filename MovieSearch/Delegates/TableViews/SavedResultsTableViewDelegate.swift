@@ -11,7 +11,8 @@ import UIKit
 
 ///Saved results tableview delegate. This is used to display any saved content
 
-class SavedResultsTableViewDelegate: NSObject, UITableViewDelegate {
+class SavedResultsTableViewDelegate: NSObject, DataHandlerProtocol, UITableViewDelegate {
+	
 	
 	var resultsHandler: ResultsDataHandler?
 	

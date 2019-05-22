@@ -43,6 +43,17 @@ enum TableViewCellIdentifier {
 	}
 }
 
+enum CollectionViewCellIdentifiers {
+	case searchResultCVCell
+	
+	var identity: String {
+		switch self {
+		case .searchResultCVCell:
+			return "SearchResultCVCell"
+		}
+	}
+}
+
 ///used to ammend the url request for OMDB
 enum SearchParam {
 	case title

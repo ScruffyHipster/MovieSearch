@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-protocol Coordinator {
+protocol Coordinator: class {
 	var childCoordinator: [Coordinator] {get set}
 	var navigationController: UINavigationController {get set}
 	

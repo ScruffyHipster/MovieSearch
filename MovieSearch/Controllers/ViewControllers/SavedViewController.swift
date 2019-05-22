@@ -22,12 +22,21 @@ class SavedViewController: UIViewController {
 		return saved
 	}()
 	
+	var gradientView: GradientContainerView = {
+		return GradientContainerView(frame: .zero)
+	}()
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		navigationController?.navigationBar.isHidden = true
 		setUpView()
     }
 	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		setUpGradient()
+		savedView.savedTableViewDelegate = savedTableViewDelegate
+	}
 	
 	override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
 		if UIDevice.current.orientation.isLandscape {
@@ -39,10 +48,18 @@ class SavedViewController: UIViewController {
 	}
 	
 	//MARK:- Methods
+	
+	private func setUpGradient() {
+		gradientView.frame = self.view.bounds
+		self.view.insertSubview(gradientView, at: 0)
+	}
 
 	func setUpView() {
+		savedView.savedTableViewDelegate = savedTableViewDelegate
 		view.addSubview(savedView)
 		savedView.anchor(top: view.topAnchor, trailing: view.trailingAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor)
+		
+		savedView.savedMoviesTableView.reloadData()
 		savedView.savedResultsTableViewHeight?.isActive = false
 		savedView.savedResultsTableViewHeight?.constant = savedView.savedMoviesTableView.contentSize.height
 		savedView.savedResultsTableViewHeight?.isActive = true

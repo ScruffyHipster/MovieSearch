@@ -34,6 +34,11 @@ class SearchViewController: UIViewController {
 		setUpView()
 	}
 	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		setUpGradient()
+	}
+	
 	//MARK:- Functions
 	///Sets up the view initially
 	func setUpView() {
@@ -54,10 +59,13 @@ class SearchViewController: UIViewController {
 //MARK:- View setup methods
 extension SearchViewController {
 	
-	private func setUpSearchView() {
+	private func setUpGradient() {
 		gradientView.frame = self.view.bounds
 		self.view.insertSubview(gradientView, at: 0)
-		searchView.frame = self.view.bounds
+	}
+	
+	private func setUpSearchView() {
+		
 		searchView.searchField.delegate = self
 		view.addSubview(searchView)
 		
@@ -73,8 +81,7 @@ extension SearchViewController {
 	}
 	
 	@objc func cancelButtonPressed() {
-		//Coordinator will cancel the request
-		print("Pressed cancel")
+		coordinator?.http.cancelTask()
 		searchView.searchCancelled()
 	}
 	
@@ -119,7 +126,8 @@ extension SearchViewController: UITextFieldDelegate {
 				self.searchView.prevResultsTableView.alpha = 0
 			}
 		} else {
-			coordinator?.searchForMovies(searchTerm: searchView.searchField.text!)
+			coordinator?.searchResultsInit(with: [])
+//			coordinator?.searchForMovies(searchTerm: searchView.searchField.text!)
 			self.searchView.searchInitiatied()
 			
 		}

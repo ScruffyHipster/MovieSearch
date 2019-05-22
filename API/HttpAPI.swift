@@ -22,7 +22,7 @@ class HttpAPI {
 	func createUrl(searchParam: SearchParam, searchTerm: String) -> URLRequest {
 		if !searchTerm.isEmpty {
 			let term = searchTerm.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: " ", with: "+").lowercased()
-			request = URLRequest(url: URL(string: "https://www.omdbapi.com/?\(searchParam.term)=\(term)&\(apiKey)")!, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 300)
+			request = URLRequest(url: URL(string: "https://www.omdbapi.com/?\(searchParam.term)=\(term)&\(apiKey)")!, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 20.0)
 		}
 		return request!
 	}
@@ -75,5 +75,5 @@ class HttpAPI {
 		}
 		return result
 	}
-	
+		
 }

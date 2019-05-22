@@ -10,12 +10,12 @@ import Foundation
 import UIKit
 
 ///Recent search results tableview. This is used to display the recent results under the UISearch field.
-class PrevSearchResultsTableViewDelegate: NSObject, UITableViewDelegate {
+class PrevSearchResultsTableViewDelegate: NSObject, DataHandlerProtocol, UITableViewDelegate {
 	
 	var resultsHandler: ResultsDataHandler?
 	
 	///The array in which the tableView will populate itself
-	var resultData: [AnyObject]? {
+	var resultsData: [AnyObject]? {
 		get {
 			return resultsHandler?.retriveDataFromHandeler()
 		}
@@ -26,13 +26,13 @@ class PrevSearchResultsTableViewDelegate: NSObject, UITableViewDelegate {
 extension PrevSearchResultsTableViewDelegate: UITableViewDataSource {
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		guard let data = resultData else {return 0}
+		guard let data = resultsData else {return 0}
 		return data.count
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCellIdentifier.prevResultsCell.identity, for: indexPath) as! PrevResultTableViewCell
-		cell.titleLabel.text = resultData?[indexPath.row] as? String
+		cell.titleLabel.text = resultsData?[indexPath.row] as? String
 		return cell
 	}
 }
