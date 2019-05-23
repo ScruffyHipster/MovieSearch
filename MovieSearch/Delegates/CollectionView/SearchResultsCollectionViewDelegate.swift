@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+protocol SearchResultsSelectionDelegate: class {
+	func didSelectMovieAt(_ indexPath: IndexPath)
+}
+
 class SearchResultsCollectionViewDelegate: NSObject, DataHandlerProtocol {
 	
 	var resultsHandler: ResultsDataHandler?
@@ -18,15 +22,24 @@ class SearchResultsCollectionViewDelegate: NSObject, DataHandlerProtocol {
 			return resultsHandler?.retriveDataFromHandeler()
 		}
 	}
+	
+	//If true the device is in portrait. False the device is in landscape.
+	var orientation: Bool {
+		get {
+			return UIDevice.current.orientation.isPortrait ? true : false
+		}
+	}
+	
+	weak var delegate: SearchResultsSelectionDelegate?
 }
 
 extension SearchResultsCollectionViewDelegate: UICollectionViewDataSource {
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		guard let data = resultsData else {
-			print("here as the data is not loaded")
-			return 10
+			return 0
 		}
+		print(data)
 		print("data count is \(data.count)")
 		return data.count
 	}
@@ -34,21 +47,25 @@ extension SearchResultsCollectionViewDelegate: UICollectionViewDataSource {
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellIdentifiers.searchResultCVCell.identity, for: indexPath) as! SearchResultCollectionViewCell
 		
-		cell.titleLabel.text = "The Avengers"
-		cell.ratingText.text = "8 / 10"
-	
+		guard let data = resultsData else {return cell}
 		
-		cell.configureImage(image: UIImage(named: "posterPlaceholder")!)
+		cell.configureCell(with: data[indexPath.row] as! SearchResults)
+		
+		cell.orientation = orientation
+		
+		cell.ratingText.text = "8 / 10"
 		
 
 		return cell
 	}
 	
-	
 }
 
 extension SearchResultsCollectionViewDelegate: UICollectionViewDelegate {
 	
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		delegate?.didSelectMovieAt(indexPath)
+	}
 }
 
 extension SearchResultsCollectionViewDelegate: UICollectionViewDelegateFlowLayout {

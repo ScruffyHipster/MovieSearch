@@ -11,8 +11,8 @@ import Foundation
 import Foundation
 
 
-struct SearchResultDetails: Codable {
-	let search: [Search]
+struct InitialSearchResultDetails: Codable {
+	let search: [SearchResults]
 	let totalResults, response: String
 	
 	enum CodingKeys: String, CodingKey {
@@ -22,7 +22,7 @@ struct SearchResultDetails: Codable {
 	}
 }
 
-struct Search: Codable {
+struct SearchResults: Codable {
 	let title, year, imdbID: String
 	let type: TypeEnum
 	let poster: String

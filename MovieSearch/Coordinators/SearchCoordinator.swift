@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-///Manages the Search controller tab in the app
+///Manages the Search controller tab in the app and subsequent views therafter
 class SearchCoordinator: NSObject, Coordinator {
 	
 	var childCoordinator = [Coordinator]()
@@ -38,6 +38,7 @@ class SearchCoordinator: NSObject, Coordinator {
 		searchVC.coordinator = self
 		
 		//Populate data this will come from cloudkit eventually and display previous successful searches made.
+		
 		resultDataHandler.populateDataWith(data: ["One", "Two", "Three"])
 		
 		//Pass the delegate the resultHandler object
@@ -46,36 +47,71 @@ class SearchCoordinator: NSObject, Coordinator {
 		navigationController.viewControllers = [searchVC]
 	}
 	
-	func searchResultsInit(with results: [SearchResultDetails]) {
-		
+	///Sets up the search results view
+	func searchResultsInit(with results: InitialSearchResultDetails?) {
 		let child = SearchResultsCoordiantor(navController: navigationController)
+		
+		//We populate the search results array first. This can then handle either showing no results error or the data.
+		
 		child.searchResults = results
 		child.resultDataHandler = resultDataHandler
-		child.parentCoordinator = self
-		childCoordinator.append(child)
-		//We populate the search results array first. This can then handle either showing no results error or the data.
 		child.populateResults()
+		
+		
+		child.parentCoordinator = self
+		child.http = http
+		childCoordinator.append(child)
 		
 	}
 	
+	///Sets up the details view to see movie details
+	func detailsViewInit(with details: MovieDetails) {
+		let child = DetailsCoordinator(navController: navigationController, movieDetails: details)
+		child.parentCoordinator = self
+		child.http = http
+		childCoordinator.append(child)
+		child.setUp()
+	}
 	
 }
 
 extension SearchCoordinator {
 	
+	///Used as the inital search for user inputted search term
 	func searchForMovies(searchTerm: String) {
 		let url = http.createUrl(searchParam: .search, searchTerm: searchTerm)
 		print("url is \(url)")
-		http.makeRequest(url: url, for: SearchResultDetails.self) { (success, results) -> (Void) in
+		http.makeRequest(url: url, for: InitialSearchResultDetails.self) { (success, results: InitialSearchResultDetails?, error) -> (Void) in
 			if success {
-				self.searchResultsInit(with: results as! [SearchResultDetails])
-				print(results)
+				self.searchResultsInit(with: results!)
 			} else {
-				self.searchResultsInit(with: [])
-				print(results)
+				self.searchResultsInit(with: nil)
+				print("Didn't retrive data")
 			}
 		}
 	}
+	
+	///Used to fetch specific movie
+	func fetchDetailsForMovie(with name: SearchResults) {
+		let url = http.createUrl(searchParam: .title, searchTerm: name.imdbID)
+		http.makeRequest(url: url, for: MovieDetails.self, closure: { (success, result: MovieDetails?, error) -> (Void) in
+			if success {
+				self.detailsViewInit(with: result!)
+				print("result")
+			} else {
+				print("bad result")
+			}
+		})
+	}
+}
+
+
+extension SearchCoordinator: SearchResultsSelectionDelegate {
+	
+	func didSelectMovieAt(_ indexPath: IndexPath) {
+		//
+	}
+	
 	
 }
 
@@ -103,6 +139,9 @@ extension SearchCoordinator: UINavigationControllerDelegate {
 		//else we check if the vc is in the child array and remove it when we've navigated back
 		if let searchResultsVC = fromVC as? SearchResultsViewController {
 			childDidFinish(remove: searchResultsVC.coordinator)
+		}
+		if let detailsVC = fromVC as? DetailsViewController {
+			childDidFinish(remove: detailsVC.coordinator)
 		}
 	}
 	

@@ -9,7 +9,7 @@
 import Foundation
 
 // MARK: - Empty
-struct MovieDeatils: Codable {
+struct MovieDetails: Codable {
 	let title, year, rated, released: String
 	let runtime, genre, director, writer: String
 	let actors, plot, language, country: String

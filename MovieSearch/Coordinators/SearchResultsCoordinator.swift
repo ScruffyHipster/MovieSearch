@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-
+///Manages the search results view controller and logic
 class SearchResultsCoordiantor: Coordinator {
 	
 	weak var parentCoordinator: SearchCoordinator?
@@ -20,18 +20,20 @@ class SearchResultsCoordiantor: Coordinator {
 	
 	var resultDataHandler: ResultsDataHandler?
 	
-	var searchResults: [SearchResultDetails]?
+	var searchResults: InitialSearchResultDetails?
+	
+	var http: HttpAPI?
 	
 	init(navController: UINavigationController) {
 		self.navigationController = navController
 	}
 	
-	func start() {
+	internal func start() {
 		let searchResultsVC = SearchResultsViewController.instantiate()
+		searchResultsVC.searchResultCollectionViewDelegate.resultsHandler = resultDataHandler
+		searchResultsVC.searchResultCollectionViewDelegate.delegate = parentCoordinator
 		navigationController.pushViewController(searchResultsVC, animated: true)
 	}
-	
-	
 	
 	///Adds the data to the array. 
 	func populateResults() {
@@ -39,14 +41,13 @@ class SearchResultsCoordiantor: Coordinator {
 			//We can show an error or no results sign if this fails
 			return
 		}
+		
 		//else populate the collection view with the search results
-		resultDataHandler?.populateDataWith(data: results)
+		resultDataHandler?.populateDataWith(data: results.search)
+		
 		DispatchQueue.main.async {
 			self.start()
 		}
 	
 	}
-	
-	
-	
 }

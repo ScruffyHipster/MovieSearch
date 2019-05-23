@@ -15,13 +15,14 @@ class SearchResultCollectionViewCell: UICollectionViewCell {
 	
 	//MARK:- Properties
 	
+	var orientation: Bool?
+	
 	
 	var titleLabel: UILabel = {
 		var label = UILabel(frame: .zero)
 		label.textColor = UsableColours.searchText
 		label.font = UsableFonts.searchResultFont
 		label.textAlignment = .left
-//		label.allowsDefaultTighteningForTruncation = true
 		label.minimumScaleFactor = 0.6
 		label.adjustsFontSizeToFitWidth = true
 		return label
@@ -29,7 +30,7 @@ class SearchResultCollectionViewCell: UICollectionViewCell {
 	
 	var mainImage: UIImageView = {
 		var imageView = UIImageView(frame: .zero)
-		imageView.contentMode = UIView.ContentMode.scaleAspectFit
+		imageView.contentMode = UIView.ContentMode.scaleAspectFill
 		imageView.clipsToBounds = true
 		imageView.layer.cornerRadius = 8
 		return imageView
@@ -48,7 +49,7 @@ class SearchResultCollectionViewCell: UICollectionViewCell {
 		rating.font = UsableFonts.ratingFont
 		rating.textColor = .white
 		rating.minimumScaleFactor = 0.2
-		rating.textAlignment = .left
+		rating.textAlignment = .center
 		return rating
 	}()
 	
@@ -65,13 +66,25 @@ class SearchResultCollectionViewCell: UICollectionViewCell {
 	
 	//MARK:- Methods
 	func configure() {
-		setUpCell()
-		backgroundColor = .clear
+		setUpCellLayout()
+		backgroundColor = .red
 	}
 	
 }
 
 extension SearchResultCollectionViewCell {
+	
+	func configureCell(with results: SearchResults) {
+		titleLabel.text = results.title
+		mainImage.downloadImage(from: results.poster) { (success) in
+			if success {
+				print("success")
+				DispatchQueue.main.async {
+					self.configureImage(image: self.mainImage.image!)
+				}
+			}
+		}
+	}
 	
 	func configureImage(image: UIImage) {
 		DispatchQueue.main.async {
@@ -80,33 +93,23 @@ extension SearchResultCollectionViewCell {
 		
 	}
 	
-	private func setUpCell() {
-		
-
-		[mainImage, titleLabel, starImage, ratingText].forEach({addSubview($0)})
-
+	private func setUpCellLayout() {
+		[mainImage, titleLabel].forEach({addSubview($0)})
 		setUpPosterImage()
 		setUpName()
-		setUpRating()
-		setUpText()
-		
 	}
 	
 	private func setUpPosterImage() {
 		
 		mainImage.translatesAutoresizingMaskIntoConstraints = false
-		
-		mainImage.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1000), for: .horizontal)
-		
-		mainImage.anchor(top: safeAreaLayoutGuide.topAnchor, trailing: safeAreaLayoutGuide.trailingAnchor, bottom: titleLabel.topAnchor, leading: safeAreaLayoutGuide.leadingAnchor, padding: .init(top: 20, left: 40, bottom: -20, right: -40))
+	  mainImage.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1000), for: .horizontal)
+		mainImage.anchor(top: safeAreaLayoutGuide.topAnchor, trailing: safeAreaLayoutGuide.trailingAnchor, bottom: titleLabel.topAnchor, leading: safeAreaLayoutGuide.leadingAnchor, padding: .init(top: 40, left: 40, bottom: -20, right: -40))
 		
 	}
 	
 	private func setUpName() {
-		
-		titleLabel.anchor(top: nil, trailing: mainImage.trailingAnchor, bottom: nil, leading: mainImage.leadingAnchor)
-
-		
+		titleLabel.anchor(top: nil, trailing: mainImage.safeAreaLayoutGuide.trailingAnchor, bottom: bottomAnchor, leading: mainImage.safeAreaLayoutGuide.leadingAnchor, padding: .init(top: 0, left: 0, bottom: -10, right: 0))
+//		titleLabel.centerXAnchor.constraint(equalTo: mainImage.centerXAnchor, constant: 0).isActive = true
 	}
 	
 	private func setUpRating() {

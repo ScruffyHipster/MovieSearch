@@ -126,10 +126,8 @@ extension SearchViewController: UITextFieldDelegate {
 				self.searchView.prevResultsTableView.alpha = 0
 			}
 		} else {
-			coordinator?.searchResultsInit(with: [])
-//			coordinator?.searchForMovies(searchTerm: searchView.searchField.text!)
+			coordinator?.searchForMovies(searchTerm: searchView.searchField.text!)
 			self.searchView.searchInitiatied()
-			
 		}
 	}
 }

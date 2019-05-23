@@ -16,7 +16,18 @@ class ResultsDataHandler {
 	
 	///Populate the resultsData Array with the data passed in
 	func populateDataWith<T>(data: [T]) {
+		clearArray()
 		resultsData = data as [AnyObject]
+	}
+	
+	private func clearArray() {
+		guard let array = resultsData else {
+			print("nothing in array")
+			return}
+		if !array.isEmpty {
+			print("clearing array")
+			resultsData = []
+		}
 	}
 	
 	///Return the results data

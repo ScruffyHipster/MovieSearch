@@ -30,7 +30,7 @@ class MovieSearchFakeDataTests: XCTestCase {
 		
 		let promise = expectation(description: "Status code: 200")
 		
-		apiUnderTest.makeRequest(url: URLRequest(url: url!), for: MovieDeatils.self) { (success, result) -> (Void) in
+		apiUnderTest.makeRequest(url: URLRequest(url: url!), for: MovieDetails.self) { (success, result) -> (Void) in
 			if success {
 				promise.fulfill()
 			} else {

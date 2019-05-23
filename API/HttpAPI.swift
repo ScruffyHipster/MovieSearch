@@ -27,14 +27,14 @@ class HttpAPI {
 		return request!
 	}
 	
-	func makeRequest<T: Codable>(url request: URLRequest, for dataStructure: T.Type, closure: @escaping (Bool, [Any]) -> (Void)) {
+	func makeRequest<T: Codable>(url request: URLRequest, for dataStructure: T.Type, closure: @escaping (Bool, T?, Error?) -> (Void)) {
 		var success = false
 		dataTask?.cancel()
 		dataTask = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
 			print(request)
 			guard let response = response as? HTTPURLResponse else {
 				success = false
-				closure(success, [])
+				closure(success, nil, error)
 				return
 			}
 			if self.checkResonse(responseCode: response.statusCode) {
@@ -42,16 +42,15 @@ class HttpAPI {
 				do {
 					let resultData = try self.decoder.decode(dataStructure.self, from: jsonData)
 					success = true
-					print(resultData)
-					closure(success, [resultData] as [AnyObject])
+					closure(success, resultData, nil)
 				} catch {
 					success = false
 					print(error)
-					closure(success, [])
+					closure(success, nil, error)
 				}
 			} else {
 				success = false
-				closure(success, [])
+				closure(success, nil, error)
 			}
 		})
 		dataTask?.resume()

@@ -26,8 +26,9 @@ class SearchResultsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		setUpView()
-		searchResultView.collectionView.reloadData()
-        // Do any additional setup after loading the view.
+		DispatchQueue.main.async {
+			self.searchResultView.collectionView.reloadData()
+		}
     }
 	
 	override func viewWillAppear(_ animated: Bool) {
