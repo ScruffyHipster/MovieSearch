@@ -39,8 +39,6 @@ extension SearchResultsCollectionViewDelegate: UICollectionViewDataSource {
 		guard let data = resultsData else {
 			return 0
 		}
-		print(data)
-		print("data count is \(data.count)")
 		return data.count
 	}
 	
@@ -51,13 +49,11 @@ extension SearchResultsCollectionViewDelegate: UICollectionViewDataSource {
 		
 		cell.configureCell(with: data[indexPath.row] as! SearchResults)
 		
-		cell.orientation = orientation
 		
-		cell.ratingText.text = "8 / 10"
-		
-
 		return cell
 	}
+	
+	
 	
 }
 
@@ -72,32 +68,34 @@ extension SearchResultsCollectionViewDelegate: UICollectionViewDelegateFlowLayou
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		
-		let width = collectionView.bounds.width
+		let width =  collectionView.bounds.width
 		let height = collectionView.bounds.height
 		
 		if UIDevice.current.orientation.isLandscape {
-			return CGSize(width: width / 4, height: height)
-		} else {
-			return CGSize(width: width, height: height)
+			return CGSize(width: (width - 30) / 4, height: height - 10)
 		}
-		
+		if UIDevice.current.orientation.isPortrait {
+			return CGSize(width: (width - 30) / 2, height: (height / 2) - 10)
+		} else {
+			return CGSize(width: 0, height: 0)
+		}
 	}
 	
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-		if UIDevice.current.orientation.isLandscape {
-			return 20
-		} else {
-			return 0
-		}
+		return 20
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-		return 0
+		if UIDevice.current.orientation.isLandscape {
+			return 5
+		} else {
+			return 10
+		}
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-		return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+		return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
 	}
 	
 

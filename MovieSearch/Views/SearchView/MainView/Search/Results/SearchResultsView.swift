@@ -29,11 +29,10 @@ class SearchResultsView: UIView {
 	
 	var collectionView: UICollectionView = {
 		let layout = UICollectionViewFlowLayout()
-		layout.scrollDirection = .horizontal
+		layout.scrollDirection = .vertical
 		let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-		collectionView.backgroundColor = .green
+		collectionView.backgroundColor = .clear
 		collectionView.register(SearchResultCollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCellIdentifiers.searchResultCVCell.identity)
-		collectionView.isPagingEnabled = true
 		return collectionView
 	}()
 	

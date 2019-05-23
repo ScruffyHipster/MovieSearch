@@ -28,10 +28,9 @@ extension UIImageView {
 				guard let url = url else {return}
 				do {
 					let data = try? Data(contentsOf: url)
-					if let data = data {
-						let image = UIImage(data: data)
+					if let data = data, let image = UIImage(data: data) {
 						DispatchQueue.main.async {
-							imageCache.setObject(image!, forKey: urlString as NSString)
+							imageCache.setObject(image, forKey: urlString as NSString)
 							if let weakSelf = self {
 								weakSelf.image = image
 							}

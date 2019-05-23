@@ -14,6 +14,6 @@ class UsableFonts: UIFont {
 	static let searchFont = UIFont(name: "Helvetica Neue", size: 50)
 	static let prevResultFont = UIFont(name: "Helvetica Neue", size: 16)
 	static let savedResultsFont = UIFont(name: "Helvetica Neue", size: 24)
-	static let searchResultFont = UIFont(name: "Helvetica Neue", size: 30)
+	static let searchResultFont = UIFont(name: "Helvetica Neue", size: 10)
 	static let ratingFont = UIFont(name: "Helvetica Neue", size: 20)
 }

@@ -42,26 +42,9 @@ class SearchResultsViewController: UIViewController {
 	
 	}
 	
-	override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-		super.viewWillTransition(to: size, with: coordinator)
-		let collection = searchResultView.collectionView
-		guard let layout = collection.collectionViewLayout as? UICollectionViewFlowLayout else {return}
-		
-		if UIDevice.current.orientation.isLandscape {
-			
-			collection.isPagingEnabled = false
-			layout.invalidateLayout()
-			searchResultView.layoutIfNeeded()
-			collection.reloadData()
-		
-		} else if UIDevice.current.orientation.isPortrait {
-			
-			collection.isPagingEnabled = true
-			layout.invalidateLayout()
-			searchResultView.layoutIfNeeded()
-			collection.reloadData()
-			
-		}
+	override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+		searchResultView.collectionView.collectionViewLayout.invalidateLayout()
+		searchResultView.collectionView.reloadData()
 	}
 	
 	private func setUpNavBar() {
