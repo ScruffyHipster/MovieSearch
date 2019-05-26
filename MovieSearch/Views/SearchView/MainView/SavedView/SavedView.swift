@@ -53,7 +53,6 @@ class SavedView: UIView {
 		didSet {
 			self.savedMoviesTableView.delegate = self.savedTableViewDelegate
 			self.savedMoviesTableView.dataSource = self.savedTableViewDelegate
-			self.savedMoviesTableView.reloadData()
 		}
 	}
 	

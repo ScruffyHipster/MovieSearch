@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol SearchResultsSelectionDelegate: class {
-	func didSelectMovieAt(_ indexPath: IndexPath)
+	func didSelectMovieAt(_ IMDBid: String)
 }
 
 class SearchResultsCollectionViewDelegate: NSObject, DataHandlerProtocol {
@@ -49,7 +49,6 @@ extension SearchResultsCollectionViewDelegate: UICollectionViewDataSource {
 		
 		cell.configureCell(with: data[indexPath.row] as! SearchResults)
 		
-		
 		return cell
 	}
 	
@@ -60,7 +59,9 @@ extension SearchResultsCollectionViewDelegate: UICollectionViewDataSource {
 extension SearchResultsCollectionViewDelegate: UICollectionViewDelegate {
 	
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		delegate?.didSelectMovieAt(indexPath)
+		guard let data = resultsData else {return}
+		let movie = data[indexPath.row] as! SearchResults
+		delegate?.didSelectMovieAt(movie.imdbID)
 	}
 }
 
@@ -83,11 +84,16 @@ extension SearchResultsCollectionViewDelegate: UICollectionViewDelegateFlowLayou
 	
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-		return 20
+		if !orientation {
+			return 20
+		} else {
+			return 10
+		}
+		
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-		if UIDevice.current.orientation.isLandscape {
+		if !orientation {
 			return 5
 		} else {
 			return 10

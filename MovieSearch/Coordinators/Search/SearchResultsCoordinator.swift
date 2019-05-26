@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-///Manages the search results view controller and logic
+///Manages the search results view controller and logic. This is a child of Search Coordinator.
 class SearchResultsCoordiantor: Coordinator {
 	
 	weak var parentCoordinator: SearchCoordinator?
@@ -30,6 +30,7 @@ class SearchResultsCoordiantor: Coordinator {
 	
 	internal func start() {
 		let searchResultsVC = SearchResultsViewController.instantiate()
+		searchResultsVC.coordinator = self
 		searchResultsVC.searchResultCollectionViewDelegate.resultsHandler = resultDataHandler
 		searchResultsVC.searchResultCollectionViewDelegate.delegate = parentCoordinator
 		navigationController.pushViewController(searchResultsVC, animated: true)

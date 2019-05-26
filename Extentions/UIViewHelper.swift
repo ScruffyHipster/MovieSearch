@@ -9,14 +9,6 @@
 import Foundation
 import UIKit
 
-///Image resizer. This uses CoreGraphics which is the most effiecent way.
-func resizeImage(image: UIImage, for size: CGSize) -> UIImage? {
-	let render = UIGraphicsImageRenderer(size: size)
-	return render.image(actions: { (context) in
-		image.draw(in: CGRect(origin: .zero, size: size))
-	})
-}
-
 extension UIView {
 	
 	///Helper method to add constraints to views

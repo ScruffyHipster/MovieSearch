@@ -28,8 +28,9 @@ class SavedResultsTableViewDelegate: NSObject, DataHandlerProtocol, UITableViewD
 extension SavedResultsTableViewDelegate: UITableViewDataSource {
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		print("here")
-		guard let data = resultsData else {return 4}
+		guard let data = resultsData else {
+			return 4
+		}
 		return data.count
 	}
 	

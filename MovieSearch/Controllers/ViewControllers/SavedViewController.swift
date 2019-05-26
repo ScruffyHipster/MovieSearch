@@ -17,10 +17,7 @@ class SavedViewController: UIViewController {
 		return delegate
 	}()
 	
-	var savedView: SavedView = {
-		var saved = SavedView()
-		return saved
-	}()
+	var savedView: SavedView?
 	
 	var gradientView: GradientContainerView = {
 		return GradientContainerView(frame: .zero)
@@ -32,21 +29,21 @@ class SavedViewController: UIViewController {
 		setUpView()
     }
 	
+	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		setUpGradient()
-		savedView.savedTableViewDelegate = savedTableViewDelegate
 	}
-	
-	override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+	 
+	override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
 		if UIDevice.current.orientation.isLandscape {
-			savedView.landscape()
+			savedView?.landscape()
 		}
 		if UIDevice.current.orientation.isPortrait {
-			savedView.portrait()
+			savedView?.portrait()
 		}
 	}
-	
+
 	//MARK:- Methods
 	
 	private func setUpGradient() {
@@ -55,15 +52,21 @@ class SavedViewController: UIViewController {
 	}
 
 	func setUpView() {
-		savedView.savedTableViewDelegate = savedTableViewDelegate
-		view.addSubview(savedView)
-		savedView.anchor(top: view.topAnchor, trailing: view.trailingAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor)
+		savedView = SavedView(frame: view.bounds)
+		view.addSubview(savedView!)
+		savedView?.anchor(top: view.topAnchor, trailing: view.trailingAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor)
+		savedView?.savedTableViewDelegate = savedTableViewDelegate
+		DispatchQueue.main.async {
+			self.reloadTableView()
+		}
 		
-		savedView.savedMoviesTableView.reloadData()
-		savedView.savedResultsTableViewHeight?.isActive = false
-		savedView.savedResultsTableViewHeight?.constant = savedView.savedMoviesTableView.contentSize.height
-		savedView.savedResultsTableViewHeight?.isActive = true
-		
+	}
+	
+	private func reloadTableView() {
+		savedView?.savedResultsTableViewHeight?.isActive = false
+		savedView?.savedResultsTableViewHeight?.constant = (savedView?.savedMoviesTableView.contentSize.height)!
+		savedView?.savedResultsTableViewHeight?.isActive = true
+		savedView?.savedMoviesTableView.reloadData()
 	}
 
 }

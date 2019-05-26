@@ -13,6 +13,8 @@ import UIKit
 enum GradientColors {
 	case blue
 	case green
+	case black
+	case clear
 	
 	var rgb: UIColor {
 		switch self {
@@ -20,6 +22,10 @@ enum GradientColors {
 			return UIColor(red: 11 / 255, green: 49 / 255, blue: 208 / 255, alpha: 0.6)
 		case .green:
 			return UIColor(red: 96 / 255, green: 234 / 255, blue: 234 / 255, alpha: 1.0)
+		case .black:
+			return UIColor(red: 0 / 255, green: 0 / 255, blue: 0 / 255, alpha: 1.0)
+		case .clear:
+			return UIColor(red: 0 / 255, green: 0 / 255, blue: 0 / 255, alpha: 0.0)
 		}
 	}
 }
@@ -56,15 +62,21 @@ enum CollectionViewCellIdentifiers {
 
 ///used to ammend the url request for OMDB
 enum SearchParam {
-	case title
+	
 	case search
+	case id
 	
 	var term: String {
 		switch self {
 		case .search:
 			return "s"
-		case .title:
-			return "t"
+		case .id:
+			return "i"
 		}
 	}
+}
+
+enum Orientation {
+	case portrait
+	case landscape
 }

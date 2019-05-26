@@ -9,10 +9,12 @@
 import Foundation
 import UIKit
 
-
+///Handles the details view controller. This is a child of Search Coordinator.
 class DetailsCoordinator: Coordinator {
 	
 	weak var parentCoordinator: SearchCoordinator?
+	
+	weak var dismissDelegate: DismissCoordinatorProtocol?
 	
 	var childCoordinator = [Coordinator]()
 	
@@ -20,27 +22,41 @@ class DetailsCoordinator: Coordinator {
 	
 	var detailsViewController: DetailsViewController?
 	
-	var details: MovieDetails?
+	var movieDetails: MovieDetails?
 	
 	var http: HttpAPI?
 	
+
+	
 	init(navController: UINavigationController, movieDetails: MovieDetails) {
 		self.navigationController = navController
-		self.details = movieDetails
+		self.movieDetails = movieDetails
 	}
 	
 	func setUp() {
-		guard details != nil else {return}
-		start()
+		guard movieDetails != nil else {
+			print("no details")
+			return}
+		DispatchQueue.main.async {
+			self.start()
+		}
 	}
 	
 	internal func start() {
-		
 		detailsViewController = DetailsViewController.instantiate()
 		guard let detailsVC = detailsViewController else {return}
+		detailsVC.coordinator = self
+		detailsVC.movieDetails = movieDetails
+		navigationController.present(detailsVC, animated: true, completion: nil)
 		
-		navigationController.pushViewController(detailsVC, animated: true)
+	}
+
+	///DetailsVC is presented modally so we use this delegate to send a message to its delegate to remove it from the stack.
+	func dismissDetailsVC() {
+		dismissDelegate?.dismiss(detailsViewController!.coordinator!)
 	}
 	
 	
+	
 }
+

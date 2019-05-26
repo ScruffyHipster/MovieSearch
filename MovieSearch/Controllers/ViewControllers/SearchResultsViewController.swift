@@ -44,12 +44,23 @@ class SearchResultsViewController: UIViewController {
 	
 	override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
 		searchResultView.collectionView.collectionViewLayout.invalidateLayout()
-		searchResultView.collectionView.reloadData()
+		DispatchQueue.main.async {
+			self.searchResultView.collectionView.reloadData()
+		}
 	}
 	
 	private func setUpNavBar() {
 		navigationController?.navigationBar.isHidden = false
-		navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+		navigationController?.navigationBar.prefersLargeTitles = true
+		navigationController?.navigationItem.largeTitleDisplayMode = .always
+		navigationController?.navigationBar.tintColor = UIColor.white
+		self.title = "Search Results"
+			
+		let attributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+		navigationController?.navigationBar.largeTitleTextAttributes = attributes
+		navigationController?.navigationBar.titleTextAttributes = attributes
+
+	navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
 		navigationController?.navigationBar.shadowImage = UIImage()
 		navigationController?.navigationBar.isTranslucent = true
 	}
@@ -62,6 +73,9 @@ extension SearchResultsViewController: Storyboarded {
 		searchResultView.collectionViewDelegate = searchResultCollectionViewDelegate
 		view.addSubview(searchResultView)
 		searchResultView.anchor(top: view.topAnchor, trailing: view.trailingAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor)
-		searchResultView.collectionView.reloadData()
+		DispatchQueue.main.async {
+			self.searchResultView.collectionView.reloadData()
+		}
+		
 	}
 }

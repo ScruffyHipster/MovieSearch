@@ -24,14 +24,15 @@ class SearchResultCollectionViewCell: UICollectionViewCell {
 		label.textColor = UsableColours.searchText
 		label.font = UsableFonts.searchResultFont
 		label.textAlignment = .left
-		label.numberOfLines = 1
+		label.numberOfLines = 2
+		label.adjustsFontSizeToFitWidth = true
+		label.allowsDefaultTighteningForTruncation = true
 		label.text = "placeholder"
-		label.lineBreakMode = NSLineBreakMode.byWordWrapping
 		return label
 	}()
 	
-	var mainImage: UIImageView = {
-		var imageView = UIImageView(frame: .zero)
+	var mainImage: CustomImageView = {
+		var imageView = CustomImageView(frame: .zero)
 		imageView.contentMode = UIView.ContentMode.scaleAspectFill
 		imageView.image = #imageLiteral(resourceName: "posterPlaceholder")
 		imageView.clipsToBounds = true
@@ -65,12 +66,7 @@ class SearchResultCollectionViewCell: UICollectionViewCell {
 		setUpStack()
 		backgroundColor = .clear
 	}
-	
-	override func layoutIfNeeded() {
-		super.layoutIfNeeded()
-		print("layout cell")
-		setUpStack()
-	}
+
 	
 }
 
@@ -78,15 +74,7 @@ extension SearchResultCollectionViewCell {
 	
 	func configureCell(with results: SearchResults) {
 		titleLabel.text = results.title
-		mainImage.downloadImage(from: results.poster) { (success) in
-			if success {
-				DispatchQueue.main.async {
-					self.configureImage(image: self.mainImage.image!)
-				}
-			} else {
-				print("issues")
-			}
-		}
+		mainImage.downloadImage(from: results.poster)
 	}
 	
 	private func configureImage(image: UIImage) {

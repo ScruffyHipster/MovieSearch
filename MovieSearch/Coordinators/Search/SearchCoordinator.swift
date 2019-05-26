@@ -25,6 +25,7 @@ class SearchCoordinator: NSObject, Coordinator {
 	func start() {
 		//starts up the starting View Controller and then adds it to the navcontroller.
 		initiateSearchVC()
+		navigationController.delegate = self
 	}
 	
 	init(navController: UINavigationController = UINavigationController()) {
@@ -56,8 +57,6 @@ class SearchCoordinator: NSObject, Coordinator {
 		child.searchResults = results
 		child.resultDataHandler = resultDataHandler
 		child.populateResults()
-		
-		
 		child.parentCoordinator = self
 		child.http = http
 		childCoordinator.append(child)
@@ -68,6 +67,7 @@ class SearchCoordinator: NSObject, Coordinator {
 	func detailsViewInit(with details: MovieDetails) {
 		let child = DetailsCoordinator(navController: navigationController, movieDetails: details)
 		child.parentCoordinator = self
+		child.dismissDelegate = self
 		child.http = http
 		childCoordinator.append(child)
 		child.setUp()
@@ -81,19 +81,19 @@ extension SearchCoordinator {
 	func searchForMovies(searchTerm: String) {
 		let url = http.createUrl(searchParam: .search, searchTerm: searchTerm)
 		print("url is \(url)")
-		http.makeRequest(url: url, for: InitialSearchResultDetails.self) { (success, results: InitialSearchResultDetails?, error) -> (Void) in
+		http.makeRequest(url: url, for: InitialSearchResultDetails.self) { [weak self] (success, results: InitialSearchResultDetails?, error) -> (Void) in
 			if success {
-				self.searchResultsInit(with: results!)
+				self?.searchResultsInit(with: results!)
 			} else {
-				self.searchResultsInit(with: nil)
+				self?.searchResultsInit(with: nil)
 				print("Didn't retrive data")
 			}
 		}
 	}
 	
 	///Used to fetch specific movie
-	func fetchDetailsForMovie(with name: SearchResults) {
-		let url = http.createUrl(searchParam: .title, searchTerm: name.imdbID)
+	func fetchDetailsForMovie(with id: String) {
+		let url = http.createUrl(searchParam: .id, searchTerm: id)
 		http.makeRequest(url: url, for: MovieDetails.self, closure: { (success, result: MovieDetails?, error) -> (Void) in
 			if success {
 				self.detailsViewInit(with: result!)
@@ -108,10 +108,10 @@ extension SearchCoordinator {
 
 extension SearchCoordinator: SearchResultsSelectionDelegate {
 	
-	func didSelectMovieAt(_ indexPath: IndexPath) {
-		//
+	func didSelectMovieAt(_ IMDBid: String) {
+		print("index path passed is \(IMDBid)")
+		fetchDetailsForMovie(with: IMDBid)
 	}
-	
 	
 }
 
@@ -145,4 +145,10 @@ extension SearchCoordinator: UINavigationControllerDelegate {
 		}
 	}
 	
+}
+
+extension SearchCoordinator: DismissCoordinatorProtocol {
+	func dismiss(_ coordinator: Coordinator) {
+		childDidFinish(remove: coordinator)
+	}
 }

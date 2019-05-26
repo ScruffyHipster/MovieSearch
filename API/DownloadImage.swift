@@ -12,11 +12,16 @@ import UIKit
 //Creates a cache to store images in.
 
 var imageCache = NSCache<NSString, UIImage>()
-var savedImageCache = NSCache<NSString, UIImage>()
 
-
-extension UIImageView {
-	func downloadImage(from urlString: String, closure: @escaping (Bool) -> ()) {
+class CustomImageView: UIImageView {
+	
+	var imageUrl: String?
+	
+	///Will download and resize image according to its image view bounds.
+	func downloadImage(from urlString: String) {
+		
+		imageUrl = urlString
+		
 		guard let url = URL(string: urlString) else {return}
 		//Check if image is in cache and download if not.
 		guard let imageFromCache = imageCache.object(forKey: urlString as NSString) else {
@@ -32,16 +37,20 @@ extension UIImageView {
 						DispatchQueue.main.async {
 							imageCache.setObject(image, forKey: urlString as NSString)
 							if let weakSelf = self {
-								weakSelf.image = image
+								weakSelf.image = resizeImage(image: image, for: (self?.frame.size)!)
 							}
 						}
 					}
-					closure(true)
 				}
 			}
 			.resume()
 			return
 		}
-		self.image = imageFromCache
+		DispatchQueue.main.async {
+			if self.imageUrl == urlString {
+				self.image = resizeImage(image: imageFromCache, for: self.frame.size)
+				return
+			}
+		}
 	}
 }

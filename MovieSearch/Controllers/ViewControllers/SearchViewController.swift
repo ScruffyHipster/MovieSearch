@@ -39,6 +39,11 @@ class SearchViewController: UIViewController {
 		setUpGradient()
 	}
 	
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		searchView.searchCancelled()
+	}
+	
 	//MARK:- Functions
 	///Sets up the view initially
 	func setUpView() {
@@ -66,17 +71,21 @@ extension SearchViewController {
 	
 	private func setUpSearchView() {
 		
-		searchView.searchField.delegate = self
+		searchView.frame = self.view.bounds
 		view.addSubview(searchView)
 		
 		searchView.anchor(top: view.topAnchor, trailing: view.trailingAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor)
 		
+		searchView.searchField.delegate = self
+		
 		//Pass the datasource to the tableView
 		searchView.prevResultsTableView.delegate = prevTableViewDelegate
 		searchView.prevResultsTableView.dataSource = prevTableViewDelegate
-		//reloads tableview and adjust constraints dependant on data
-		reloadTableViewContent()
 		
+		//reloads tableview and adjust constraints dependant on data
+		DispatchQueue.main.async {
+			self.reloadTableViewContent()
+		}
 		searchView.cancelButton.addTarget(nil, action: #selector(cancelButtonPressed), for: .touchUpInside)
 	}
 	
@@ -91,6 +100,7 @@ extension SearchViewController {
 		searchView.prevTableViewHeight?.isActive = false
 		searchView.prevTableViewHeight?.constant = searchView.prevResultsTableView.contentSize.height
 		searchView.prevTableViewHeight?.isActive = true
+		
 	}
 }
 
