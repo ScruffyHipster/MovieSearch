@@ -8,11 +8,14 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 ///Handles the details view controller. This is a child of Search Coordinator.
 class DetailsCoordinator: Coordinator {
 	
 	weak var parentCoordinator: SearchCoordinator?
+	
+	weak var savedParentCoordinator: SavedCoordinator?
 	
 	weak var dismissDelegate: DismissCoordinatorProtocol?
 	
@@ -22,15 +25,27 @@ class DetailsCoordinator: Coordinator {
 	
 	var detailsViewController: DetailsViewController?
 	
-	var movieDetails: MovieDetails?
+	var managedObject: NSManagedObjectContext?
+	
+	var movieDetails: Any?
 	
 	var http: HttpAPI?
 	
+	var viewUse: DetailsViewUse?
+	
 
 	
-	init(navController: UINavigationController, movieDetails: MovieDetails) {
+	init<T>(navController: UINavigationController, viewUse: DetailsViewUse, movieDetails: T) {
 		self.navigationController = navController
-		self.movieDetails = movieDetails
+		if viewUse == .search {
+			self.movieDetails = movieDetails as? MovieDetails
+			self.viewUse = viewUse
+			return
+		} else {
+			self.movieDetails = movieDetails as! Movie
+			self.viewUse = viewUse
+		}
+		
 	}
 	
 	func setUp() {
@@ -47,6 +62,7 @@ class DetailsCoordinator: Coordinator {
 		guard let detailsVC = detailsViewController else {return}
 		detailsVC.coordinator = self
 		detailsVC.movieDetails = movieDetails
+		detailsVC.viewUse = viewUse
 		navigationController.present(detailsVC, animated: true, completion: nil)
 		
 	}
@@ -56,7 +72,7 @@ class DetailsCoordinator: Coordinator {
 		dismissDelegate?.dismiss(detailsViewController!.coordinator!)
 	}
 	
-	
-	
 }
+
+
 

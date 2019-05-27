@@ -9,6 +9,11 @@
 import Foundation
 import UIKit
 
+///Helper method
+func deactivateConstraints(_ constraints: NSLayoutConstraint...) {
+	constraints.forEach({$0.isActive = false})
+}
+
 extension UIView {
 	
 	///Helper method to add constraints to views

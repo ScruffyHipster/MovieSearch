@@ -62,7 +62,7 @@ class SavedViewController: UIViewController {
 		
 	}
 	
-	private func reloadTableView() {
+	func reloadTableView() {
 		savedView?.savedResultsTableViewHeight?.isActive = false
 		savedView?.savedResultsTableViewHeight?.constant = (savedView?.savedMoviesTableView.contentSize.height)!
 		savedView?.savedResultsTableViewHeight?.isActive = true

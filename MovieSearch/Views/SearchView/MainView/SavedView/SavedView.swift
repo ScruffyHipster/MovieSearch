@@ -44,6 +44,7 @@ class SavedView: UIView {
 	var savedResultsTableViewTop: NSLayoutConstraint?
 	var savedResultsTableViewTrailing: NSLayoutConstraint?
 	var savedResultsTableviewLeading: NSLayoutConstraint?
+	var savedResultsTableViewBottom: NSLayoutConstraint?
 	
 	var mainTitleTop: NSLayoutConstraint?
 	var mainTitleLeading: NSLayoutConstraint?
@@ -107,6 +108,7 @@ extension SavedView {
 	
 	private func setUpSavedResultsTableView() {
 		
+		
 		savedResultsTableViewHeight = savedMoviesTableView.heightAnchor.constraint(equalToConstant: savedMoviesTableView.contentSize.height)
 		
 		savedResultsTableViewTop = savedMoviesTableView.topAnchor.constraint(equalTo: mainTitle.bottomAnchor, constant: 106)
@@ -114,6 +116,8 @@ extension SavedView {
 		savedResultsTableviewLeading = savedMoviesTableView.leadingAnchor.constraint(equalTo: backgroundContainerView.safeAreaLayoutGuide.leadingAnchor, constant: 35)
 		
 		savedResultsTableViewTrailing = savedMoviesTableView.trailingAnchor.constraint(equalTo: backgroundContainerView.safeAreaLayoutGuide.trailingAnchor, constant: -35)
+		
+		savedResultsTableViewBottom = savedMoviesTableView.bottomAnchor.constraint(equalTo: backgroundContainerView.bottomAnchor, constant: -50)
 		
 		NSLayoutConstraint.activate([
 			savedResultsTableviewLeading!,
@@ -133,9 +137,16 @@ extension SavedView {
 extension SavedView {
 	
 	func portrait() {
+		
 		savedResultsTableViewTop?.isActive = false
 		savedResultsTableViewTrailing?.isActive = false
 		savedResultsTableviewLeading?.isActive = false
+		savedResultsTableViewBottom?.isActive = false
+		
+		deactivateConstraints(savedResultsTableViewTop!,
+							  savedResultsTableViewTrailing!,
+							  savedResultsTableviewLeading!,
+							  savedResultsTableViewBottom!)
 		
 		mainTitleTop?.isActive = false
 		mainTitleLeading?.isActive = false
@@ -144,15 +155,24 @@ extension SavedView {
 		setUpSavedResultsTableView()
 	}
 	
+	
 	func landscape() {
-		savedResultsTableViewTop?.isActive = false
-		savedResultsTableViewTrailing?.isActive = false
-		savedResultsTableviewLeading?.isActive = false
+		deactivateConstraints(
+			savedResultsTableViewTop!,
+			savedResultsTableviewLeading!,
+			savedResultsTableViewTrailing!)
 		
-		mainTitleTop?.isActive = false
-		mainTitleLeading?.isActive = false
-		mainTitletrailing?.isActive = false
+		deactivateConstraints(mainTitleTop!,
+							  mainTitleLeading!,
+							  mainTitletrailing!)
 		
+		if savedMoviesTableView.indexPathsForVisibleRows!.count > 5 {
+			savedMoviesTableView.isScrollEnabled = true
+			savedResultsTableViewBottom = savedMoviesTableView.bottomAnchor.constraint(equalTo: backgroundContainerView.safeAreaLayoutGuide.bottomAnchor, constant: -50)
+			savedResultsTableViewBottom?.isActive = true
+			savedResultsTableViewHeight?.isActive = false
+		}
+	
 		savedResultsTableViewTop = savedMoviesTableView.topAnchor.constraint(equalTo: backgroundContainerView.safeAreaLayoutGuide.topAnchor, constant: 100)
 		savedResultsTableViewTrailing = savedMoviesTableView.trailingAnchor.constraint(equalTo: backgroundContainerView.safeAreaLayoutGuide.trailingAnchor, constant: -35)
 		savedResultsTableviewLeading = savedMoviesTableView.leadingAnchor.constraint(equalTo: mainTitle.trailingAnchor, constant: 35)
@@ -161,7 +181,6 @@ extension SavedView {
 		mainTitleLeading = mainTitle.leadingAnchor.constraint(equalTo: backgroundContainerView.safeAreaLayoutGuide.leadingAnchor, constant: 35)
 		
 		NSLayoutConstraint.activate([
-			
 			savedResultsTableViewTop!,
 			savedResultsTableViewTrailing!,
 			savedResultsTableviewLeading!,

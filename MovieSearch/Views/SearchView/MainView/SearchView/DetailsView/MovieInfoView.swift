@@ -153,9 +153,7 @@ extension MovieInfoView {
 	}
 	
 	private func setUpTopStack() {
-		
 		[mainTitle, plotInfo].forEach({topInfoStackView.addArrangedSubview($0)})
-		
 		topInfoStackView.anchor(top: safeAreaLayoutGuide.topAnchor, trailing: safeAreaLayoutGuide.trailingAnchor, bottom: nil, leading: safeAreaLayoutGuide.leadingAnchor, padding: .init(top: 2, left: 10, bottom: 0, right: 0))
 	}
 	
@@ -174,7 +172,6 @@ extension MovieInfoView {
 	}
 	
 	private func setUpRatingInfoStack() {
-	
 		[ratingImage,ratingLabel].forEach({ratingInfoStack.addArrangedSubview($0)})
 		ratingImageHeight = ratingImage.heightAnchor.constraint(equalToConstant: 23)
 		ratingImageWidth = ratingImage.widthAnchor.constraint(equalToConstant: 23)

@@ -80,3 +80,19 @@ enum Orientation {
 	case portrait
 	case landscape
 }
+
+enum ObserverValues {
+	case saveMovie
+	
+	var notificationName: NSNotification.Name {
+		switch self {
+		case .saveMovie:
+			return NSNotification.Name("co.movieSearch.savedMovie")
+		}
+	}
+}
+
+enum DetailsViewUse {
+	case search
+	case saved
+}

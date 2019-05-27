@@ -42,7 +42,6 @@ class DetailsView: UIView {
 		var likeButton = UIButton(frame: .zero)
 		likeButton.setImage(#imageLiteral(resourceName: "like"), for: .normal)
 		likeButton.setImage(#imageLiteral(resourceName: "likeSelected"), for: .focused)
-		likeButton.addTarget(self, action: #selector(didTapLikeButton), for: .touchUpInside)
 		return likeButton
 	}()
 
@@ -175,14 +174,4 @@ extension DetailsView {
 		setUpTopImageView()
 		setUpBottomDetailsView()
 	}
-}
-
-//MARK:- Functions
-extension DetailsView {
-	
-	//Move this to the view controller.
-	@objc func didTapLikeButton() {
-		print("tapped like button")
-	}
-	
 }

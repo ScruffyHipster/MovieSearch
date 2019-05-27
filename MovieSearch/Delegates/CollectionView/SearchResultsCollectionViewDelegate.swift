@@ -24,6 +24,7 @@ class SearchResultsCollectionViewDelegate: NSObject, DataHandlerProtocol {
 	}
 	
 	//If true the device is in portrait. False the device is in landscape.
+	//Change this to use the orientation enum
 	var orientation: Bool {
 		get {
 			return UIDevice.current.orientation.isPortrait ? true : false

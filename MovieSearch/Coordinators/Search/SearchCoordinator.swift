@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 ///Manages the Search controller tab in the app and subsequent views therafter
 class SearchCoordinator: NSObject, Coordinator {
@@ -22,6 +23,8 @@ class SearchCoordinator: NSObject, Coordinator {
 	
 	var http = HttpAPI()
 	
+	var managedObject: NSManagedObjectContext?
+	
 	func start() {
 		//starts up the starting View Controller and then adds it to the navcontroller.
 		initiateSearchVC()
@@ -30,6 +33,8 @@ class SearchCoordinator: NSObject, Coordinator {
 	
 	init(navController: UINavigationController = UINavigationController()) {
 		self.navigationController = navController
+		let appDelegate = UIApplication.shared.delegate as! AppDelegate
+		managedObject = appDelegate.managedObject
 	}
 	
 	func initiateSearchVC() {
@@ -53,7 +58,7 @@ class SearchCoordinator: NSObject, Coordinator {
 		let child = SearchResultsCoordiantor(navController: navigationController)
 		
 		//We populate the search results array first. This can then handle either showing no results error or the data.
-		
+		child.managedObject = managedObject
 		child.searchResults = results
 		child.resultDataHandler = resultDataHandler
 		child.populateResults()
@@ -65,7 +70,7 @@ class SearchCoordinator: NSObject, Coordinator {
 	
 	///Sets up the details view to see movie details
 	func detailsViewInit(with details: MovieDetails) {
-		let child = DetailsCoordinator(navController: navigationController, movieDetails: details)
+		let child = DetailsCoordinator(navController: navigationController, viewUse: .search, movieDetails: details)
 		child.parentCoordinator = self
 		child.dismissDelegate = self
 		child.http = http
@@ -75,6 +80,7 @@ class SearchCoordinator: NSObject, Coordinator {
 	
 }
 
+//SearchCoordinator Network requests
 extension SearchCoordinator {
 	
 	///Used as the inital search for user inputted search term
@@ -150,5 +156,35 @@ extension SearchCoordinator: UINavigationControllerDelegate {
 extension SearchCoordinator: DismissCoordinatorProtocol {
 	func dismiss(_ coordinator: Coordinator) {
 		childDidFinish(remove: coordinator)
+	}
+}
+
+//CoreData Persitence Layer
+extension SearchCoordinator {
+	
+	func save(movie: MovieDetails, closure: (Bool) -> ()){
+		//save the movie details to CoreData
+		guard let managedObject = managedObject else {return}
+		let savedMovie = Movie(context: managedObject)
+		savedMovie.posterUrl = movie.poster
+		savedMovie.movieDirector = movie.director
+		savedMovie.movieActor = movie.actors
+		savedMovie.movieTitle = movie.title
+		savedMovie.movieWriters = movie.writer
+		savedMovie.movieRating = movie.imdbRating
+		savedMovie.moviePlot = movie.plot
+		do {
+			try managedObject.save()
+		} catch{
+			//post an alert to the vc if issue saving
+			closure(false)
+		}
+		closure(true)
+		postSavedNotification()
+	}
+
+	func postSavedNotification() {
+		let notifiction = ObserverValues.saveMovie.notificationName
+		NotificationCenter.default.post(name: notifiction, object: nil)
 	}
 }
