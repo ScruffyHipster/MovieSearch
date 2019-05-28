@@ -15,7 +15,6 @@ class GradientImageContainer: UIView {
 	//Init Methods
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-		setUpGradient()
 		setupImageView()
 	}
 	
@@ -31,24 +30,20 @@ class GradientImageContainer: UIView {
 		return image
 	}()
 	
-	//Methods
-	private func setUpGradient() {
-		guard let gradientLayer = self.layer as? CAGradientLayer else
-		{return}
-		gradientLayer.colors = [GradientColors.black.rgb.cgColor, GradientColors.clear.rgb.cgColor]
-		gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
-		gradientLayer.endPoint = CGPoint(x: 0.0, y: 0.26)
-		gradientLayer.frame = self.bounds
-	}
+	var gradientView: GradientContainerView = {
+		var gradient = GradientContainerView(colorOne: GradientColors.black.rgb.cgColor, colorTwo: GradientColors.clear.rgb.cgColor)
+		return gradient
+	}()
+	
 	
 	private func setupImageView() {
-		insertSubview(mainImage, at: 0)
+		
+		addSubview(mainImage)
+		addSubview(gradientView)
+		
+		gradientView.anchor(top: topAnchor, trailing: safeAreaLayoutGuide.trailingAnchor, bottom: safeAreaLayoutGuide.bottomAnchor, leading: safeAreaLayoutGuide.leadingAnchor)
+		
 		mainImage.anchor(top: topAnchor, trailing: safeAreaLayoutGuide.trailingAnchor, bottom: safeAreaLayoutGuide.bottomAnchor, leading: safeAreaLayoutGuide.leadingAnchor)
 	}
-	
-	override class var layerClass: AnyClass {
-		return CAGradientLayer.self
-	}
-	
 	
 }

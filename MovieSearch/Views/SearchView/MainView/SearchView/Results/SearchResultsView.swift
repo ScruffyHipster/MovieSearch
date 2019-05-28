@@ -12,9 +12,8 @@ class SearchResultsView: UIView {
 
 	//MARK:- Properties
 	
-	
 	var backgroundContainerView: GradientContainerView = {
-		let view = GradientContainerView(frame: .zero)
+		let view = GradientContainerView(colorOne: nil, colorTwo: nil)
 		view.translatesAutoresizingMaskIntoConstraints = false
 		return view
 	}()

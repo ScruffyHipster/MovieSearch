@@ -19,21 +19,11 @@ class SavedViewController: UIViewController {
 	
 	var savedView: SavedView?
 	
-	var gradientView: GradientContainerView = {
-		return GradientContainerView(frame: .zero)
-	}()
-	
     override func viewDidLoad() {
         super.viewDidLoad()
 		navigationController?.navigationBar.isHidden = true
 		setUpView()
     }
-	
-	
-	override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(animated)
-		setUpGradient()
-	}
 	 
 	override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
 		if UIDevice.current.orientation.isLandscape {
@@ -45,11 +35,6 @@ class SavedViewController: UIViewController {
 	}
 
 	//MARK:- Methods
-	
-	private func setUpGradient() {
-		gradientView.frame = self.view.bounds
-		self.view.insertSubview(gradientView, at: 0)
-	}
 
 	func setUpView() {
 		savedView = SavedView(frame: view.bounds)

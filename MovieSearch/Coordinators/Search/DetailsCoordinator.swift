@@ -72,6 +72,24 @@ class DetailsCoordinator: Coordinator {
 		dismissDelegate?.dismiss(detailsViewController!.coordinator!)
 	}
 	
+	func retriveImages(url: String) -> String {
+		//FileManager
+		let fileManager = FileManager.default
+		var urlToReturn = ""
+		do {
+			//Gets path to the folder in the documents directory using global constant --
+			//TODO:- needs to change
+			let path = try fileManager.contentsOfDirectory(at: filePath, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
+			//retrives the image from the document directory
+			let image = fileManager.localFileUrl(for: URL(string: url)!).absoluteString
+			urlToReturn = image
+			print(image)
+			print(path)
+		} catch {
+			print("Error: \(error.localizedDescription)")
+		}
+		return urlToReturn
+	}
 }
 
 

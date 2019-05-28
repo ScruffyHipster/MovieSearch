@@ -9,11 +9,20 @@
 import Foundation
 
 
-class HttpAPI {
+class HttpAPI: NSObject {
 	
 	var dataTask: URLSessionDataTask?
+	
 	var apiKey = "apikey=592d6c41"
+	
 	var request: URLRequest?
+	///used to store saved images locally
+	var activeDownload: [URL: URLSessionDownloadTask] = [:]
+	
+	lazy var session: URLSession = {
+		var sessionConfig  = URLSessionConfiguration.default
+		return URLSession(configuration: sessionConfig, delegate: self, delegateQueue: nil)
+	}()
 	
 	lazy var decoder: JSONDecoder = {
 		return JSONDecoder()
@@ -30,7 +39,7 @@ class HttpAPI {
 	func makeRequest<T: Codable>(url request: URLRequest, for dataStructure: T.Type, closure: @escaping (Bool, T?, Error?) -> (Void)) {
 		var success = false
 		dataTask?.cancel()
-		dataTask = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+		dataTask = session.dataTask(with: request, completionHandler: { (data, response, error) in
 			print(request)
 			guard let response = response as? HTTPURLResponse else {
 				success = false
@@ -75,4 +84,36 @@ class HttpAPI {
 		return result
 	}
 		
+}
+
+extension HttpAPI: URLSessionDownloadDelegate {
+	
+	///Saves image to local dictionary
+	func downloadImage(_ imageUrl: String) {
+		let imageUrl = URL(string: imageUrl)
+		if let url = imageUrl {
+			let download = session.downloadTask(with: url)
+			download.resume()
+			activeDownload[url] = download
+		}
+	}
+	
+	func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+		guard let sourceUrl = downloadTask.originalRequest?.url else {return}
+		
+		activeDownload[sourceUrl] = nil
+		
+		let fileManager = FileManager.default
+		
+		let destinationUrl = fileManager.localFileUrl(for: sourceUrl)
+		print("Source url is \(sourceUrl)")
+		print("destination url is \(destinationUrl)")
+		try? fileManager.removeItem(at: destinationUrl)
+		do {
+			try fileManager.copyItem(at: location, to: destinationUrl)
+		} catch let error {
+			print(error)
+		}
+	}
+	
 }

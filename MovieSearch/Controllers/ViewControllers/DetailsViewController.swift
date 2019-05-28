@@ -30,7 +30,7 @@ class DetailsViewController: UIViewController {
 	}
 	
 	var gradientView: GradientContainerView = {
-		return GradientContainerView(frame: .zero)
+		return GradientContainerView(colorOne: nil, colorTwo: nil)
 	}()
 
     override func viewDidLoad() {
@@ -65,7 +65,15 @@ class DetailsViewController: UIViewController {
 		if viewUse == .saved {
 			let details = movieDetails as? Movie
 			let informationContainer = detailsView?.informationContainerView
-			detailsView?.gradientImageContainerView.mainImage.downloadImage(from: details!.posterUrl!)
+			
+			guard let posterUrl = details?.posterUrl else {return}
+			
+			let image = coordinator?.retriveImages(url: posterUrl)
+			
+			detailsView?.gradientImageContainerView.mainImage.downloadImage(from: image ?? details!.posterUrl!)
+			
+			detailsView?.likeButton.isHidden = true
+			
 			informationContainer?.mainTitle.text = details?.movieTitle
 			informationContainer?.actorsLabel.text = "Actor\(addSuffix(details!.movieActor!)): \(details?.movieActor ?? "")"
 			informationContainer?.directorLabel.text = "Director\(addSuffix(details!.movieDirector!)): \(details?.movieDirector ?? "")"
@@ -74,6 +82,8 @@ class DetailsViewController: UIViewController {
 			informationContainer?.ratingLabel.text = "imdb rating: \(details?.movieRating ?? "")"
 		}
 	}
+	
+	
 	
 	func setupMovieDetailsSearch() {
 		guard let viewUse = viewUse, let _ = movieDetails else {return}

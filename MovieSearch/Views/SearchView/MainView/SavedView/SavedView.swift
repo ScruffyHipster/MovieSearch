@@ -14,7 +14,7 @@ class SavedView: UIView {
 	//MARK:- Properties
 	
 	var backgroundContainerView: GradientContainerView = {
-		var view = GradientContainerView(frame: .zero)
+		var view = GradientContainerView(colorOne: nil, colorTwo: nil)
 		return view
 	}()
 	

@@ -23,6 +23,8 @@ class SavedResultsTableViewDelegate: NSObject, DataHandlerProtocol, UITableViewD
 	var resultsData: [AnyObject]? {
 		get {
 			return resultsHandler?.retriveDataFromHandeler()
+		} set {
+			resultsHandler?.resultsData = self.resultsData
 		}
 	}
 	
@@ -54,5 +56,16 @@ extension SavedResultsTableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		guard let results = resultsData as? [Movie] else {return}
 		delegate?.didSelectMovie(results[indexPath.row])
+	}
+	
+	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+		switch editingStyle {
+		case .delete:
+			resultsHandler?.resultsData?.remove(at: indexPath.row)
+			tableView.deleteRows(at: [indexPath], with: .fade)
+			break
+		default:
+			break
+		}
 	}
 }

@@ -51,6 +51,7 @@ class DetailsView: UIView {
 		return dismissButton
 	}()
 	
+	//Init Methods
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 	}

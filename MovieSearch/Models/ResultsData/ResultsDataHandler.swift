@@ -20,6 +20,13 @@ class ResultsDataHandler {
 		resultsData = data as [AnyObject]
 	}
 	
+	///Return the results data
+	func retriveDataFromHandeler<T>() -> [T] {
+		guard let data = resultsData else {return []}
+		print("retriving data from handler. The current count is \(data.count)")
+		return data as! [T]
+	}
+	
 	private func clearArray() {
 		guard let array = resultsData else {
 			print("nothing in array")
@@ -29,10 +36,5 @@ class ResultsDataHandler {
 			resultsData = []
 		}
 	}
-	
-	///Return the results data
-	func retriveDataFromHandeler<T>() -> [T] {
-		guard let data = resultsData else {return []}
-		return data as! [T]
-	}
+
  }

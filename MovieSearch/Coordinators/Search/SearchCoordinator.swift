@@ -165,6 +165,7 @@ extension SearchCoordinator {
 	func save(movie: MovieDetails, closure: (Bool) -> ()){
 		//save the movie details to CoreData
 		guard let managedObject = managedObject else {return}
+		
 		let savedMovie = Movie(context: managedObject)
 		savedMovie.posterUrl = movie.poster
 		savedMovie.movieDirector = movie.director
@@ -173,6 +174,9 @@ extension SearchCoordinator {
 		savedMovie.movieWriters = movie.writer
 		savedMovie.movieRating = movie.imdbRating
 		savedMovie.moviePlot = movie.plot
+		
+		saveToLocalDisk(url: movie.poster)
+		
 		do {
 			try managedObject.save()
 		} catch{
@@ -181,6 +185,11 @@ extension SearchCoordinator {
 		}
 		closure(true)
 		postSavedNotification()
+	}
+	
+	func saveToLocalDisk(url: String) {
+		print("saving image to disk")
+		http.downloadImage(url)
 	}
 
 	func postSavedNotification() {
