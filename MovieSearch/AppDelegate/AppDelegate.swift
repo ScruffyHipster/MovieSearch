@@ -26,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		window = UIWindow(frame: UIScreen.main.bounds)
 		window?.rootViewController = MainTabBarController()
 		window?.makeKeyAndVisible()
-		print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
 		return true
 	}
 

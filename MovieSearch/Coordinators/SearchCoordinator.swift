@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import CoreData
 
-///Manages the Search controller tab in the app and subsequent views therafter
+///Manages the Search controller tab in the app and child coordinator in the search heirachy
 class SearchCoordinator: NSObject, Coordinator {
 	
 	var childCoordinator = [Coordinator]()
@@ -25,9 +25,11 @@ class SearchCoordinator: NSObject, Coordinator {
 	
 	var managedObject: NSManagedObjectContext?
 	
+	var previousSearches = [String]()
+	
 	func start() {
 		//starts up the starting View Controller and then adds it to the navcontroller.
-		initiateSearchVC()
+		searchVCInit()
 		navigationController.delegate = self
 	}
 	
@@ -37,15 +39,11 @@ class SearchCoordinator: NSObject, Coordinator {
 		managedObject = appDelegate.managedObject
 	}
 	
-	func initiateSearchVC() {
+	func searchVCInit() {
 		searchViewController = SearchViewController.instantiate()
 		guard let searchVC = searchViewController else {return}
 		searchVC.tabBarItem = UITabBarItem(title: "search", image: UIImage(named: "searchIcon"), tag: 0)
 		searchVC.coordinator = self
-		
-		//Populate data this will come from cloudkit eventually and display previous successful searches made.
-		
-		resultDataHandler.populateDataWith(data: ["One", "Two", "Three"])
 		
 		//Pass the delegate the resultHandler object
 		searchVC.prevTableViewDelegate.resultsHandler = resultDataHandler
@@ -65,7 +63,6 @@ class SearchCoordinator: NSObject, Coordinator {
 		child.parentCoordinator = self
 		child.http = http
 		childCoordinator.append(child)
-		
 	}
 	
 	///Sets up the details view to see movie details
@@ -87,13 +84,37 @@ extension SearchCoordinator {
 	func searchForMovies(searchTerm: String) {
 		let url = http.createUrl(searchParam: .search, searchTerm: searchTerm)
 		print("url is \(url)")
+		self.saveSearch(search: searchTerm)
 		http.makeRequest(url: url, for: InitialSearchResultDetails.self) { [weak self] (success, results: InitialSearchResultDetails?, error) -> (Void) in
 			if success {
 				self?.searchResultsInit(with: results!)
 			} else {
-				self?.searchResultsInit(with: nil)
+				let alert = UIAlertController(title: "Error", message: "No results for that search! Please try again.", preferredStyle: .alert)
+				alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+					self?.searchViewController?.cancelButtonPressed()
+				}))
+				self?.searchViewController?.present(alert, animated: true)
 				print("Didn't retrive data")
 			}
+		}
+	}
+	
+	func saveSearch(search: String) {
+		//Save the search here for displaying in the prev search table
+		if previousSearches.count == 3 {
+			previousSearches.removeLast()
+		}
+		previousSearches.append(search)
+		print(previousSearches)
+		resultDataHandler.populateDataWith(data: previousSearches)
+		do {
+			let data = try NSKeyedArchiver.archivedData(withRootObject: previousSearches, requiringSecureCoding: false)
+			var path = getDocumentsDirectory().appendingPathComponent("prevSearches")
+			path.appendPathExtension("search")
+			print(path)
+			try data.write(to: path)
+		} catch {
+			print("Issue saving file \(error)")
 		}
 	}
 	
@@ -103,9 +124,6 @@ extension SearchCoordinator {
 		http.makeRequest(url: url, for: MovieDetails.self, closure: { (success, result: MovieDetails?, error) -> (Void) in
 			if success {
 				self.detailsViewInit(with: result!)
-				print("result")
-			} else {
-				print("bad result")
 			}
 		})
 	}

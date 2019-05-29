@@ -15,7 +15,8 @@ class SavedMoviesTableViewCell: UITableViewCell {
 		label.textColor = .white
 		label.font = UsableFonts.savedResultsFont
 		label.textAlignment = .left
-		label.text = "Test Text"
+		label.minimumScaleFactor = 0.5
+		label.adjustsFontSizeToFitWidth = true
 		return label
 	}()
 	

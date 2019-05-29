@@ -86,6 +86,12 @@ class SearchView: UIView {
 		}
 	}
 	
+	var deviceType: UIUserInterfaceIdiom {
+		get {
+			return UIDevice.current.userInterfaceIdiom
+		}
+	}
+	
 	//MARK:- Init methods
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -115,14 +121,17 @@ class SearchView: UIView {
 	
 	func moveSearchBar(searching: Bool) {
 		UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0.5, options: .curveEaseInOut, animations: {
-			if self.orientationPortrait {
+			if self.orientationPortrait && self.deviceType == .phone {
 				//portrait
-				self.searchStackViewTop?.constant = searching ? 100 : 200
+				self.searchStackViewTop?.constant = searching ? 60 : 200
 			}
-			if !self.orientationPortrait {
+			if !self.orientationPortrait && self.deviceType == .phone {
 				//landscape
-				self.titleLabel.isHidden = searching ? true : false
-				self.searchStackViewTop?.constant = searching ? 20 : 90
+				self.titleLabel.isHidden = searching
+			}
+			if !self.orientationPortrait && self.deviceType == .pad {
+				self.titleLabel.isHidden = searching
+				self.searchStackViewTop?.constant = searching ? 0 : 200
 			}
 		}, completion: nil)
 	}
@@ -227,7 +236,7 @@ extension SearchView {
 		searchStackViewTop = searchGroupStackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 200)
 		
 		searchStackViewTrailing = searchGroupStackView.trailingAnchor.constraint(equalTo: backgroundContainerView.safeAreaLayoutGuide.trailingAnchor, constant: -35)
-		
+
 		
 		searchStackViewTop?.isActive = true
 		searchStackViewTrailing?.isActive = true

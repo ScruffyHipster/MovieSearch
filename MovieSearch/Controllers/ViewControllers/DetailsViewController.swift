@@ -61,6 +61,7 @@ class DetailsViewController: UIViewController {
 	}
 	
 	func setUpMoviesDetailsSaved() {
+		//Setup with for showing saved information
 		guard let viewUse = viewUse, let _ = movieDetails else {return}
 		if viewUse == .saved {
 			let details = movieDetails as? Movie
@@ -68,8 +69,8 @@ class DetailsViewController: UIViewController {
 			
 			guard let posterUrl = details?.posterUrl else {return}
 			
+			//retrive image from local file system
 			let image = coordinator?.retriveImages(url: posterUrl)
-			
 			detailsView?.gradientImageContainerView.mainImage.downloadImage(from: image ?? details!.posterUrl!)
 			
 			detailsView?.likeButton.isHidden = true
@@ -86,6 +87,7 @@ class DetailsViewController: UIViewController {
 	
 	
 	func setupMovieDetailsSearch() {
+		//Setup with for showing search information
 		guard let viewUse = viewUse, let _ = movieDetails else {return}
 		if viewUse == .search {
 			let details = movieDetails as? MovieDetails

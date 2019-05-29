@@ -13,6 +13,7 @@ protocol SearchResultsSelectionDelegate: class {
 	func didSelectMovieAt(_ IMDBid: String)
 }
 
+///Collection view data source and delegate for the search collection
 class SearchResultsCollectionViewDelegate: NSObject, DataHandlerProtocol {
 	
 	var resultsHandler: ResultsDataHandler?

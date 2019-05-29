@@ -8,15 +8,25 @@
 
 import Foundation
 
-let filePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+var filePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+
+
+func getDocumentsDirectory() -> URL {
+	let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+	return path[0]
+}
 
 extension FileManager {
 	
+	///creates and returns a url filepath with image name
 	func localFileUrl(for url: URL) -> URL {
 			return filePath.appendingPathComponent(url.lastPathComponent)
-		}
+	}
 	
-	func removeFile(from url: String) {
+
+	
+	///removes the image from the local device storage
+	func removeFileFromDisk(from url: String) {
 		do {
 			let manager = FileManager.default
 			let path = try manager.contentsOfDirectory(at: filePath, includingPropertiesForKeys: [], options: .skipsHiddenFiles)

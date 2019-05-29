@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-///Recent search results tableview. This is used to display the recent results under the UISearch field.
+///Datasource and delegate for the previous search results tableview
 class PrevSearchResultsTableViewDelegate: NSObject, DataHandlerProtocol, UITableViewDelegate {
 	
 	var resultsHandler: ResultsDataHandler?

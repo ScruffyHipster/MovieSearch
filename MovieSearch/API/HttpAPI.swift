@@ -106,8 +106,6 @@ extension HttpAPI: URLSessionDownloadDelegate {
 		let fileManager = FileManager.default
 		
 		let destinationUrl = fileManager.localFileUrl(for: sourceUrl)
-		print("Source url is \(sourceUrl)")
-		print("destination url is \(destinationUrl)")
 		try? fileManager.removeItem(at: destinationUrl)
 		do {
 			try fileManager.copyItem(at: location, to: destinationUrl)

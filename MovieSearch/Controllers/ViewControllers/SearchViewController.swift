@@ -14,13 +14,11 @@ class SearchViewController: UIViewController {
 	weak var coordinator: SearchCoordinator?
 	
 	lazy var prevTableViewDelegate: PrevSearchResultsTableViewDelegate = {
-		var delegate = PrevSearchResultsTableViewDelegate()
-		return delegate
+		return PrevSearchResultsTableViewDelegate()
 	}()
 
 	var searchView: SearchView = {
 		var search = SearchView()
-		search.translatesAutoresizingMaskIntoConstraints = false
 		return search
 	}()
 	
@@ -67,6 +65,8 @@ extension SearchViewController {
 		searchView.anchor(top: view.topAnchor, trailing: view.trailingAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor)
 		
 		searchView.searchField.delegate = self
+		
+		//TODO:- See if below can be refactored
 		
 		//Pass the datasource to the tableView
 		searchView.prevResultsTableView.delegate = prevTableViewDelegate

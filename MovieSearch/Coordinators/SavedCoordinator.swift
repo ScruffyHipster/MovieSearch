@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-///Manges the Saved controller tab in the app
+///Manges the Saved controller tab and it child coordinators in the saved heirachy.
 class SavedCoordinator: Coordinator {
 	
 	var childCoordinator = [Coordinator]()
@@ -34,17 +34,20 @@ class SavedCoordinator: Coordinator {
 		setUpSavedMovieObserver()
 	}
 	
-	func initiateSavedVC(with movies: [Movie]?) {
+	func savedVCInit(with movies: [Movie]) {
 		savedViewController = SavedViewController.instantiate()
 		guard let savedVC = savedViewController else {return}
 		savedVC.tabBarItem = UITabBarItem(title: "Saved", image: UIImage(named: "savedIcon"), tag: 1)
 		savedVC.coordinator = self
+		
 		savedVC.savedTableViewDelegate.resultsHandler = resultDataHandler
+		
 		savedVC.savedTableViewDelegate.delegate = self
+		
 		navigationController.viewControllers = [savedVC]
-		if let savedMovies = movies {
-			resultDataHandler.populateDataWith(data: savedMovies)
-		}
+		
+		resultDataHandler.populateDataWith(data: movies)
+		
 	}
 	
 	func initiateDetails(with movie: Movie) {
@@ -63,14 +66,13 @@ extension SavedCoordinator {
 		let fetchRequest = NSFetchRequest<Movie>()
 		let entity = Movie.entity()
 		fetchRequest.entity = entity
-		
 		do {
 			let fetchedMovies = try managedObject?.fetch(fetchRequest)
 			guard let movies = fetchedMovies else {
-				initiateSavedVC(with: nil)
+				savedVCInit(with: [])
 				return
 			}
-			initiateSavedVC(with: movies)
+			savedVCInit(with: movies)
 		} catch {
 			
 		}
@@ -86,10 +88,19 @@ extension SavedCoordinator {
 }
 
 extension SavedCoordinator: SavedResultsSelectionDelegate {
+	
+	func deleteMovie(_ movie: Movie) {
+		self.managedObject?.delete(movie)
+		FileManager().removeFileFromDisk(from: movie.posterUrl!)
+		do {
+			try self.managedObject?.save()
+		} catch let error {
+			print(error)
+		}
+	}
+	
 	func didSelectMovie(_ movie: Movie) {
-		
 		initiateDetails(with: movie)
-		print(movie)
 	}
 }
 

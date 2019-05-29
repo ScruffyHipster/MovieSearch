@@ -25,7 +25,7 @@ class SearchResultsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-		setUpView()
+		setUpSuccessView()
 		DispatchQueue.main.async {
 			self.searchResultView.collectionView.reloadData()
 		}
@@ -64,18 +64,19 @@ class SearchResultsViewController: UIViewController {
 		navigationController?.navigationBar.shadowImage = UIImage()
 		navigationController?.navigationBar.isTranslucent = true
 	}
-    
-}
-
-extension SearchResultsViewController: Storyboarded {
 	
-	private func setUpView() {
+	private func setUpSuccessView() {
 		searchResultView.collectionViewDelegate = searchResultCollectionViewDelegate
 		view.addSubview(searchResultView)
 		searchResultView.anchor(top: view.topAnchor, trailing: view.trailingAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor)
 		DispatchQueue.main.async {
 			self.searchResultView.collectionView.reloadData()
 		}
-		
 	}
+    
+}
+
+extension SearchResultsViewController: Storyboarded {
+	
+	
 }

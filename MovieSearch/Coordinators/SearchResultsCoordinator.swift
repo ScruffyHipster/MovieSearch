@@ -42,7 +42,6 @@ class SearchResultsCoordiantor: Coordinator {
 	///Adds the data to the array. 
 	func populateResults() {
 		guard let results = searchResults else {
-			//We can show an error or no results sign if this fails
 			return
 		}
 		//else populate the collection view with the search results

@@ -8,31 +8,29 @@
 
 import Foundation
 
-///Handler to manage the populate and distribution of data from a URLSession request.
+///Handles the population and retrival of data in data sources such as tableview and collectionview. Can handle any data type so can be resused in many areas.
 class ResultsDataHandler {
 	
-	///Used to store the retrived results
+	///Used to store the populated results
 	var resultsData: [AnyObject]?
 	
-	///Populate the resultsData Array with the data passed in
+	///Populates the resultsData array with passed in data
 	func populateDataWith<T>(data: [T]) {
 		clearArray()
 		resultsData = data as [AnyObject]
 	}
 	
-	///Return the results data
+	///Acts as a retriver for the resultsData array.
 	func retriveDataFromHandeler<T>() -> [T] {
 		guard let data = resultsData else {return []}
 		print("retriving data from handler. The current count is \(data.count)")
 		return data as! [T]
 	}
 	
+	///Clears the array for use, a housekeeping function.
 	private func clearArray() {
-		guard let array = resultsData else {
-			print("nothing in array")
-			return}
+		guard let array = resultsData else {return}
 		if !array.isEmpty {
-			print("clearing array")
 			resultsData = []
 		}
 	}

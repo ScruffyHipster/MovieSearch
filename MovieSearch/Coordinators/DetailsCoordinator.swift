@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import CoreData
 
-///Handles the details view controller. This is a child of Search Coordinator.
+///Handles the details view controller. This is a child of Search Coordinator and Saved Coordinator.
 class DetailsCoordinator: Coordinator {
 	
 	weak var parentCoordinator: SearchCoordinator?
@@ -49,9 +49,7 @@ class DetailsCoordinator: Coordinator {
 	}
 	
 	func setUp() {
-		guard movieDetails != nil else {
-			print("no details")
-			return}
+		guard movieDetails != nil else {return}
 		DispatchQueue.main.async {
 			self.start()
 		}
@@ -67,18 +65,17 @@ class DetailsCoordinator: Coordinator {
 		
 	}
 
-	///DetailsVC is presented modally so we use this delegate to send a message to its delegate to remove it from the stack.
 	func dismissDetailsVC() {
+		//DetailsVC is presented modally so we use this delegate to send a message to its delegate to remove it from the navigation stack.
 		dismissDelegate?.dismiss(detailsViewController!.coordinator!)
 	}
 	
 	func retriveImages(url: String) -> String {
-		//FileManager
+		//retrives image from local disk
 		let fileManager = FileManager.default
 		var urlToReturn = ""
 		do {
-			//Gets path to the folder in the documents directory using global constant --
-			//TODO:- needs to change
+			//Gets path to the folder in the documents directory using global constant
 			let path = try fileManager.contentsOfDirectory(at: filePath, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
 			//retrives the image from the document directory
 			let image = fileManager.localFileUrl(for: URL(string: url)!).absoluteString

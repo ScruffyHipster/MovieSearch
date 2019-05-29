@@ -79,7 +79,6 @@ class SavedView: UIView {
 		setUpTitleView()
 		setUpSavedResultsTableView()
 	}
-	
 
 }
 
@@ -107,7 +106,6 @@ extension SavedView {
 	}
 	
 	private func setUpSavedResultsTableView() {
-		
 		
 		savedResultsTableViewHeight = savedMoviesTableView.heightAnchor.constraint(equalToConstant: savedMoviesTableView.contentSize.height)
 		

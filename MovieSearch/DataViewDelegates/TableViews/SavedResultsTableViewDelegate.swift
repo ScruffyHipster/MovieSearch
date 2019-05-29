@@ -9,12 +9,13 @@
 import Foundation
 import UIKit
 
+///Savedresults tableview delegate which allows communication with the coordinator
 protocol SavedResultsSelectionDelegate: class {
 	func didSelectMovie(_ movie: Movie)
+	func deleteMovie(_ movie: Movie)
 }
 
-///Saved results tableview delegate. This is used to display any saved content
-
+///Datasource and delegate for the saved results tableview
 class SavedResultsTableViewDelegate: NSObject, DataHandlerProtocol, UITableViewDelegate {
 	
 	
@@ -24,7 +25,7 @@ class SavedResultsTableViewDelegate: NSObject, DataHandlerProtocol, UITableViewD
 		get {
 			return resultsHandler?.retriveDataFromHandeler()
 		} set {
-			resultsHandler?.resultsData = self.resultsData
+			resultsHandler?.resultsData = newValue
 		}
 	}
 	
@@ -53,6 +54,7 @@ extension SavedResultsTableViewDelegate: UITableViewDataSource {
 }
 
 extension SavedResultsTableViewDelegate {
+	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		guard let results = resultsData as? [Movie] else {return}
 		delegate?.didSelectMovie(results[indexPath.row])
@@ -61,8 +63,10 @@ extension SavedResultsTableViewDelegate {
 	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 		switch editingStyle {
 		case .delete:
-			resultsHandler?.resultsData?.remove(at: indexPath.row)
+			guard let results = resultsData as? [Movie] else {return}
+			resultsData?.remove(at: indexPath.row)
 			tableView.deleteRows(at: [indexPath], with: .fade)
+			delegate?.deleteMovie(results[indexPath.row])
 			break
 		default:
 			break
