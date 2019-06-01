@@ -245,6 +245,19 @@ extension SearchCoordinator {
 		postSavedNotification()
 	}
 	
+	func delete(movie: Movie, closure: (Bool) -> ()) {
+		guard let managedObject = managedObject else {
+			return
+		}
+		managedObject.delete(movie)
+		do {
+			try managedObject.save()
+		} catch {
+			print("error")
+		}
+		
+	}
+	
 	func saveToLocalDisk(url: String) {
 		http.downloadImage(url)
 	}

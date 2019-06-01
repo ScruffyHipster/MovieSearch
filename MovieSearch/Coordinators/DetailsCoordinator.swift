@@ -70,6 +70,18 @@ class DetailsCoordinator: Coordinator {
 		dismissDelegate?.dismiss(detailsViewController!.coordinator!)
 	}
 	
+	func saveMovie() {
+		parentCoordinator?.save(movie: movieDetails as! MovieDetails, closure: { (success) in
+			if success {
+				//show hud view
+				print("saved")
+			} else {
+				let alert = UIAlertController.createAlert(alertTitle: "Couldn't save this!!", alertScenario: .error, actionTitle: "OK")
+				detailsViewController?.present(alert, animated: true)
+			}
+		})
+	}
+	
 	func retriveImages(url: String) -> String {
 		//retrives image from local disk
 		let fileManager = FileManager.default

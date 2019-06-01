@@ -18,4 +18,5 @@ class UsableFonts: UIFont {
 	static let ratingFont = UIFont(name: "Helvetica Neue", size: 20)
 	static let detailsTextLabel = UIFont(name: "Helvetica Neue", size: 20)
 	static let detailsTitleLabel = UIFont(name: "Helvetica Neue", size: 30)
+	static let hudFont = UIFont(name: "Helvetica Neue", size: 16)
 }

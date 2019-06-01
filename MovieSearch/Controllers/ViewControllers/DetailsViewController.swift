@@ -18,6 +18,10 @@ class DetailsViewController: UIViewController {
 	
 	var movieDetails: Any?
 	
+	var liked: Bool = false
+	
+	var hudView: HUDView?
+	
 	var addSuffix = { (string: String) -> String in
 		var chars = string.filter({$0 == ","})
 		return !chars.isEmpty ? "s" : ""
@@ -84,8 +88,6 @@ class DetailsViewController: UIViewController {
 		}
 	}
 	
-	
-	
 	func setupMovieDetailsSearch() {
 		//Setup with for showing search information
 		guard let viewUse = viewUse, let _ = movieDetails else {return}
@@ -122,19 +124,21 @@ class DetailsViewController: UIViewController {
 	}
 	
 	@objc func saveButtonTapped() {
-		guard let movieDetails = movieDetails else {return}
-		coordinator?.parentCoordinator?.save(movie: movieDetails as! MovieDetails, closure: { (success) in
-			if success {
-				//show hud view
-				print("saved")
-			} else {
-				let alert = UIAlertController.createAlert(alertTitle: "Couldn't save this!!", alertScenario: .error, actionTitle: "OK")
-				present(alert, animated: true)
-			}
-		})
+		self.liked = !liked
+		if liked {
+			self.detailsView?.likeButton.setImage(#imageLiteral(resourceName: "likeSelected"), for: .normal)
+			hudView = HUDView.showHUDView(in: (detailsView)!, animated: true, text: "Saved Search")
+			hudView?.alpha = 1
+			self.detailsView?.isUserInteractionEnabled = true
+		} else {
+			self.detailsView?.likeButton.setImage(#imageLiteral(resourceName: "like"), for: .normal)
+		}
 	}
 	
 	@objc func dismissView() {
+		if liked {
+			coordinator?.saveMovie()
+		}
 		dismiss(animated: true, completion: {
 			self.coordinator?.dismissDetailsVC()
 		})
