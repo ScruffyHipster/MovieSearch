@@ -15,8 +15,6 @@ enum AlertScenarios {
 	case noWifi
 	case success(successMessage: String)
 	
-	
-	
 	var message: String {
 		switch self {
 		case .error:
@@ -28,8 +26,8 @@ enum AlertScenarios {
 		case .success(let message):
 			return "\(message)"
 		}
-		
 	}
+	
 }
 
 extension UIAlertController {

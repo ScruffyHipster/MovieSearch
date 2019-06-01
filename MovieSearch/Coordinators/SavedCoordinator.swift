@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 ///Manges the Saved controller tab and it child coordinators in the saved heirachy.
-class SavedCoordinator: Coordinator {
+class SavedCoordinator: NSObject, Coordinator {
 	
 	var childCoordinator = [Coordinator]()
 	
@@ -30,6 +30,7 @@ class SavedCoordinator: Coordinator {
 	
 	func start() {
 		//starts up the starting View Controller and then adds it to the navcontroller.
+		navigationController.delegate = self
 		fetch()
 		setUpSavedMovieObserver()
 	}
@@ -106,9 +107,35 @@ extension SavedCoordinator: SavedResultsSelectionDelegate {
 
 extension SavedCoordinator: DismissCoordinatorProtocol {
 	func dismiss(_ coordinator: Coordinator) {
-		//still need to implement
-		print("going to dismiss")
+		childDidFinish(remove: coordinator)
 	}
 	
+	
+}
+
+extension SavedCoordinator: UINavigationControllerDelegate {
+		
+	///This functions removes the child coordinator from the child array.
+	func childDidFinish(remove child: Coordinator?) {
+		for(index, coordinator) in childCoordinator.enumerated() {
+			if coordinator === child {
+				childCoordinator.remove(at: index)
+				break
+			}
+		}
+	}
+	
+	func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+		//Get the name of the vc were moving from
+		guard let fromVC = navigationController.transitionCoordinator?.viewController(forKey: .from) else {return}
+		//if were still here on the vc do nothing
+		if navigationController.viewControllers.contains(fromVC) {
+			return
+		}
+		//else we check if the vc is in the child array and remove it when we've navigated back
+		if let detailsVC = fromVC as? DetailsViewController {
+			childDidFinish(remove: detailsVC.coordinator)
+		}
+	}
 	
 }

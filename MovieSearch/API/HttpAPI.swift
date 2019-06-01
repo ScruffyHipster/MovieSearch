@@ -16,7 +16,7 @@ class HttpAPI: NSObject {
 	var apiKey = "apikey=592d6c41"
 	
 	var request: URLRequest?
-	///used to store saved images locally
+	
 	var activeDownload: [URL: URLSessionDownloadTask] = [:]
 	
 	lazy var session: URLSession = {
@@ -88,7 +88,7 @@ class HttpAPI: NSObject {
 
 extension HttpAPI: URLSessionDownloadDelegate {
 	
-	///Saves image to local dictionary
+	///Saves image to locally
 	func downloadImage(_ imageUrl: String) {
 		let imageUrl = URL(string: imageUrl)
 		if let url = imageUrl {

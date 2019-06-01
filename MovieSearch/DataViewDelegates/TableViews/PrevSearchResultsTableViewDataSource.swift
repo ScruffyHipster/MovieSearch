@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 ///Datasource and delegate for the previous search results tableview
-class PrevSearchResultsTableViewDelegate: NSObject, DataHandlerProtocol, UITableViewDelegate {
+class PrevSearchResultsTableViewDataSource: NSObject, DataHandlerProtocol, UITableViewDelegate {
 	
 	var resultsHandler: ResultsDataHandler?
 	
@@ -23,7 +23,7 @@ class PrevSearchResultsTableViewDelegate: NSObject, DataHandlerProtocol, UITable
 	
 }
 
-extension PrevSearchResultsTableViewDelegate: UITableViewDataSource {
+extension PrevSearchResultsTableViewDataSource: UITableViewDataSource {
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		guard let data = resultsData else {return 0}

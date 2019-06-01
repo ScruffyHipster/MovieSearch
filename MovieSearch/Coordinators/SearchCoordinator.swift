@@ -27,8 +27,11 @@ class SearchCoordinator: NSObject, Coordinator {
 	
 	var previousSearches = [String]()
 	
+	let manager = FileManager.default
+	
 	func start() {
 		//starts up the starting View Controller and then adds it to the navcontroller.
+		fetchMovieSearches()
 		searchVCInit()
 		navigationController.delegate = self
 	}
@@ -46,7 +49,8 @@ class SearchCoordinator: NSObject, Coordinator {
 		searchVC.coordinator = self
 		
 		//Pass the delegate the resultHandler object
-		searchVC.prevTableViewDelegate.resultsHandler = resultDataHandler
+		searchVC.prevTableViewDataSource.resultsHandler = resultDataHandler
+		resultDataHandler.populateDataWith(data: previousSearches)
 		
 		navigationController.viewControllers = [searchVC]
 	}
@@ -88,34 +92,71 @@ extension SearchCoordinator {
 		http.makeRequest(url: url, for: InitialSearchResultDetails.self) { [weak self] (success, results: InitialSearchResultDetails?, error) -> (Void) in
 			if success {
 				self?.searchResultsInit(with: results!)
+				self?.fetchMovieSearches()
 			} else {
-				let alert = UIAlertController(title: "Error", message: "No results for that search! Please try again.", preferredStyle: .alert)
-				alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
-					self?.searchViewController?.cancelButtonPressed()
-				}))
-				self?.searchViewController?.present(alert, animated: true)
-				print("Didn't retrive data")
+				DispatchQueue.main.async {
+					let alert = UIAlertController(title: "Error", message: "No results for that search! Please try again.", preferredStyle: .alert)
+					alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+						self?.searchViewController?.cancelSearch()
+					}))
+					self?.searchViewController?.present(alert, animated: true)
+				}
 			}
 		}
 	}
 	
+	func formatSearch(searchTerm: String) -> String {
+		if searchTerm.last!.isWhitespace {
+			return String(searchTerm.dropLast())
+		}
+		return searchTerm
+	}
+	
 	func saveSearch(search: String) {
 		//Save the search here for displaying in the prev search table
-		if previousSearches.count == 3 {
-			previousSearches.removeLast()
+		let term = formatSearch(searchTerm: search)
+		print("search term is \(term)")
+		for searches in previousSearches where searches == term {
+			return
 		}
-		previousSearches.append(search)
-		print(previousSearches)
+		if previousSearches.count == 3 {
+			previousSearches.remove(at: 0)
+		}
+		previousSearches.append(term)
 		resultDataHandler.populateDataWith(data: previousSearches)
 		do {
 			let data = try NSKeyedArchiver.archivedData(withRootObject: previousSearches, requiringSecureCoding: false)
 			var path = getDocumentsDirectory().appendingPathComponent("prevSearches")
 			path.appendPathExtension("search")
-			print(path)
 			try data.write(to: path)
 		} catch {
 			print("Issue saving file \(error)")
 		}
+		DispatchQueue.main.async {
+			self.updatePrevSearchesTableView()
+			self.searchViewController?.searchView.prevResultsTableView.reloadData()
+		}
+	}
+	
+	func updatePrevSearchesTableView() {
+		searchViewController?.reloadTableViewContent()
+	}
+	
+	func fetchMovieSearches() {
+		let url = getDocumentsDirectory()
+		do {
+			let urlPath = try manager.contentsOfDirectory(at: url, includingPropertiesForKeys: [], options: .skipsHiddenFiles).filter({$0.pathExtension == "search"})
+			
+			for url in urlPath {
+				let data = manager.contents(atPath: url.path)
+				if let data = data {
+					previousSearches = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! [String]
+				}
+			}
+		} catch {
+			print("error occured \(error)")
+		}
+		print(previousSearches)
 	}
 	
 	///Used to fetch specific movie
@@ -127,6 +168,7 @@ extension SearchCoordinator {
 			}
 		})
 	}
+	
 }
 
 
@@ -138,8 +180,6 @@ extension SearchCoordinator: SearchResultsSelectionDelegate {
 	}
 	
 }
-
-
 
 extension SearchCoordinator: UINavigationControllerDelegate {
 	
@@ -206,7 +246,6 @@ extension SearchCoordinator {
 	}
 	
 	func saveToLocalDisk(url: String) {
-		print("saving image to disk")
 		http.downloadImage(url)
 	}
 

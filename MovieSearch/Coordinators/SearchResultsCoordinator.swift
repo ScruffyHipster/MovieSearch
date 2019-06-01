@@ -49,7 +49,6 @@ class SearchResultsCoordiantor: Coordinator {
 		DispatchQueue.main.async {
 			self.start()
 		}
-	
 	}
 	
 	//Create API with this. 
@@ -62,4 +61,5 @@ class SearchResultsCoordiantor: Coordinator {
 			}
 		})
 	}
+	
 }

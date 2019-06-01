@@ -9,8 +9,6 @@
 import Foundation
 import UIKit
 
-//Creates a cache to store images in.
-
 var imageCache = NSCache<NSString, UIImage>()
 
 class CustomImageView: UIImageView {

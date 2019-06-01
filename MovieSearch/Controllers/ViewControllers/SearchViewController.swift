@@ -13,8 +13,8 @@ class SearchViewController: UIViewController {
 	//MARK:- Properties
 	weak var coordinator: SearchCoordinator?
 	
-	lazy var prevTableViewDelegate: PrevSearchResultsTableViewDelegate = {
-		return PrevSearchResultsTableViewDelegate()
+	lazy var prevTableViewDataSource: PrevSearchResultsTableViewDataSource = {
+		return PrevSearchResultsTableViewDataSource()
 	}()
 
 	var searchView: SearchView = {
@@ -69,8 +69,8 @@ extension SearchViewController {
 		//TODO:- See if below can be refactored
 		
 		//Pass the datasource to the tableView
-		searchView.prevResultsTableView.delegate = prevTableViewDelegate
-		searchView.prevResultsTableView.dataSource = prevTableViewDelegate
+		searchView.prevResultsTableView.delegate = self
+		searchView.prevResultsTableView.dataSource = prevTableViewDataSource
 		
 		//reloads tableview and adjust constraints dependant on data
 		DispatchQueue.main.async {
@@ -80,14 +80,18 @@ extension SearchViewController {
 	}
 	
 	@objc func cancelButtonPressed() {
+		cancelSearch()
+	}
+	
+	func cancelSearch() {
 		coordinator?.http.cancelTask()
 		searchView.searchCancelled()
 	}
 	
 	///Reloads the table view based on the new content height. Controller handles the change in size.
-	private func reloadTableViewContent() {
-		searchView.prevResultsTableView.reloadData()
+	func reloadTableViewContent() {
 		searchView.prevTableViewHeight?.isActive = false
+		searchView.prevResultsTableView.reloadData()
 		searchView.prevTableViewHeight?.constant = searchView.prevResultsTableView.contentSize.height
 		searchView.prevTableViewHeight?.isActive = true
 		
@@ -130,6 +134,15 @@ extension SearchViewController: UITextFieldDelegate {
 			self.searchView.searchInitiatied()
 		}
 	}
+}
+
+extension SearchViewController: UITableViewDelegate {
+	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		let cell = tableView.cellForRow(at: indexPath) as? PrevResultTableViewCell
+		searchView.searchField.text = cell?.titleLabel.text
+	}
+	
 }
 
 extension SearchViewController: Storyboarded {
