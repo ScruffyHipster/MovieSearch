@@ -123,10 +123,7 @@ extension SavedView {
 			savedResultsTableViewHeight!,
 			savedResultsTableViewTrailing!
 			])
-		
 	}
-	
-	
 }
 
 

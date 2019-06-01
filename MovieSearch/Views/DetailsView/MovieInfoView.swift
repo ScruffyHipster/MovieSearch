@@ -51,15 +51,7 @@ class MovieInfoView: UIView {
 		textView.isScrollEnabled = false
 		return textView
 	}()
-	
-	var infoLabel: UILabel = {
-		var label = UILabel(frame: .zero)
-		label.text = "Info"
-		label.textColor = .white
-		label.font = UIFont(name: "Helvetica Neue", size: 20)
-		return label
-	}()
-	
+
 	var seperatorLine: UIView = {
 		var line = UIView(frame: .zero)
 		line.backgroundColor = .white
@@ -158,11 +150,9 @@ extension MovieInfoView {
 	}
 	
 	private func setUpSeperatorLine() {
-		[infoLabel, seperatorLine].forEach({addSubview($0)})
+		[seperatorLine].forEach({addSubview($0)})
 		
-		infoLabel.anchor(top: topInfoStackView.bottomAnchor, trailing: safeAreaLayoutGuide.trailingAnchor, bottom: nil, leading: safeAreaLayoutGuide.leadingAnchor, padding: .init(top: 10, left: 10, bottom: 0, right: -10))
-		
-		seperatorLine.anchor(top: infoLabel.bottomAnchor, trailing: safeAreaLayoutGuide.trailingAnchor, bottom: nil, leading: safeAreaLayoutGuide.leadingAnchor, padding: .init(top: 10, left: 10, bottom: 0, right: -10), size: .init(width: 0, height: 1))
+		seperatorLine.anchor(top: topInfoStackView.bottomAnchor, trailing: safeAreaLayoutGuide.trailingAnchor, bottom: nil, leading: safeAreaLayoutGuide.leadingAnchor, padding: .init(top: 10, left: 10, bottom: 0, right: -10), size: .init(width: 0, height: 1))
 
 	}
 	

@@ -98,6 +98,7 @@ extension SavedCoordinator: SavedResultsSelectionDelegate {
 		} catch let error {
 			print(error)
 		}
+		savedViewController?.reloadTableView()
 	}
 	
 	func didSelectMovie(_ movie: Movie) {

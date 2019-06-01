@@ -92,7 +92,8 @@ extension DetailsView {
 		imageViewTopContstraint = gradientImageContainerView.topAnchor.constraint(equalTo: topAnchor, constant: 0)
 		imageViewLeadingConstraint = gradientImageContainerView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 0)
 		imageViewWidthConstraint = gradientImageContainerView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 0)
-		imageViewHeightAnchor = gradientImageContainerView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.5)
+		imageViewHeightAnchor = gradientImageContainerView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.6
+		)
 		
 		NSLayoutConstraint.activate([
 			imageViewTopContstraint!,
@@ -128,7 +129,6 @@ extension DetailsView {
 extension DetailsView {
 	func landscape() {
 		informationContainerView.bottomInfoStack.isHidden = true
-		informationContainerView.infoLabel.isHidden = true
 		informationContainerView.seperatorLine.isHidden = true
 		informationContainerView.ratingInfoStack.isHidden = true
 		//TODO:- look at resizing image on rotation
@@ -164,15 +164,14 @@ extension DetailsView {
 	func portrait() {
 		[imageViewTopContstraint, imageViewLeadingConstraint, imageViewWidthConstraint, imageViewHeightAnchor, InfoStackTopConstraint, InfoStackTrailingConstraint, InfoStackBottomConstraint, InfoStackLeadingConstraint].forEach({$0?.isActive = false})
 		
-		UIView.animate(withDuration: 0.5) {
+		UIView.animate(withDuration: 0.10) {
 			self.informationContainerView.bottomInfoStack.isHidden = false
-			self.informationContainerView.infoLabel.isHidden = false
 			self.informationContainerView.seperatorLine.isHidden = false
 			self.informationContainerView.ratingInfoStack.isHidden = false
 		}
 		
-		
 		setUpTopImageView()
 		setUpBottomDetailsView()
+		
 	}
 }

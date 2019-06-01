@@ -65,8 +65,12 @@ extension SavedResultsTableViewDelegate {
 		case .delete:
 			guard let results = resultsData as? [Movie] else {return}
 			resultsData?.remove(at: indexPath.row)
-			tableView.deleteRows(at: [indexPath], with: .fade)
-			delegate?.deleteMovie(results[indexPath.row])
+			
+			tableView.performBatchUpdates({
+				tableView.deleteRows(at: [indexPath], with: .fade)
+			}, completion: { _ in
+				self.delegate?.deleteMovie(results[indexPath.row])
+			})
 			break
 		default:
 			break
