@@ -62,7 +62,6 @@ enum CollectionViewCellIdentifiers {
 
 ///used to ammend the url request for OMDB
 enum SearchParam {
-	
 	case search
 	case id
 	

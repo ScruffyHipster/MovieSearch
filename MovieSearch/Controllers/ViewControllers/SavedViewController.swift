@@ -9,22 +9,22 @@
 import UIKit
 
 class SavedViewController: UIViewController {
-	
+	//MARK:- Properties
 	weak var coordinator: SavedCoordinator?
-
+	var savedView: SavedView?
+	
 	lazy var savedTableViewDelegate: SavedResultsTableViewDelegate = {
 		var delegate = SavedResultsTableViewDelegate()
 		return delegate
 	}()
-	
-	var savedView: SavedView?
-	
-    override func viewDidLoad() {
-        super.viewDidLoad()
+
+	//MARK:- Method
+	override func viewDidLoad() {
+		super.viewDidLoad()
 		navigationController?.navigationBar.isHidden = true
 		setUpView()
-    }
-	 
+	}
+	
 	override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
 		if UIDevice.current.orientation.isLandscape {
 			savedView?.landscape()
@@ -33,9 +33,7 @@ class SavedViewController: UIViewController {
 			savedView?.portrait()
 		}
 	}
-
-	//MARK:- Methods
-
+	
 	func setUpView() {
 		savedView = SavedView(frame: view.bounds)
 		view.addSubview(savedView!)
@@ -44,7 +42,6 @@ class SavedViewController: UIViewController {
 		DispatchQueue.main.async {
 			self.reloadTableView()
 		}
-		
 	}
 	
 	func reloadTableView() {
@@ -53,9 +50,6 @@ class SavedViewController: UIViewController {
 		savedView?.savedResultsTableViewHeight?.isActive = true
 		savedView?.savedMoviesTableView.reloadData()
 	}
-
 }
 
-extension SavedViewController: Storyboarded {
-	
-}
+extension SavedViewController: Storyboarded {}

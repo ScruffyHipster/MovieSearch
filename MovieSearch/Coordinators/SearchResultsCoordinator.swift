@@ -12,25 +12,21 @@ import CoreData
 
 ///Manages the search results view controller and logic. This is a child of Search Coordinator.
 class SearchResultsCoordiantor: Coordinator {
-	
+	//MARK:- Properties
 	weak var parentCoordinator: SearchCoordinator?
-	
 	var childCoordinator = [Coordinator]()
-	
 	var navigationController: UINavigationController
-	
 	var resultDataHandler: ResultsDataHandler?
-	
 	var searchResults: InitialSearchResultDetails?
-	
 	var http: HttpAPI?
-	
 	var managedObject: NSManagedObjectContext?
 	
+	//MARK:- Init Methods
 	init(navController: UINavigationController) {
 		self.navigationController = navController
 	}
 	
+	//MARK:- Methods
 	internal func start() {
 		let searchResultsVC = SearchResultsViewController.instantiate()
 		searchResultsVC.coordinator = self
@@ -61,5 +57,4 @@ class SearchResultsCoordiantor: Coordinator {
 			}
 		})
 	}
-	
 }

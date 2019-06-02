@@ -9,9 +9,7 @@
 import UIKit
 
 class SearchResultsView: UIView {
-
 	//MARK:- Properties
-	
 	var backgroundContainerView: GradientContainerView = {
 		let view = GradientContainerView(colorOne: nil, colorTwo: nil)
 		view.translatesAutoresizingMaskIntoConstraints = false
@@ -35,15 +33,11 @@ class SearchResultsView: UIView {
 		return collectionView
 	}()
 	
-	
 	//MARK:-Init
-	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		configure()
 	}
-	
-	
 	
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
@@ -58,9 +52,7 @@ class SearchResultsView: UIView {
 	func configure() {
 		setUpView()
 	}
-	
 }
-
 
 extension SearchResultsView {
 	
@@ -81,7 +73,4 @@ extension SearchResultsView {
 		collectionView.dataSource = collectionViewDelegate
 		collectionView.anchor(top: backgroundContainerView.safeAreaLayoutGuide.topAnchor, trailing: backgroundContainerView.safeAreaLayoutGuide.trailingAnchor, bottom: backgroundContainerView.safeAreaLayoutGuide.bottomAnchor, leading: backgroundContainerView.safeAreaLayoutGuide.leadingAnchor)
 	}
-	
-	
-	
 }

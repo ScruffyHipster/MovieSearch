@@ -9,7 +9,6 @@
 import UIKit
 
 class PrevResultTableViewCell: UITableViewCell {
-	
 	//MARK:- Properties
 	var titleLabel: UILabel = {
 		var titleLabel = UILabel(frame: .zero)
@@ -29,16 +28,15 @@ class PrevResultTableViewCell: UITableViewCell {
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-	
+}
+
+
+extension PrevResultTableViewCell {
+	//MARK:- Methods
 	func configure() {
 		setUpCell()
 		setUpText()
 	}
-	
-}
-
-//MARK:- Setup Style
-extension PrevResultTableViewCell {
 	
 	private func setUpCell() {
 		accessoryType = .disclosureIndicator
@@ -54,5 +52,4 @@ extension PrevResultTableViewCell {
 			titleLabel.heightAnchor.constraint(equalToConstant: 50)
 			])
 	}
-	
 }

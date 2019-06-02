@@ -8,9 +8,8 @@
 
 import UIKit
 
-///Custom reusable search field
+///Custom search field 
 class SearchField: UITextField {
-	
 	//MARK:- Properties
 	var bottomLine: UIView = {
 		let view = UIView(frame: .zero)
@@ -39,6 +38,7 @@ class SearchField: UITextField {
 		return indicator
 	}()
 
+	//MARK:- Init methods
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		configure()
@@ -51,7 +51,7 @@ class SearchField: UITextField {
 }
 
 extension SearchField {
-	
+	//MARK:- Methods
 	private func configure() {
 		setUpStyle()
 		setupBottomLine()

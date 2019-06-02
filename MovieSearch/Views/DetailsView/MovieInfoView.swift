@@ -11,12 +11,7 @@ import UIKit
 
 ///Container for the info details of the selected movie
 class MovieInfoView: UIView {
-	
-	//properties
-	var ratingImageHeight: NSLayoutConstraint?
-	var ratingImageWidth: NSLayoutConstraint?
-	
-	//Init methods
+	//MARK:- Init methods
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		setupStackViews()
@@ -26,7 +21,10 @@ class MovieInfoView: UIView {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	//Properties
+	//MARK:- Properties
+	var ratingImageHeight: NSLayoutConstraint?
+	var ratingImageWidth: NSLayoutConstraint?
+	
 	var mainTitle: UILabel = {
 		var label = UILabel(frame: .zero)
 		label.font = UsableFonts.detailsTitleLabel
@@ -135,7 +133,7 @@ class MovieInfoView: UIView {
 }
 
 extension MovieInfoView {
-	
+	//MARK:- Methods
 	private func setupStackViews() {
 		[topInfoStackView, bottomInfoStack, ratingInfoStack].forEach({addSubview($0)})
 		setUpTopStack()

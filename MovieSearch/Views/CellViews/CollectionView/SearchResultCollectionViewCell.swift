@@ -12,9 +12,7 @@ import UIKit
 
 class SearchResultCollectionViewCell: UICollectionViewCell {
 	
-	
 	//MARK:- Properties
-	
 	var orientation: Bool {
 		return UIDevice.current.orientation.isPortrait ? true : false
 	}
@@ -60,17 +58,15 @@ class SearchResultCollectionViewCell: UICollectionViewCell {
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
+}
+
+extension SearchResultCollectionViewCell {
 	
 	//MARK:- Methods
 	func configure() {
 		setUpStack()
 		backgroundColor = .clear
 	}
-
-	
-}
-
-extension SearchResultCollectionViewCell {
 	
 	func configureCell(with results: SearchResults) {
 		titleLabel.text = results.title
@@ -90,8 +86,5 @@ extension SearchResultCollectionViewCell {
 		contentStack.addArrangedSubview(mainImage)
 		contentStack.addArrangedSubview(titleLabel)
 		contentStack.anchor(top: safeAreaLayoutGuide.topAnchor, trailing: safeAreaLayoutGuide.trailingAnchor, bottom: safeAreaLayoutGuide.bottomAnchor, leading: safeAreaLayoutGuide.leadingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0))
-		
 	}
-
-
 }

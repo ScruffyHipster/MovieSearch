@@ -11,7 +11,7 @@ import UIKit
 
 
 class SearchResultsViewController: UIViewController {
-	
+	//MARK:- Properties
 	weak var coordinator: SearchResultsCoordiantor?
 	
 	var searchResultView: SearchResultsView = {
@@ -23,6 +23,7 @@ class SearchResultsViewController: UIViewController {
 		return SearchResultsCollectionViewDelegate()
 	}()
 
+	//MARK:- Methods
     override func viewDidLoad() {
         super.viewDidLoad()
 		setUpSuccessView()
@@ -73,10 +74,6 @@ class SearchResultsViewController: UIViewController {
 			self.searchResultView.collectionView.reloadData()
 		}
 	}
-    
 }
 
-extension SearchResultsViewController: Storyboarded {
-	
-	
-}
+extension SearchResultsViewController: Storyboarded {}

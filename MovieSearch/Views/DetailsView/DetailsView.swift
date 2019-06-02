@@ -9,9 +9,7 @@
 import UIKit
 
 class DetailsView: UIView {
-	
 	//MARK:- Properties
-	
 	var imageViewTopContstraint: NSLayoutConstraint?
 	var imageViewLeadingConstraint: NSLayoutConstraint?
 	var imageViewWidthConstraint: NSLayoutConstraint?
@@ -51,7 +49,7 @@ class DetailsView: UIView {
 		return dismissButton
 	}()
 	
-	//Init Methods
+	//MARK:- Init Methods
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 	}
@@ -65,12 +63,10 @@ class DetailsView: UIView {
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-	
 }
 
-//MARK:- Setup
 extension DetailsView {
-	
+	//MARK:- Methods
 	private func setUpView() {
 		[gradientImageContainerView, informationContainerView].forEach({addSubview($0)})
 		guard let orientation = orientation else {
@@ -88,7 +84,6 @@ extension DetailsView {
 	}
 	
 	private func setUpTopImageView() {
-		
 		imageViewTopContstraint = gradientImageContainerView.topAnchor.constraint(equalTo: topAnchor, constant: 0)
 		imageViewLeadingConstraint = gradientImageContainerView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 0)
 		imageViewWidthConstraint = gradientImageContainerView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 0)
@@ -104,7 +99,6 @@ extension DetailsView {
 	}
 	
 	private func setUpBottomDetailsView() {
-		
 		InfoStackTopConstraint = informationContainerView.topAnchor.constraint(equalTo: gradientImageContainerView.bottomAnchor, constant: 0)
 		InfoStackLeadingConstraint = informationContainerView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 0)
 		InfoStackTrailingConstraint = informationContainerView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 0)
@@ -127,6 +121,7 @@ extension DetailsView {
 }
 
 extension DetailsView {
+	//MARK:- Orientation Methods
 	func landscape() {
 		informationContainerView.bottomInfoStack.isHidden = true
 		informationContainerView.seperatorLine.isHidden = true

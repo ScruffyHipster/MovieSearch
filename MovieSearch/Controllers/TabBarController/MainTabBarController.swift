@@ -10,11 +10,11 @@ import UIKit
 import CoreData
 
 class MainTabBarController: UITabBarController {
-	
-	
+	//MARK:- Properties
 	let searchCoordinator = SearchCoordinator()
 	let savedCoordinator  = SavedCoordinator()
 	
+	//MARK:- Methods
     override func viewDidLoad() {
         super.viewDidLoad()
 		tabBarSetUp()
@@ -36,7 +36,4 @@ class MainTabBarController: UITabBarController {
 		self.tabBar.barTintColor = .clear
 		self.tabBar.tintColor = .white
 	}
-	
-	
-
 }

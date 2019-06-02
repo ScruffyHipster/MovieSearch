@@ -9,7 +9,6 @@
 import UIKit
 
 class SearchViewController: UIViewController {
-	
 	//MARK:- Properties
 	weak var coordinator: SearchCoordinator?
 	
@@ -22,7 +21,7 @@ class SearchViewController: UIViewController {
 		return search
 	}()
 	
-	//MARK:- Init Methods
+	//MARK:- Methods
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setUpView()
@@ -37,8 +36,6 @@ class SearchViewController: UIViewController {
 		searchView.searchCancelled()
 	}
 	
-	//MARK:- Functions
-	///Sets up the view initially
 	func setUpView() {
 		self.navigationController?.navigationBar.isHidden = true
 		setUpSearchView()
@@ -58,25 +55,18 @@ class SearchViewController: UIViewController {
 extension SearchViewController {
 	
 	private func setUpSearchView() {
-		
 		searchView.frame = self.view.bounds
 		view.addSubview(searchView)
-		
 		searchView.anchor(top: view.topAnchor, trailing: view.trailingAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor)
-		
+		searchView.cancelButton.addTarget(nil, action: #selector(cancelButtonPressed), for: .touchUpInside)
+		//set delegates
 		searchView.searchField.delegate = self
-		
-		//TODO:- See if below can be refactored
-		
-		//Pass the datasource to the tableView
 		searchView.prevResultsTableView.delegate = self
 		searchView.prevResultsTableView.dataSource = prevTableViewDataSource
-		
 		//reloads tableview and adjust constraints dependant on data
 		DispatchQueue.main.async {
 			self.reloadTableViewContent()
 		}
-		searchView.cancelButton.addTarget(nil, action: #selector(cancelButtonPressed), for: .touchUpInside)
 	}
 	
 	@objc func cancelButtonPressed() {
@@ -88,7 +78,7 @@ extension SearchViewController {
 		searchView.searchCancelled()
 	}
 	
-	///Reloads the table view based on the new content height. Controller handles the change in size.
+	///Reloads the table view based on the new content height.
 	func reloadTableViewContent() {
 		searchView.prevTableViewHeight?.isActive = false
 		searchView.prevResultsTableView.reloadData()
@@ -98,6 +88,7 @@ extension SearchViewController {
 	}
 }
 
+//MARK:- UItextfield delegate
 extension SearchViewController: UITextFieldDelegate {
 	
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -136,15 +127,12 @@ extension SearchViewController: UITextFieldDelegate {
 	}
 }
 
+//MARK:- UItableview delegate
 extension SearchViewController: UITableViewDelegate {
-	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		let cell = tableView.cellForRow(at: indexPath) as? PrevResultTableViewCell
 		searchView.searchField.text = cell?.titleLabel.text
 	}
-	
 }
 
-extension SearchViewController: Storyboarded {
-	
-}
+extension SearchViewController: Storyboarded {}

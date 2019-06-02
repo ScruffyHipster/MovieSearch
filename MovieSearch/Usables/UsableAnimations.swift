@@ -10,25 +10,7 @@ import Foundation
 import UIKit
 
 class UsableAniamtions {
-	
-	static func moveAnimationY(layer: CALayer, to: CGFloat, duration: Double) {
-		let position = CABasicAnimation(keyPath: "position.y")
-		position.toValue = to
-		position.duration = duration
-		position.isRemovedOnCompletion = false
-		position.fillMode = CAMediaTimingFillMode.forwards
-		layer.add(position, forKey: nil)
-	}
-	
-	static func moveAnimationX(layer: CALayer, to: CGFloat, duration: Double) {
-		let position = CABasicAnimation(keyPath: "position.x")
-		position.toValue = to
-		position.duration = duration
-		position.isRemovedOnCompletion = false
-		position.fillMode = CAMediaTimingFillMode.forwards
-		layer.add(position, forKey: nil)
-	}
-	
+	///Fade the layer opacity
 	static func fade(layer: CALayer, from: CGFloat, to: CGFloat, duration: Double) {
 		let fade = CABasicAnimation(keyPath: "opacity")
 		fade.toValue = to
@@ -55,14 +37,12 @@ class UsableAniamtions {
 		}
 		return scale
 	}
-
-	
+	///Rotate the layer
 	static func rotate(layer: CALayer, reversed: Bool) {
 		let rotation = CABasicAnimation(keyPath: "transform.rotation")
 		rotation.duration = 0.5
 		rotation.fromValue = 0.0
 		rotation.toValue = reversed ? (Double.pi / 2) : (Double.pi / 3)
 		layer.add(rotation, forKey: nil)
-	}
-	
+	}	
 }

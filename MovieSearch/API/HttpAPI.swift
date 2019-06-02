@@ -40,7 +40,6 @@ class HttpAPI: NSObject {
 		var success = false
 		dataTask?.cancel()
 		dataTask = session.dataTask(with: request, completionHandler: { (data, response, error) in
-			print(request)
 			guard let response = response as? HTTPURLResponse else {
 				success = false
 				closure(success, nil, error)
@@ -88,7 +87,7 @@ class HttpAPI: NSObject {
 
 extension HttpAPI: URLSessionDownloadDelegate {
 	
-	///Saves image to locally
+	///Downloads and saves the image to locally to disk using the image url
 	func downloadImage(_ imageUrl: String) {
 		let imageUrl = URL(string: imageUrl)
 		if let url = imageUrl {
@@ -100,17 +99,16 @@ extension HttpAPI: URLSessionDownloadDelegate {
 	
 	func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
 		guard let sourceUrl = downloadTask.originalRequest?.url else {return}
-		
+		//remove the download url from the dictionary once download is complete
 		activeDownload[sourceUrl] = nil
 		
 		let fileManager = FileManager.default
-		
+		//create a url and move the item to it.
 		let destinationUrl = fileManager.localFileUrl(for: sourceUrl)
 		try? fileManager.removeItem(at: destinationUrl)
 		do {
 			try fileManager.copyItem(at: location, to: destinationUrl)
-		} catch let error {
-			print(error)
+		} catch {
 		}
 	}
 	

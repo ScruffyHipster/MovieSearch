@@ -8,9 +8,6 @@
 
 import Foundation
 
-import Foundation
-
-
 struct InitialSearchResultDetails: Codable {
 	let search: [SearchResults]
 	let totalResults, response: String

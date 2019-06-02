@@ -17,10 +17,9 @@ protocol SavedResultsSelectionDelegate: class {
 
 ///Datasource and delegate for the saved results tableview
 class SavedResultsTableViewDelegate: NSObject, DataHandlerProtocol, UITableViewDelegate {
-	
-	
+	//MARK:-Properies
+	weak var delegate: SavedResultsSelectionDelegate?
 	var resultsHandler: ResultsDataHandler?
-	
 	var resultsData: [AnyObject]? {
 		get {
 			return resultsHandler?.retriveDataFromHandeler()
@@ -28,13 +27,9 @@ class SavedResultsTableViewDelegate: NSObject, DataHandlerProtocol, UITableViewD
 			resultsHandler?.resultsData = newValue
 		}
 	}
-	
-	weak var delegate: SavedResultsSelectionDelegate?
-	
 }
 
 extension SavedResultsTableViewDelegate: UITableViewDataSource {
-	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		guard let data = resultsData else {
 			return 0
@@ -54,7 +49,6 @@ extension SavedResultsTableViewDelegate: UITableViewDataSource {
 }
 
 extension SavedResultsTableViewDelegate {
-	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		guard let results = resultsData as? [Movie] else {return}
 		delegate?.didSelectMovie(results[indexPath.row])

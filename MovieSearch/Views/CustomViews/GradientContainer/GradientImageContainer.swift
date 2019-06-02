@@ -35,7 +35,6 @@ class GradientImageContainer: UIView {
 		return gradient
 	}()
 	
-	
 	private func setupImageView() {
 		
 		addSubview(mainImage)

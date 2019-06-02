@@ -12,34 +12,29 @@ import CoreData
 
 ///Manages the Search controller tab in the app and child coordinator in the search heirachy
 class SearchCoordinator: NSObject, Coordinator {
-	
+	//MARK:- Properties
 	var childCoordinator = [Coordinator]()
-	
 	var navigationController: UINavigationController
-	
 	var searchViewController: SearchViewController?
-	
 	var resultDataHandler = ResultsDataHandler()
-	
 	var http = HttpAPI()
-	
 	var managedObject: NSManagedObjectContext?
-	
 	var previousSearches = [String]()
-	
 	let manager = FileManager.default
 	
+	//MARK:- Init Methods
+	init(navController: UINavigationController = UINavigationController()) {
+		self.navigationController = navController
+		let appDelegate = UIApplication.shared.delegate as! AppDelegate
+		managedObject = appDelegate.managedObject
+	}
+	
+	//MARK:- Methods
 	func start() {
 		//starts up the starting View Controller and then adds it to the navcontroller.
 		fetchMovieSearches()
 		searchVCInit()
 		navigationController.delegate = self
-	}
-	
-	init(navController: UINavigationController = UINavigationController()) {
-		self.navigationController = navController
-		let appDelegate = UIApplication.shared.delegate as! AppDelegate
-		managedObject = appDelegate.managedObject
 	}
 	
 	func searchVCInit() {
@@ -58,8 +53,6 @@ class SearchCoordinator: NSObject, Coordinator {
 	///Sets up the search results view
 	func searchResultsInit(with results: InitialSearchResultDetails?) {
 		let child = SearchResultsCoordiantor(navController: navigationController)
-		
-		//We populate the search results array first. This can then handle either showing no results error or the data.
 		child.managedObject = managedObject
 		child.searchResults = results
 		child.resultDataHandler = resultDataHandler
@@ -79,15 +72,23 @@ class SearchCoordinator: NSObject, Coordinator {
 		child.setUp()
 	}
 	
+	func formatSearch(searchTerm: String) -> String {
+		if searchTerm.last!.isWhitespace {
+			return String(searchTerm.dropLast())
+		}
+		return searchTerm
+	}
+	
+	func updatePrevSearchesTableView() {
+		searchViewController?.reloadTableViewContent()
+	}
 }
 
 //SearchCoordinator Network requests
 extension SearchCoordinator {
-	
 	///Used as the inital search for user inputted search term
 	func searchForMovies(searchTerm: String) {
 		let url = http.createUrl(searchParam: .search, searchTerm: searchTerm)
-		print("url is \(url)")
 		self.saveSearch(search: searchTerm)
 		http.makeRequest(url: url, for: InitialSearchResultDetails.self) { [weak self] (success, results: InitialSearchResultDetails?, error) -> (Void) in
 			if success {
@@ -105,17 +106,9 @@ extension SearchCoordinator {
 		}
 	}
 	
-	func formatSearch(searchTerm: String) -> String {
-		if searchTerm.last!.isWhitespace {
-			return String(searchTerm.dropLast())
-		}
-		return searchTerm
-	}
-	
 	func saveSearch(search: String) {
 		//Save the search here for displaying in the prev search table
 		let term = formatSearch(searchTerm: search)
-		print("search term is \(term)")
 		for searches in previousSearches where searches == term {
 			return
 		}
@@ -138,15 +131,10 @@ extension SearchCoordinator {
 		}
 	}
 	
-	func updatePrevSearchesTableView() {
-		searchViewController?.reloadTableViewContent()
-	}
-	
 	func fetchMovieSearches() {
 		let url = getDocumentsDirectory()
 		do {
 			let urlPath = try manager.contentsOfDirectory(at: url, includingPropertiesForKeys: [], options: .skipsHiddenFiles).filter({$0.pathExtension == "search"})
-			
 			for url in urlPath {
 				let data = manager.contents(atPath: url.path)
 				if let data = data {
@@ -154,9 +142,10 @@ extension SearchCoordinator {
 				}
 			}
 		} catch {
-			print("error occured \(error)")
+			print("error")
+			let alert = UIAlertController.createAlert(alertTitle: "Error loading previous searches", alertScenario: .notification(notificationMessage: "Please restart the application if issue persists."), actionTitle: "OK")
+			searchViewController?.present(alert, animated: true)
 		}
-		print(previousSearches)
 	}
 	
 	///Used to fetch specific movie
@@ -171,18 +160,19 @@ extension SearchCoordinator {
 	
 }
 
-
 extension SearchCoordinator: SearchResultsSelectionDelegate {
-	
 	func didSelectMovieAt(_ IMDBid: String) {
-		print("index path passed is \(IMDBid)")
 		fetchDetailsForMovie(with: IMDBid)
 	}
-	
+}
+
+extension SearchCoordinator: DismissCoordinatorProtocol {
+	func dismiss(_ coordinator: Coordinator) {
+		childDidFinish(remove: coordinator)
+	}
 }
 
 extension SearchCoordinator: UINavigationControllerDelegate {
-	
 	///This functions removes the child coordinator from the child array.
 	func childDidFinish(remove child: Coordinator?) {
 		for(index, coordinator) in childCoordinator.enumerated() {
@@ -211,19 +201,11 @@ extension SearchCoordinator: UINavigationControllerDelegate {
 	
 }
 
-extension SearchCoordinator: DismissCoordinatorProtocol {
-	func dismiss(_ coordinator: Coordinator) {
-		childDidFinish(remove: coordinator)
-	}
-}
-
 //CoreData Persitence Layer
 extension SearchCoordinator {
-	
 	func save(movie: MovieDetails, closure: (Bool) -> ()){
 		//save the movie details to CoreData
 		guard let managedObject = managedObject else {return}
-		
 		let savedMovie = Movie(context: managedObject)
 		savedMovie.posterUrl = movie.poster
 		savedMovie.movieDirector = movie.director
@@ -232,19 +214,16 @@ extension SearchCoordinator {
 		savedMovie.movieWriters = movie.writer
 		savedMovie.movieRating = movie.imdbRating
 		savedMovie.moviePlot = movie.plot
-		
 		saveToLocalDisk(url: movie.poster)
-		
 		do {
 			try managedObject.save()
 		} catch{
-			//post an alert to the vc if issue saving
 			closure(false)
 		}
 		closure(true)
 		postSavedNotification()
 	}
-	
+
 	func delete(movie: Movie, closure: (Bool) -> ()) {
 		guard let managedObject = managedObject else {
 			return
@@ -253,9 +232,9 @@ extension SearchCoordinator {
 		do {
 			try managedObject.save()
 		} catch {
-			print("error")
+			let alert = UIAlertController.createAlert(alertTitle: "Error deleting movie", alertScenario: .notification(notificationMessage: "Try removing the movie again, if the issue persists, restart the application"), actionTitle: "OK")
+			searchViewController?.present(alert, animated: true)
 		}
-		
 	}
 	
 	func saveToLocalDisk(url: String) {
@@ -263,6 +242,7 @@ extension SearchCoordinator {
 	}
 
 	func postSavedNotification() {
+		//posts notification to saved view to update table view
 		let notifiction = ObserverValues.saveMovie.notificationName
 		NotificationCenter.default.post(name: notifiction, object: nil)
 	}

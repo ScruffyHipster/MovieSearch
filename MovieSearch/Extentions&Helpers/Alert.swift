@@ -27,11 +27,10 @@ enum AlertScenarios {
 			return "\(message)"
 		}
 	}
-	
 }
 
 extension UIAlertController {
-	
+	///Creates an alert with or without preset messages.
 	static func createAlert(alertTitle: String, alertScenario: AlertScenarios, actionTitle: String) -> UIAlertController {
 		let alert = UIAlertController(title: alertTitle, message: alertScenario.message, preferredStyle: .alert)
 		switch alertScenario {
@@ -39,7 +38,7 @@ extension UIAlertController {
 			alert.addAction(UIAlertAction(title: actionTitle, style: .default, handler: nil))
 		case .noWifi:
 			alert.addAction(UIAlertAction(title: actionTitle, style: .default, handler: { _ in
-				//direct to settings.
+				UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
 			}))
 			alert.addAction(UIAlertAction(title: actionTitle, style: .cancel, handler: nil))
 			break
@@ -50,5 +49,4 @@ extension UIAlertController {
 		}
 		return alert
 	}
-	
 }

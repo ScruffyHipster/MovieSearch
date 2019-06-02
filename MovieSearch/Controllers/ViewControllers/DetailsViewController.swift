@@ -9,34 +9,28 @@
 import UIKit
 
 class DetailsViewController: UIViewController {
-	
+	//MARK:- Properties
 	weak var coordinator: DetailsCoordinator?
-	
 	var detailsView: DetailsView?
-	
 	var viewUse: DetailsViewUse?
-	
 	var movieDetails: Any?
-	
 	var liked: Bool = false
-	
 	var hudView: HUDView?
 	
 	var addSuffix = { (string: String) -> String in
 		var chars = string.filter({$0 == ","})
 		return !chars.isEmpty ? "s" : ""
 	}
-	
 	var orientation: Orientation {
 		get {
 			return UIDevice.current.orientation.isPortrait ? Orientation.portrait : Orientation.landscape
 		}
 	}
-	
 	var gradientView: GradientContainerView = {
 		return GradientContainerView(colorOne: nil, colorTwo: nil)
 	}()
 
+	//MARK:- Methods
     override func viewDidLoad() {
         super.viewDidLoad()
 		setUp()
@@ -146,6 +140,4 @@ class DetailsViewController: UIViewController {
 	}
 }
 
-extension DetailsViewController: Storyboarded {
-	
-}
+extension DetailsViewController: Storyboarded {}

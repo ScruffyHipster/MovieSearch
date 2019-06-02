@@ -10,11 +10,12 @@ import UIKit
 
 ///View with a custom gradient overlay. Leave init at nil to produce standard app gradient. Add colours to customise.
 class GradientContainerView: UIView {
-	
+	//MARK:- Properties
 	var colourOne: CGColor?
 	var colourTwo: CGColor?
-
-	init(colorOne: CGColor?, colorTwo: CGColor?) {
+	
+	//MARK:- Init Methods
+	init(colorOne: CGColor? = nil, colorTwo: CGColor? = nil) {
 		super.init(frame: .zero)
 		self.colourOne = colorOne
 		self.colourTwo = colorTwo

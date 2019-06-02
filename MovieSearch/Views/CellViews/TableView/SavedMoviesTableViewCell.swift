@@ -9,7 +9,7 @@
 import UIKit
 
 class SavedMoviesTableViewCell: UITableViewCell {
-
+	//MARK:- Properties
 	var titleLabel: UILabel = {
 		var label = UILabel(frame: .zero)
 		label.textColor = .white
@@ -20,6 +20,7 @@ class SavedMoviesTableViewCell: UITableViewCell {
 		return label
 	}()
 	
+	//MARK:- Init methods
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 		configure()
@@ -28,21 +29,14 @@ class SavedMoviesTableViewCell: UITableViewCell {
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-	
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+}
 
-        // Configure the view for the selected state
-    }
-	
+extension SavedMoviesTableViewCell {
+	//MARK:- Methods
 	func configure() {
 		setUpCell()
 		setUpText()
 	}
-
-}
-
-extension SavedMoviesTableViewCell {
 	
 	private func setUpCell() {
 		accessoryType = .disclosureIndicator

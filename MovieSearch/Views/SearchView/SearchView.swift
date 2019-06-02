@@ -12,7 +12,6 @@ import UIKit
 class SearchView: UIView {
 	
 	//MARK:- Properties
-	
 	var backgroundContainerView: GradientContainerView = {
 		let view = GradientContainerView(colorOne: nil, colorTwo: nil)
 		view.translatesAutoresizingMaskIntoConstraints = false
@@ -67,25 +66,20 @@ class SearchView: UIView {
 		return button
 	}()
 	
-	
-	
 	//Constraints are saved as variables so we can change the position of the search in landscape orientation.
 	var searchStackViewTop: NSLayoutConstraint?
 	var searchStackViewTrailing: NSLayoutConstraint?
-	
 	var titleLabelTop: NSLayoutConstraint?
 	var titleLabelLeading: NSLayoutConstraint?
 	var titleLabelTrailing: NSLayoutConstraint?
 
 	//Constraint for the tableview height so we can change this upon loading of data
 	var prevTableViewHeight: NSLayoutConstraint?
-
 	var orientationPortrait: Bool {
 		get {
 			return UIDevice.current.orientation == .portrait ? true : false
 		}
 	}
-	
 	var deviceType: UIUserInterfaceIdiom {
 		get {
 			return UIDevice.current.userInterfaceIdiom
@@ -97,17 +91,16 @@ class SearchView: UIView {
 		super.init(frame: frame)
 		configure()
 	}
-	
+
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
+	//MARK:- Methods
 	override func layoutSubviews() {
 		super.layoutSubviews()
 		prevResultsTableView.backgroundColor = .clear
 	}
-	
-	//MARK:- Methods
 	
 	func configure() {
 		setUpViews()
@@ -168,13 +161,11 @@ class SearchView: UIView {
 			
 		}
 	}
-	
 }
 
-//View layer setups
+//MARK:- View layer setups
 extension SearchView {
 	
-	///Set up all view in view
 	func setUpViews() {
 		//add to view
 		[backgroundContainerView].forEach({addSubview($0)})
@@ -194,15 +185,10 @@ extension SearchView {
 	}
 	
 	private func setUpTitle() {
-		
 		titleLabelTop = titleLabel.topAnchor.constraint(equalTo: backgroundContainerView.safeAreaLayoutGuide.topAnchor, constant: 100)
-		
 		titleLabelTrailing = titleLabel.trailingAnchor.constraint(equalTo: backgroundContainerView.safeAreaLayoutGuide.trailingAnchor, constant: -35)
-		
 		titleLabelLeading = titleLabel.safeAreaLayoutGuide.leadingAnchor.constraint(equalTo: backgroundContainerView.leadingAnchor, constant: 35)
-		
 		titleLabel.heightAnchor.constraint(equalToConstant: 60)
-		
 		NSLayoutConstraint.activate([
 			titleLabelLeading!,
 			titleLabelTrailing!, titleLabelTop!
@@ -232,12 +218,8 @@ extension SearchView {
 	private func setUpStackView() {
 		searchGroupStackView.addArrangedSubview(searchField)
 		searchGroupStackView.addArrangedSubview(prevResultsTableView)
-		
 		searchStackViewTop = searchGroupStackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 200)
-		
 		searchStackViewTrailing = searchGroupStackView.trailingAnchor.constraint(equalTo: backgroundContainerView.safeAreaLayoutGuide.trailingAnchor, constant: -35)
-
-		
 		searchStackViewTop?.isActive = true
 		searchStackViewTrailing?.isActive = true
 	}
@@ -248,14 +230,12 @@ extension SearchView {
 		cancelButton.centerXAnchor.constraint(equalTo: searchField.centerXAnchor, constant: 0).isActive = true
 		
 	}
-	
-	
 }
 
+//MARK:- Orientation methods
 extension SearchView {
 	
 	func landscape() {
-		
 		let stack = searchGroupStackView
 		let title = titleLabel
 		let container = backgroundContainerView

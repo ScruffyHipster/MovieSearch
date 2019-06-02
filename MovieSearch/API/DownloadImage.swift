@@ -12,20 +12,16 @@ import UIKit
 var imageCache = NSCache<NSString, UIImage>()
 
 class CustomImageView: UIImageView {
-	
 	var imageUrl: String?
 	
 	///Will download and resize image according to its image view bounds.
 	func downloadImage(from urlString: String) {
-		
 		imageUrl = urlString
-		
 		guard let url = URL(string: urlString) else {return}
 		//Check if image is in cache and download if not.
 		guard let imageFromCache = imageCache.object(forKey: urlString as NSString) else {
 			URLSession.shared.downloadTask(with: url) { [weak self] (url, response, error) in
 				guard error == nil else {
-					print("Error occured \(String(describing: error))")
 					return
 				}
 				guard let url = url else {return}

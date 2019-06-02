@@ -9,17 +9,15 @@
 import Foundation
 import UIKit
 
-///Helper method
+///Helper method to deactivate constraints passed in.
 func deactivateConstraints(_ constraints: NSLayoutConstraint...) {
 	constraints.forEach({$0.isActive = false})
 }
 
 extension UIView {
-	
-	///Helper method to add constraints to views
+	///Helper method to add constraints to views quickly, this also applies the translatesAutoResizingMask for convienece
 	func anchor(top: NSLayoutYAxisAnchor?, trailing: NSLayoutXAxisAnchor?, bottom: NSLayoutYAxisAnchor?, leading: NSLayoutXAxisAnchor?, padding: UIEdgeInsets = .zero, size: CGSize = .zero) {
 		translatesAutoresizingMaskIntoConstraints = false
-		
 		if let top = top {
 			topAnchor.constraint(equalTo: top, constant: padding.top).isActive = true
 		}
@@ -32,7 +30,6 @@ extension UIView {
 		if let bottom = bottom {
 			bottomAnchor.constraint(equalTo: bottom, constant: padding.bottom).isActive = true
 		}
-		
 		if size.width != 0 {
 			widthAnchor.constraint(equalToConstant: size.width).isActive = true
 		}
@@ -41,5 +38,4 @@ extension UIView {
 		}
 		
 	}
-	
 }

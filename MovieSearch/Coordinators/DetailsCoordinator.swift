@@ -12,29 +12,19 @@ import CoreData
 
 ///Handles the details view controller. This is a child of Search Coordinator and Saved Coordinator.
 class DetailsCoordinator: Coordinator {
-	
+	//MARK:- Properties
 	weak var parentCoordinator: SearchCoordinator?
-	
 	weak var savedParentCoordinator: SavedCoordinator?
-	
 	weak var dismissDelegate: DismissCoordinatorProtocol?
-	
 	var childCoordinator = [Coordinator]()
-	
 	var navigationController: UINavigationController
-	
 	var detailsViewController: DetailsViewController?
-	
 	var managedObject: NSManagedObjectContext?
-	
 	var movieDetails: Any?
-	
 	var http: HttpAPI?
-	
 	var viewUse: DetailsViewUse?
-	
 
-	
+	///Custom Init. This is used to determine if controller is showing a search result or saved result
 	init<T>(navController: UINavigationController, viewUse: DetailsViewUse, movieDetails: T) {
 		self.navigationController = navController
 		if viewUse == .search {
@@ -48,6 +38,7 @@ class DetailsCoordinator: Coordinator {
 		
 	}
 	
+	//MARK:- Methods
 	func setUp() {
 		guard movieDetails != nil else {return}
 		DispatchQueue.main.async {
@@ -73,8 +64,7 @@ class DetailsCoordinator: Coordinator {
 	func saveMovie() {
 		parentCoordinator?.save(movie: movieDetails as! MovieDetails, closure: { (success) in
 			if success {
-				//show hud view
-				print("saved")
+				return
 			} else {
 				let alert = UIAlertController.createAlert(alertTitle: "Couldn't save this!!", alertScenario: .error, actionTitle: "OK")
 				detailsViewController?.present(alert, animated: true)
@@ -86,17 +76,8 @@ class DetailsCoordinator: Coordinator {
 		//retrives image from local disk
 		let fileManager = FileManager.default
 		var urlToReturn = ""
-		do {
-			//Gets path to the folder in the documents directory using global constant
-			let path = try fileManager.contentsOfDirectory(at: filePath, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
-			//retrives the image from the document directory
-			let image = fileManager.localFileUrl(for: URL(string: url)!).absoluteString
-			urlToReturn = image
-			print(image)
-			print(path)
-		} catch {
-			print("Error: \(error.localizedDescription)")
-		}
+		let image = fileManager.localFileUrl(for: URL(string: url)!).absoluteString
+		urlToReturn = image
 		return urlToReturn
 	}
 }

@@ -15,28 +15,22 @@ protocol SearchResultsSelectionDelegate: class {
 
 ///Collection view data source and delegate for the search collection
 class SearchResultsCollectionViewDelegate: NSObject, DataHandlerProtocol {
-	
+	//MARK:- Properties
+	weak var delegate: SearchResultsSelectionDelegate?
 	var resultsHandler: ResultsDataHandler?
-	
 	var resultsData: [AnyObject]? {
 		get {
 			return resultsHandler?.retriveDataFromHandeler()
 		}
 	}
-	
-	//If true the device is in portrait. False the device is in landscape.
-	//Change this to use the orientation enum
-	var orientation: Bool {
+	var orientation: Orientation {
 		get {
-			return UIDevice.current.orientation.isPortrait ? true : false
+			return UIDevice.current.orientation.isPortrait ? Orientation.portrait : Orientation.landscape
 		}
 	}
-	
-	weak var delegate: SearchResultsSelectionDelegate?
 }
 
 extension SearchResultsCollectionViewDelegate: UICollectionViewDataSource {
-	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		guard let data = resultsData else {
 			return 0
@@ -53,13 +47,9 @@ extension SearchResultsCollectionViewDelegate: UICollectionViewDataSource {
 		
 		return cell
 	}
-	
-	
-	
 }
 
 extension SearchResultsCollectionViewDelegate: UICollectionViewDelegate {
-	
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		guard let data = resultsData else {return}
 		let movie = data[indexPath.row] as! SearchResults
@@ -68,7 +58,6 @@ extension SearchResultsCollectionViewDelegate: UICollectionViewDelegate {
 }
 
 extension SearchResultsCollectionViewDelegate: UICollectionViewDelegateFlowLayout {
-	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		
 		let width =  collectionView.bounds.width
@@ -84,29 +73,27 @@ extension SearchResultsCollectionViewDelegate: UICollectionViewDelegateFlowLayou
 		}
 	}
 	
-	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-		if !orientation {
-			return 20
-		} else {
+		switch orientation {
+		case .portrait:
 			return 10
+		case .landscape:
+			return 20
 		}
-		
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-		if !orientation {
-			return 5
-		} else {
+		switch orientation {
+		case .portrait:
 			return 10
+		case .landscape:
+			return 5
 		}
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
 		return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
 	}
-	
-
 }
 
 
