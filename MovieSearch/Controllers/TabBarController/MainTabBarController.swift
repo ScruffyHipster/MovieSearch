@@ -6,6 +6,7 @@
 import UIKit
 import CoreData
 
+
 class MainTabBarController: UITabBarController {
 	//MARK:- Properties
 	let searchCoordinator = SearchCoordinator()

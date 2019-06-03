@@ -4,7 +4,9 @@
 //
 
 import UIKit
+//Transiton animation library. Please see https://cosmicmind.gitbook.io/motion/overview/motion
 import Motion
+
 
 class DetailsViewController: UIViewController {
 	//MARK:- Properties
