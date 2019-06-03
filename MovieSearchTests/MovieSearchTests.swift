@@ -2,33 +2,38 @@
 //  MovieSearchTests.swift
 //  MovieSearchTests
 //
-//  Created by Tom Murray on 15/05/2019.
-//  Copyright © 2019 Tom Murray. All rights reserved.
-//
 
 import XCTest
 @testable import MovieSearch
 
 class MovieSearchTests: XCTestCase {
 
+	var searchCoodinator: SearchCoordinator!
+	
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+		searchCoodinator = SearchCoordinator()
     }
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+		searchCoodinator = nil
     }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
+	
+	func testResultsHaandlerArrayIsNilAtStart() {
+		//Check array is nil at startup
+		var array = [Any]()
+		array = searchCoodinator.resultDataHandler.retriveDataFromHandeler()
+		XCTAssert(array.count == 0, "Array is nil")
+	}
+	
+	func testPrevResultsArrayIsNeverGreaterThanThree() {
+		let dataSource = searchCoodinator.searchViewController?.prevTableViewDataSource
+		var array = [String]()
+		array = dataSource?.resultsHandler?.retriveDataFromHandeler() ?? [] as [String]
+		XCTAssert(array.count < 3, "Passed")
+	}
+	
+	
 
 }

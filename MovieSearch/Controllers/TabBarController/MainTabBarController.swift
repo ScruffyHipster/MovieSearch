@@ -2,18 +2,16 @@
 //  MainTabBarController.swift
 //  MovieSearch
 //
-//  Created by Tom Murray on 15/05/2019.
-//  Copyright © 2019 Tom Murray. All rights reserved.
-//
 
 import UIKit
+import CoreData
 
 class MainTabBarController: UITabBarController {
-	
-	
+	//MARK:- Properties
 	let searchCoordinator = SearchCoordinator()
 	let savedCoordinator  = SavedCoordinator()
 	
+	//MARK:- Methods
     override func viewDidLoad() {
         super.viewDidLoad()
 		tabBarSetUp()
@@ -35,7 +33,4 @@ class MainTabBarController: UITabBarController {
 		self.tabBar.barTintColor = .clear
 		self.tabBar.tintColor = .white
 	}
-	
-	
-
 }

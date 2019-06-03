@@ -2,60 +2,51 @@
 //  SavedViewController.swift
 //  MovieSearch
 //
-//  Created by Tom Murray on 15/05/2019.
-//  Copyright © 2019 Tom Murray. All rights reserved.
-//
 
 import UIKit
 
 class SavedViewController: UIViewController {
-	
+	//MARK:- Properties
 	weak var coordinator: SavedCoordinator?
-
+	var savedView: SavedView?
+	
 	lazy var savedTableViewDelegate: SavedResultsTableViewDelegate = {
 		var delegate = SavedResultsTableViewDelegate()
 		return delegate
 	}()
-	
-	var savedView: SavedView = {
-		var saved = SavedView()
-		return saved
-	}()
-	
-    override func viewDidLoad() {
-        super.viewDidLoad()
+
+	//MARK:- Method
+	override func viewDidLoad() {
+		super.viewDidLoad()
 		navigationController?.navigationBar.isHidden = true
 		setUpView()
-    }
+	}
 	
-	
-	override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+	override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
 		if UIDevice.current.orientation.isLandscape {
-			savedView.landscape()
+			savedView?.landscape()
 		}
 		if UIDevice.current.orientation.isPortrait {
-			savedView.portrait()
+			savedView?.portrait()
 		}
 	}
 	
-	//MARK:- Methods
-
 	func setUpView() {
-		view.addSubview(savedView)
-		savedView.anchor(top: view.topAnchor, trailing: view.trailingAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor)
-		
-		savedView.savedMoviesTableView.delegate = savedTableViewDelegate
-		savedView.savedMoviesTableView.dataSource = savedTableViewDelegate
-		
-		savedView.savedMoviesTableView.reloadData()
-		savedView.savedResultsTableViewHeight?.isActive = false
-		savedView.savedResultsTableViewHeight?.constant = savedView.savedMoviesTableView.contentSize.height
-		savedView.savedResultsTableViewHeight?.isActive = true
-		
+		savedView = SavedView(frame: view.bounds)
+		view.addSubview(savedView!)
+		savedView?.anchor(top: view.topAnchor, trailing: view.trailingAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor)
+		savedView?.savedTableViewDelegate = savedTableViewDelegate
+		DispatchQueue.main.async {
+			self.reloadTableView()
+		}
 	}
-
-}
-
-extension SavedViewController: Storyboarded {
 	
+	func reloadTableView() {
+		savedView?.savedResultsTableViewHeight?.isActive = false
+		savedView?.savedResultsTableViewHeight?.constant = (savedView?.savedMoviesTableView.contentSize.height)!
+		savedView?.savedResultsTableViewHeight?.isActive = true
+		savedView?.savedMoviesTableView.reloadData()
+	}
 }
+
+extension SavedViewController: Storyboarded {}

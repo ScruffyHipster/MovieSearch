@@ -2,34 +2,37 @@
 //  ViewController.swift
 //  MovieSearch
 //
-//  Created by Tom Murray on 15/05/2019.
-//  Copyright © 2019 Tom Murray. All rights reserved.
-//
 
 import UIKit
 
 class SearchViewController: UIViewController {
-	
 	//MARK:- Properties
 	weak var coordinator: SearchCoordinator?
 	
-	lazy var prevTableViewDelegate: PrevSearchResultsTableViewDelegate = {
-		var delegate = PrevSearchResultsTableViewDelegate()
-		return delegate
+	lazy var prevTableViewDataSource: PrevSearchResultsTableViewDataSource = {
+		return PrevSearchResultsTableViewDataSource()
 	}()
 
 	var searchView: SearchView = {
 		var search = SearchView()
-		search.translatesAutoresizingMaskIntoConstraints = false
 		return search
 	}()
 	
+	//MARK:- Methods
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setUpView()
 	}
 	
-	///Sets up the view initially
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+	}
+	
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		searchView.searchCancelled()
+	}
+	
 	func setUpView() {
 		self.navigationController?.navigationBar.isHidden = true
 		setUpSearchView()
@@ -50,28 +53,39 @@ extension SearchViewController {
 	
 	private func setUpSearchView() {
 		searchView.frame = self.view.bounds
-		searchView.searchField.delegate = self
 		view.addSubview(searchView)
-		
 		searchView.anchor(top: view.topAnchor, trailing: view.trailingAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor)
-		
-		//Pass the datasource to the tableView
-		searchView.prevResultsTableView.delegate = prevTableViewDelegate
-		searchView.prevResultsTableView.dataSource = prevTableViewDelegate
+		searchView.cancelButton.addTarget(nil, action: #selector(cancelButtonPressed), for: .touchUpInside)
+		//set delegates
+		searchView.searchField.delegate = self
+		searchView.prevResultsTableView.delegate = self
+		searchView.prevResultsTableView.dataSource = prevTableViewDataSource
 		//reloads tableview and adjust constraints dependant on data
-		reloadTableViewContent()
+		DispatchQueue.main.async {
+			self.reloadTableViewContent()
+		}
 	}
 	
+	@objc func cancelButtonPressed() {
+		cancelSearch()
+	}
 	
-	///Reloads the table view based on the new content height. Controller handles the change in size.
-	private func reloadTableViewContent() {
-		searchView.prevResultsTableView.reloadData()
+	func cancelSearch() {
+		coordinator?.http.cancelTask()
+		searchView.searchCancelled()
+	}
+	
+	///Reloads the table view based on the new content height.
+	func reloadTableViewContent() {
 		searchView.prevTableViewHeight?.isActive = false
+		searchView.prevResultsTableView.reloadData()
 		searchView.prevTableViewHeight?.constant = searchView.prevResultsTableView.contentSize.height
 		searchView.prevTableViewHeight?.isActive = true
+		
 	}
 }
 
+//MARK:- UItextfield delegate
 extension SearchViewController: UITextFieldDelegate {
 	
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -83,7 +97,7 @@ extension SearchViewController: UITextFieldDelegate {
 			searchView.moveSearchBar(searching: true)
 			searchView.toggleBlurView(true)
 			UsableAniamtions.fade(layer: searchView.titleLabel.layer, from: 1.0, to: 0.6, duration: 0.5)
-			UsableAniamtions.scaleDownFade(view: searchView.searchField.placeHolderLabel, direction: .down).startAnimation()
+			UsableAniamtions.scaleDownFade(view: searchView.searchField.placeHolderLabel, direction: .up).startAnimation()
 			UIView.animate(withDuration: 0.5) {
 				self.searchView.prevResultsTableView.alpha = 1
 			}
@@ -98,17 +112,24 @@ extension SearchViewController: UITextFieldDelegate {
 			searchView.moveSearchBar(searching: false)
 			searchView.toggleBlurView(false)
 			UsableAniamtions.fade(layer: searchView.titleLabel.layer, from: 0.6, to: 1.0, duration: 0.5)
-			UsableAniamtions.scaleDownFade(view: searchView.searchField.placeHolderLabel, direction: .up).startAnimation()
+			UsableAniamtions.scaleDownFade(view: searchView.searchField.placeHolderLabel, direction: .down).startAnimation()
 			UIView.animate(withDuration: 0.5) {
 				self.searchView.layoutIfNeeded()
 				self.searchView.prevResultsTableView.alpha = 0
 			}
+		} else {
+			coordinator?.searchForMovies(searchTerm: searchView.searchField.text!)
+			self.searchView.searchInitiatied()
 		}
 	}
-	
-	
 }
 
-extension SearchViewController: Storyboarded {
-	
+//MARK:- UItableview delegate
+extension SearchViewController: UITableViewDelegate {
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		let cell = tableView.cellForRow(at: indexPath) as? PrevResultTableViewCell
+		searchView.searchField.text = cell?.titleLabel.text
+	}
 }
+
+extension SearchViewController: Storyboarded {}

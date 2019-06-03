@@ -2,9 +2,6 @@
 //  AppDelegate.swift
 //  MovieSearch
 //
-//  Created by Tom Murray on 15/05/2019.
-//  Copyright © 2019 Tom Murray. All rights reserved.
-//
 
 import UIKit
 import CoreData
@@ -13,15 +10,19 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
-
-
+	
+	lazy var managedObject: NSManagedObjectContext = {
+		return persistentContainer.viewContext
+	}()
+	
+	var tabController: MainTabBarController?
+	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		
-		//Setup of the storyboard - here we can make determinations on iPad and iPhone setup.
+		//Setup of the storyboard - here we can make determinations whether device is iPhone or iPad so we can load accordingly.
 		window = UIWindow(frame: UIScreen.main.bounds)
 		window?.rootViewController = MainTabBarController()
 		window?.makeKeyAndVisible()
-		
 		return true
 	}
 
