@@ -2,9 +2,6 @@
 //  PrevResultTableViewCell.swift
 //  MovieSearch
 //
-//  Created by Tom Murray on 17/05/2019.
-//  Copyright © 2019 Tom Murray. All rights reserved.
-//
 
 import UIKit
 

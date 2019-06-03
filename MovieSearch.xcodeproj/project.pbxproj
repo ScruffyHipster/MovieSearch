@@ -207,7 +207,6 @@
 			isa = PBXGroup;
 			children = (
 				4ABF383F22A2A98300ED55CE /* MovieSearchTesting */,
-				4ABF383622A2A7F300ED55CE /* MovieSearchPrevSearchResultsTest */,
 				4AFB0459229190FF00D08DE2 /* MovieSearchSlowTest */,
 				4A167596228C0AC400127036 /* MovieSearchTests.swift */,
 			);
@@ -438,13 +437,6 @@
 				4ABF383322A281E000ED55CE /* HUDView.swift */,
 			);
 			path = HUDView;
-			sourceTree = "<group>";
-		};
-		4ABF383622A2A7F300ED55CE /* MovieSearchPrevSearchResultsTest */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = MovieSearchPrevSearchResultsTest;
 			sourceTree = "<group>";
 		};
 		4ABF383F22A2A98300ED55CE /* MovieSearchTesting */ = {

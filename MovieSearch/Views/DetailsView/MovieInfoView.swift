@@ -2,9 +2,6 @@
 //  DetailsInfoView.swift
 //  MovieSearch
 //
-//  Created by Tom Murray on 24/05/2019.
-//  Copyright © 2019 Tom Murray. All rights reserved.
-//
 
 import Foundation
 import UIKit
@@ -40,7 +37,7 @@ class MovieInfoView: UIView {
 	
 	var plotInfo: UITextView = {
 		var textView = UITextView(frame: .zero)
-		textView.font = UIFont(name: "Helvetica Neue", size: 16)
+		textView.font = UIFont(name: "Helvetica Neue", size: 12)
 		textView.textAlignment = .left
 		textView.text = "In a world where people collect Pokémon to do battle, a boy comes across an intelligent talking Pikachu who seeks to be a detective."
 		textView.isEditable = true

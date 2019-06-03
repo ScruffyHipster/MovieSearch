@@ -2,9 +2,6 @@
 //  UsableAnimations.swift
 //  MovieSearch
 //
-//  Created by Tom Murray on 16/05/2019.
-//  Copyright © 2019 Tom Murray. All rights reserved.
-//
 
 import Foundation
 import UIKit
@@ -18,6 +15,19 @@ class UsableAniamtions {
 		fade.isRemovedOnCompletion = false
 		fade.fillMode = CAMediaTimingFillMode.forwards
 		layer.add(fade, forKey: nil)
+	}
+	
+	static func springPulse(for layer: CALayer) {
+		let springPulse = CASpringAnimation(keyPath: "transform.scale")
+		springPulse.duration = 0.5
+		springPulse.initialVelocity = -10.0
+		springPulse.mass = 1
+		springPulse.damping = 10
+		springPulse.stiffness = 100
+		springPulse.duration = 1.0
+		springPulse.fromValue = 1.4
+		springPulse.toValue = 1.0
+		layer.add(springPulse, forKey: nil)
 	}
 	
 	///Scale and fade animation

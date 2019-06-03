@@ -2,9 +2,6 @@
 //  SavedView.swift
 //  MovieSearch
 //
-//  Created by Tom Murray on 18/05/2019.
-//  Copyright © 2019 Tom Murray. All rights reserved.
-//
 
 import UIKit
 
@@ -15,12 +12,13 @@ class SavedView: UIView {
 		return view
 	}()
 	
-	var mainTitle: UILabel = {
+	var titleTitle: UILabel = {
 		var title = UILabel(frame: .zero)
 		title.font = UsableFonts.titleFont
-		title.text = "Saved Movies"
+		title.text = "Saved"
 		title.textAlignment = .left
-		title.textColor = UsableColours.searchText
+		title.allowsDefaultTighteningForTruncation = true
+		title.textColor = UIColor.white
 		title.translatesAutoresizingMaskIntoConstraints = false
 		return title
 	}()
@@ -42,7 +40,7 @@ class SavedView: UIView {
 	var savedResultsTableViewBottom: NSLayoutConstraint?
 	var mainTitleTop: NSLayoutConstraint?
 	var mainTitleLeading: NSLayoutConstraint?
-	var mainTitletrailing: NSLayoutConstraint?
+	var mainTitleTrailing: NSLayoutConstraint?
 	var savedTableViewDelegate: SavedResultsTableViewDelegate? {
 		didSet {
 			self.savedMoviesTableView.delegate = self.savedTableViewDelegate
@@ -68,7 +66,7 @@ class SavedView: UIView {
 	//MARK:- Methods
 	func setUpViews() {
 		[backgroundContainerView].forEach({addSubview($0)})
-		[mainTitle, savedMoviesTableView].forEach({addSubview($0)})
+		[titleTitle, savedMoviesTableView].forEach({addSubview($0)})
 		
 		setUpContainerView()
 		setUpTitleView()
@@ -84,13 +82,12 @@ extension SavedView {
 	}
 	
 	private func setUpTitleView() {
-		mainTitleTop = mainTitle.topAnchor.constraint(equalTo: backgroundContainerView.safeAreaLayoutGuide.topAnchor, constant: 100)
-		mainTitleLeading = mainTitle.leadingAnchor.constraint(equalTo: backgroundContainerView.safeAreaLayoutGuide.leadingAnchor, constant: 35)
-		mainTitletrailing = mainTitle.trailingAnchor.constraint(equalTo: backgroundContainerView.safeAreaLayoutGuide.trailingAnchor, constant: -35)
-		
+		mainTitleTop = titleTitle.topAnchor.constraint(equalTo: backgroundContainerView.safeAreaLayoutGuide.topAnchor, constant: 100)
+		mainTitleLeading = titleTitle.leadingAnchor.constraint(equalTo: backgroundContainerView.safeAreaLayoutGuide.leadingAnchor, constant: 35)
+		mainTitleTrailing = titleTitle.trailingAnchor.constraint(equalTo: backgroundContainerView.safeAreaLayoutGuide.trailingAnchor, constant: -35)
+		titleTitle.heightAnchor.constraint(equalToConstant: 60)
 		NSLayoutConstraint.activate([
-			mainTitle.heightAnchor.constraint(equalToConstant: 60),
-			mainTitletrailing!,
+			mainTitleTrailing!,
 			mainTitleLeading!,
 			mainTitleTop!
 			])
@@ -98,7 +95,7 @@ extension SavedView {
 	
 	private func setUpSavedResultsTableView() {
 		savedResultsTableViewHeight = savedMoviesTableView.heightAnchor.constraint(equalToConstant: savedMoviesTableView.contentSize.height)
-		savedResultsTableViewTop = savedMoviesTableView.topAnchor.constraint(equalTo: mainTitle.bottomAnchor, constant: 106)
+		savedResultsTableViewTop = savedMoviesTableView.topAnchor.constraint(equalTo: titleTitle.bottomAnchor, constant: 106)
 		savedResultsTableviewLeading = savedMoviesTableView.leadingAnchor.constraint(equalTo: backgroundContainerView.safeAreaLayoutGuide.leadingAnchor, constant: 35)
 		savedResultsTableViewTrailing = savedMoviesTableView.trailingAnchor.constraint(equalTo: backgroundContainerView.safeAreaLayoutGuide.trailingAnchor, constant: -35)
 		savedResultsTableViewBottom = savedMoviesTableView.bottomAnchor.constraint(equalTo: backgroundContainerView.bottomAnchor, constant: -50)
@@ -136,7 +133,7 @@ extension SavedView {
 			savedResultsTableViewTrailing!)
 		deactivateConstraints(mainTitleTop!,
 							  mainTitleLeading!,
-							  mainTitletrailing!)
+							  mainTitleTrailing!)
 		if savedMoviesTableView.indexPathsForVisibleRows!.count > 5 {
 			savedMoviesTableView.isScrollEnabled = true
 			savedResultsTableViewBottom = savedMoviesTableView.bottomAnchor.constraint(equalTo: backgroundContainerView.safeAreaLayoutGuide.bottomAnchor, constant: -50)
@@ -145,10 +142,10 @@ extension SavedView {
 		}
 		savedResultsTableViewTop = savedMoviesTableView.topAnchor.constraint(equalTo: backgroundContainerView.safeAreaLayoutGuide.topAnchor, constant: 100)
 		savedResultsTableViewTrailing = savedMoviesTableView.trailingAnchor.constraint(equalTo: backgroundContainerView.safeAreaLayoutGuide.trailingAnchor, constant: -35)
-		savedResultsTableviewLeading = savedMoviesTableView.leadingAnchor.constraint(equalTo: mainTitle.trailingAnchor, constant: 35)
+		savedResultsTableviewLeading = savedMoviesTableView.leadingAnchor.constraint(equalTo: titleTitle.trailingAnchor, constant: 35)
 		
-		mainTitleTop = mainTitle.topAnchor.constraint(equalTo: backgroundContainerView.safeAreaLayoutGuide.topAnchor, constant: 100)
-		mainTitleLeading = mainTitle.leadingAnchor.constraint(equalTo: backgroundContainerView.safeAreaLayoutGuide.leadingAnchor, constant: 35)
+		mainTitleTop = titleTitle.topAnchor.constraint(equalTo: backgroundContainerView.safeAreaLayoutGuide.topAnchor, constant: 100)
+		mainTitleLeading = titleTitle.leadingAnchor.constraint(equalTo: backgroundContainerView.safeAreaLayoutGuide.leadingAnchor, constant: 35)
 		NSLayoutConstraint.activate([
 			savedResultsTableViewTop!,
 			savedResultsTableViewTrailing!,

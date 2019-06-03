@@ -2,9 +2,6 @@
 //  DetailsViewController.swift
 //  MovieSearch
 //
-//  Created by Tom Murray on 22/05/2019.
-//  Copyright © 2019 Tom Murray. All rights reserved.
-//
 
 import UIKit
 import Motion
@@ -126,6 +123,7 @@ class DetailsViewController: UIViewController {
 	}
 	
 	@objc func saveButtonTapped() {
+		UsableAniamtions.springPulse(for: detailsView!.likeButton.layer)
 		self.liked = !liked
 		if liked {
 			self.detailsView?.likeButton.setImage(#imageLiteral(resourceName: "likeSelected"), for: .normal)
