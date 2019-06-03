@@ -247,6 +247,8 @@ extension SearchView {
 		titleLabelTrailing?.isActive = false
 		titleLabelLeading?.isActive = false
 		
+		searchGroupStackView.arrangedSubviews[1].isHidden = true
+		
 		searchStackViewTop = stack.topAnchor.constraint(equalTo: container.safeAreaLayoutGuide.topAnchor, constant: 90)
 		searchStackViewTrailing = stack.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: container.safeAreaLayoutGuide.trailingAnchor, constant: -35)
 		
@@ -264,6 +266,8 @@ extension SearchView {
 	}
 	
 	func portrait() {
+		searchGroupStackView.arrangedSubviews[1].isHidden = false
+		
 		searchStackViewTop?.isActive = false
 		searchStackViewTrailing?.isActive = false
 		

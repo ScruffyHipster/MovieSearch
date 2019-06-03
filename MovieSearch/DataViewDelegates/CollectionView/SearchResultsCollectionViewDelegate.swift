@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Motion
 
 protocol SearchResultsSelectionDelegate: class {
 	func didSelectMovieAt(_ IMDBid: String)
@@ -40,11 +41,12 @@ extension SearchResultsCollectionViewDelegate: UICollectionViewDataSource {
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellIdentifiers.searchResultCVCell.identity, for: indexPath) as! SearchResultCollectionViewCell
-		
 		guard let data = resultsData else {return cell}
-		
-		cell.configureCell(with: data[indexPath.row] as! SearchResults)
-		
+		let info = data[indexPath.row] as! SearchResults
+		cell.configureCell(with: info)
+		cell.mainImage.motionIdentifier = "\(info.imdbID)"
+		cell.titleLabel.motionIdentifier = "\(info.title)"
+		cell.mainImage.transition([MotionModifier.forceNonFade, MotionModifier.useScaleBasedSizeChange])
 		return cell
 	}
 }

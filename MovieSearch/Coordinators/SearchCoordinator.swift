@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import CoreData
+import Network
 
 ///Manages the Search controller tab in the app and child coordinator in the search heirachy
 class SearchCoordinator: NSObject, Coordinator {
@@ -21,6 +22,7 @@ class SearchCoordinator: NSObject, Coordinator {
 	var managedObject: NSManagedObjectContext?
 	var previousSearches = [String]()
 	let manager = FileManager.default
+	let monitor = NWPathMonitor()
 	
 	//MARK:- Init Methods
 	init(navController: UINavigationController = UINavigationController()) {
@@ -46,8 +48,22 @@ class SearchCoordinator: NSObject, Coordinator {
 		//Pass the delegate the resultHandler object
 		searchVC.prevTableViewDataSource.resultsHandler = resultDataHandler
 		resultDataHandler.populateDataWith(data: previousSearches)
-		
+		createNetworkMonitor()
 		navigationController.viewControllers = [searchVC]
+	}
+	
+	func createNetworkMonitor() {
+		monitor.pathUpdateHandler = { path in
+			switch path.status {
+			case .unsatisfied:
+				let alert = UIAlertController.createAlert(alertTitle: "No Internet Connection", alertScenario: .noWifi, actionTitle: "Go to Settings")
+				self.searchViewController?.present(alert, animated: true)
+			default:
+				break
+			}
+		}
+		let queue = DispatchQueue(label: "networkMonitor")
+		monitor.start(queue: queue)
 	}
 	
 	///Sets up the search results view

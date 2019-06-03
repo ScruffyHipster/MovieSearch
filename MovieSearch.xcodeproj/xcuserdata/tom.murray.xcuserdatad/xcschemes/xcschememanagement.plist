@@ -7,21 +7,11 @@
 		<key>MovieSearch.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>3</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>4A16757A228C0AC300127036</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>4A167591228C0AC400127036</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>4AFB0457229190FF00D08DE2</key>
 		<dict>
 			<key>primary</key>

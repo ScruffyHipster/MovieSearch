@@ -53,7 +53,6 @@ class DetailsCoordinator: Coordinator {
 		detailsVC.movieDetails = movieDetails
 		detailsVC.viewUse = viewUse
 		navigationController.present(detailsVC, animated: true, completion: nil)
-		
 	}
 
 	func dismissDetailsVC() {

@@ -20,7 +20,7 @@ enum AlertScenarios {
 		case .error:
 			return "Oops! An error has occured, please try the action again!"
 		case .noWifi:
-			return "Oh no! it looks like you have no wifi. Tap to go to settings to get that sorted. Other wise this app is quite dull!"
+			return "Oh no! it looks like you have no wifi. Tap to go to settings to get that sorted. Other wise this app is quite dull without it!"
 		case .notification(let notifiction):
 			return "\(notifiction)"
 		case .success(let message):
@@ -40,7 +40,6 @@ extension UIAlertController {
 			alert.addAction(UIAlertAction(title: actionTitle, style: .default, handler: { _ in
 				UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
 			}))
-			alert.addAction(UIAlertAction(title: actionTitle, style: .cancel, handler: nil))
 			break
 		case .notification( _):
 			alert.addAction(UIAlertAction(title: actionTitle, style: .default, handler: nil))

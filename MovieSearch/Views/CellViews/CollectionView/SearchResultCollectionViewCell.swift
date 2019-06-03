@@ -9,7 +9,6 @@
 import UIKit
 
 
-
 class SearchResultCollectionViewCell: UICollectionViewCell {
 	
 	//MARK:- Properties

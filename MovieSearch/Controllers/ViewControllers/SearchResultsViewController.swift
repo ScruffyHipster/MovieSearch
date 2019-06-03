@@ -9,7 +9,6 @@
 import UIKit
 
 
-
 class SearchResultsViewController: UIViewController {
 	//MARK:- Properties
 	weak var coordinator: SearchResultsCoordiantor?

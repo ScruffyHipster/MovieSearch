@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Motion
 
 class DetailsViewController: UIViewController {
 	//MARK:- Properties
@@ -16,16 +17,17 @@ class DetailsViewController: UIViewController {
 	var movieDetails: Any?
 	var liked: Bool = false
 	var hudView: HUDView?
-	
-	var addSuffix = { (string: String) -> String in
-		var chars = string.filter({$0 == ","})
-		return !chars.isEmpty ? "s" : ""
-	}
 	var orientation: Orientation {
 		get {
 			return UIDevice.current.orientation.isPortrait ? Orientation.portrait : Orientation.landscape
 		}
 	}
+	
+	var addSuffix = { (string: String) -> String in
+		var chars = string.filter({$0 == ","})
+		return !chars.isEmpty ? "s" : ""
+	}
+	
 	var gradientView: GradientContainerView = {
 		return GradientContainerView(colorOne: nil, colorTwo: nil)
 	}()
@@ -34,6 +36,7 @@ class DetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		setUp()
+		isMotionEnabled = true
     }
 	
 	override var prefersStatusBarHidden: Bool {
@@ -48,6 +51,7 @@ class DetailsViewController: UIViewController {
 	
 	private func setUpDetailsView() {
 		detailsView = DetailsView(orientation: orientation)
+		detailsView?.isMotionEnabled = true
 		if viewUse == DetailsViewUse.search {
 			setupMovieDetailsSearch()
 		} else {
@@ -61,6 +65,7 @@ class DetailsViewController: UIViewController {
 	func setUpMoviesDetailsSaved() {
 		//Setup with for showing saved information
 		guard let viewUse = viewUse, let _ = movieDetails else {return}
+		motionTransitionType = .autoReverse(presenting: .zoomSlide(direction: .left))
 		if viewUse == .saved {
 			let details = movieDetails as? Movie
 			let informationContainer = detailsView?.informationContainerView
@@ -88,6 +93,9 @@ class DetailsViewController: UIViewController {
 		if viewUse == .search {
 			let details = movieDetails as? MovieDetails
 			let informationContainer = detailsView?.informationContainerView
+			detailsView?.gradientImageContainerView.motionIdentifier = "\(details!.imdbID)"
+		
+			detailsView?.informationContainerView.mainTitle.motionIdentifier = "\(details!.title)"
 			detailsView?.gradientImageContainerView.mainImage.downloadImage(from: details!.poster)
 			informationContainer?.mainTitle.text = details?.title
 			informationContainer?.actorsLabel.text = "Actor\(addSuffix(details!.actors)): \(details?.actors ?? "")"
