@@ -1,10 +1,10 @@
-#Movie Search
+# Movie Search
 
 Movie Search uses native technologies to create a simplistic user experience. A user can enter a search parameter, then view the results of a call to the **OMDB API** in a collection view. The user can then save the result for later viewing, or research a recent parameter. The data also persists between app restarts and works on both iPhone and iPad. I developed the application with the aim that another developer would be able to pick it up and understand and maintain it with minimal fuss all while retaining a solid architecture.
 
 ### Screenshots
 
-![mainiPhone](https://user-images.githubusercontent.com/14076860/58883985-68737b00-86d7-11e9-996b-8845124a1fe3.png)![searchField](https://user-images.githubusercontent.com/14076860/58884021-788b5a80-86d7-11e9-9f0d-7267ff677430.png) ![results](https://user-images.githubusercontent.com/14076860/58884054-87720d00-86d7-11e9-8b23-2d4f56c9ac62.png)![searchresult](https://user-images.githubusercontent.com/14076860/58884085-95c02900-86d7-11e9-822a-c2023a535e9d.png)
+![mainiPhone](https://user-images.githubusercontent.com/14076860/58883985-68737b00-86d7-11e9-996b-8845124a1fe3.png) ![searchField](https://user-images.githubusercontent.com/14076860/58884021-788b5a80-86d7-11e9-9f0d-7267ff677430.png) ![results](https://user-images.githubusercontent.com/14076860/58884054-87720d00-86d7-11e9-8b23-2d4f56c9ac62.png) ![searchresult](https://user-images.githubusercontent.com/14076860/58884085-95c02900-86d7-11e9-822a-c2023a535e9d.png)
 
 ### Architecture
 
