@@ -23,13 +23,11 @@ class MovieSearchSlowTests: XCTestCase {
     }
 
 	func testValidCallToOMDBGetStatusCode200() {
-		//Given
+		//check the calls to the omdb db are correctly functioning when receiving response 200
 		let onlineUrl = URL(string: "https:www.omdbapi.com/?i=tt0848228&apikey=592d6c41")
 		let promise = expectation(description: "Status code: 200")
 		
-		//when
 		let dataTask = sessionUnderTest.dataTask(with: onlineUrl!) { (data, response, error) in
-			//then
 			if let error = error {
 				XCTFail("Error: \(error.localizedDescription)")
 				return
@@ -46,13 +44,12 @@ class MovieSearchSlowTests: XCTestCase {
 	}
 	
 	func testForCompletedCallToServer() {
-		//given
+		//check that th call to the server invokes a handler
 		let url = URL(string: "https:www.omdbapi.com/?i=tt0848228&apikey=592d6c41")
 		let promise = expectation(description: "completionHandler invoked")
 		var statusCode: Int?
 		var responseError: Error?
 		
-		//when
 		let dataTask = sessionUnderTest.dataTask(with: url!) { (data, response, error) in
 			if let response = response as? HTTPURLResponse {
 				statusCode = response.statusCode

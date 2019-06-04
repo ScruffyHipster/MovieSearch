@@ -3,7 +3,6 @@
 //  MovieSearch
 //
 
-import Foundation
 import UIKit
 
 class UsableAniamtions {
