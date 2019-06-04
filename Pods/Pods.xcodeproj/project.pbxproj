@@ -1,0 +1,963 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0AAEE8FC2A7E269CC60F6E5C3BE7A259 /* MotionTransition+Complete.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9AF1FCC595E6B88D54EB3EF6A38B0D3 /* MotionTransition+Complete.swift */; };
+		0BBE06678BEA779F31A0F521D0F541C6 /* MotionTransition+CustomTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1768B39E1508F7A1A2B1CD460698AB10 /* MotionTransition+CustomTransition.swift */; };
+		0CF12A17447503A0E9A375D1F18DD931 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		13592507FF01B2D1C9DDA169F9B69906 /* MotionModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1058B40B31098E4BF91F27CE878E08 /* MotionModifier.swift */; };
+		1DE765935CF52B1514CFE6417CF66DE9 /* Motion+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05DAD5440BFA7014373DA6A3DF52C14 /* Motion+UIView.swift */; };
+		24893B18CB82035EEE717B3CECA24B56 /* Pods-MovieSearchTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E160065B46844683B0CFE846883FEF2 /* Pods-MovieSearchTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2530B0ED253F13DD7A474EF570781808 /* Motion+CG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5F0892FAF6A94D5862A9BCBA78E0E3 /* Motion+CG.swift */; };
+		2FFD87982649E5219F886C78AE33E247 /* MotionTransition+UINavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B092207CEB4E31EC0FC29DBA9612E51 /* MotionTransition+UINavigationControllerDelegate.swift */; };
+		3149E82D584937805FDB488FDF1006B6 /* Motion+CALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70E84F1AB347D7F7B39643FE3C91871 /* Motion+CALayer.swift */; };
+		34FBC4FFDE13EE399428ED76F9CDEFE9 /* ConditionalPreprocessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D15466ACBD10AFD63453C33805648DF /* ConditionalPreprocessor.swift */; };
+		3CDBA6AC69734F8FE8A0A378B919F1FD /* MotionTransitionObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632C243CBEE236F0F8AA56EC8DF9859F /* MotionTransitionObserver.swift */; };
+		3D8C63AE123591E8E22770DCC284F31D /* MotionViewPropertyViewContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AF8326B083C9ED25D4E5369C2387CB /* MotionViewPropertyViewContext.swift */; };
+		3E607521E4285D86BED09CA287667B4C /* Pods-MovieSearch-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DA9C69216B46EF8EF26B5D5D53C4CD4 /* Pods-MovieSearch-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		44B8E77B5CB96F5499DA38C2A8F3B8C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		4A4C8BCA38104FBF65889D0ADDB1DA2C /* MotionTargetState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1C870F445DF32CB895EEBD20E9D5BC /* MotionTargetState.swift */; };
+		4B5659071099B551A059574695A033A8 /* Motion+UIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BBD6833AA9625CBC476BFE4E4FFFAB /* Motion+UIKit.swift */; };
+		4E013B2FD8752F0206CDF73F74F38C34 /* MotionCAAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8997FA7A82C74A779A9AE9D2AF5FD468 /* MotionCAAnimation.swift */; };
+		4EA296EA10F47FEA322C29E2D37D3EF3 /* MotionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E874552CA91A210634D12F2CFE9E782 /* MotionContext.swift */; };
+		5B33042A23A84C3D205E677A799BD7CD /* MotionTransition+UIViewControllerTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F7E56E7B7254A308FB0B92CA1C2EF2 /* MotionTransition+UIViewControllerTransitioningDelegate.swift */; };
+		628EDB1A83301CB6D4AA92D692DB0BEE /* MotionTransition+UITabBarControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95B31A24A970FBE508CC1F0356821A1 /* MotionTransition+UITabBarControllerDelegate.swift */; };
+		62ED3FABFF35D6237097639EA3F1163D /* MotionViewOrderStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21909EDE769146D4F6CF7741629BC5E2 /* MotionViewOrderStrategy.swift */; };
+		6335D0749D3FFBC5AC1B261622E5FC83 /* MotionProgressRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42BAF00FCB26222FEEEBF5BF4A27C410 /* MotionProgressRunner.swift */; };
+		63B0E00E5787B9C18E6853FEE8DF016A /* CascadePreprocessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568CAECA3CBED8D04A737F748BE41328 /* CascadePreprocessor.swift */; };
+		68A2B309CEEA4C09ACA5345D17A520CF /* MatchPreprocessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C22E43CF4BA74DDD04A63ADDD6AC18 /* MatchPreprocessor.swift */; };
+		7012EE583A736482841D353E46BC6E57 /* MotionAnimationFillMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192593B3488B329C3E9CA2319B3B2901 /* MotionAnimationFillMode.swift */; };
+		78271886B183AC2D8B4D3268673CD1AD /* MotionCoreAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255EF3DF862E5C15E0C64306FB1F5DB0 /* MotionCoreAnimator.swift */; };
+		7B8D6F13A09A5466EC37C58A27AD0074 /* Motion+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8C2815C0F44CC26DAE7C03CF3D8082 /* Motion+Array.swift */; };
+		7E37E77A80FFB9D62E5C420CDF9AB158 /* MotionTransition+Start.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072F040DADF5309EBE8DE055F2F09AE5 /* MotionTransition+Start.swift */; };
+		856FC3806FFF461F38510FB764F30FC3 /* Motion+CAMediaTimingFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380A6E2149A42A2803D3AA15A6B6F7C8 /* Motion+CAMediaTimingFunction.swift */; };
+		885864457868D8889559C849F7EFD7DB /* MotionCoreAnimationViewContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22A6F9B3E6A6923EE8A66A93B896D54 /* MotionCoreAnimationViewContext.swift */; };
+		89509A7EBD8C9982E43230AEAFD01961 /* Motion+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163EA29A8B9DF29D6DADC7BF7B3CD326 /* Motion+UIViewController.swift */; };
+		8A418075B9AF60BE8DFA4BD36AF2AD55 /* MotionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5B137A9D658C99B5CA3C84035A62BB /* MotionAnimator.swift */; };
+		8F1C53F8EDDD74FEF80CA9E43E45F0A5 /* MotionTransition+Animate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9995144C55497E165B673AD08C8C8DB5 /* MotionTransition+Animate.swift */; };
+		911A56B5702E8AE807417EB91CD0E7EA /* Motion-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C85047B6CCFDBA23A4FB8CAC34EDE54 /* Motion-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		97834CDD179E0ED82731E6A157B1FEC9 /* MotionCoordinateSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB29759E936C6AEB6E06E07143E0126D /* MotionCoordinateSpace.swift */; };
+		A2A845A4389100B6D96CBD9423678166 /* MotionPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD9817E3CEB57723F94F2C4AAAAAAF5 /* MotionPlugin.swift */; };
+		A2B0B92FE76C47699561DF64C2732875 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		A39368E1F18A862C217AFF9C71583BBD /* MotionSnapshotType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABE8105CF14CDD61761CE6A53AD5F20 /* MotionSnapshotType.swift */; };
+		A4CCEBD747BEBC018647F8BEE7BF308D /* TransitionPreprocessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2078B50849FFA9EF168CFF16D9D8D37 /* TransitionPreprocessor.swift */; };
+		B86C8F559683CFF6DEC6E4E00FF4FB71 /* Pods-MovieSearchTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE3104A57B936995C1CCE89FF8F1404 /* Pods-MovieSearchTests-dummy.m */; };
+		BB81FD81106C3F02510C0DF4A3CF6111 /* MotionAnimationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15FF0B1612FE2DC0887983F510626E2 /* MotionAnimationState.swift */; };
+		C0F9D06AC707BCD23C2F2E3501284C2E /* MotionTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE746E1501D96EECB0130925A8C49260 /* MotionTransition.swift */; };
+		C1E67EB20931B6B8268BEE093F90422D /* Motion+Obj-C.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A280B51143B0914B40992A5A954FF37 /* Motion+Obj-C.swift */; };
+		C3FC01B84CCE705E5921560AB60C8AB7 /* SourcePreprocessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B154A8C05CCCBBEA3024FC66EC64B9D1 /* SourcePreprocessor.swift */; };
+		CA94EC9DCCA8123C736A59C36ADC7C24 /* MotionTransition+Interactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAA17EE9B053057B83E9E75BE8020BB /* MotionTransition+Interactive.swift */; };
+		CCE5E506A7690EE350E2490ECAB10AEA /* MotionPreprocessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F13228976AD131B973A7D90AC9A471 /* MotionPreprocessor.swift */; };
+		D05A119E0CD2E736B9F7873DF7968E01 /* MotionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D306702673EFA41CF79EA85900C6141A /* MotionAnimation.swift */; };
+		D835F2E662DA83220CDB507D8A7BBB0F /* Pods-MovieSearch-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A627D1087341764EC29E71E83A7AED /* Pods-MovieSearch-dummy.m */; };
+		F24FE6E4C7333D262DE345150568E221 /* MotionAnimatorViewContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC7A03F48E793DF37A326E8D63361DB /* MotionAnimatorViewContext.swift */; };
+		F2CB1689C0DD288EFF0648C2DAD8A319 /* MotionCorePreprocessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115A20F3038DEEB6E7F5BF382299418A /* MotionCorePreprocessor.swift */; };
+		F6D4F682A05EFF42F2AC0B7F3CE907A2 /* IgnoreSubviewModifiersPreprocessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8C32C6A8C84DFEA00345F2F3E9DA77 /* IgnoreSubviewModifiersPreprocessor.swift */; };
+		F841B74102E5DEA57D8F68F9FAAD4CBB /* Motion-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D5F20F32B20D19CCDB38FC1FE4748C /* Motion-dummy.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4A4158DD207C291DEB8D60CE505734D4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9312109646DF39EBE725AD8F96A8C18B;
+			remoteInfo = Motion;
+		};
+		82036A25272D546DA7BB93FC8F3B8931 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9F651E5C00EB4C369BD9BC4B67E35D18;
+			remoteInfo = "Pods-MovieSearch";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		03BBD6833AA9625CBC476BFE4E4FFFAB /* Motion+UIKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Motion+UIKit.swift"; path = "Sources/Extensions/Motion+UIKit.swift"; sourceTree = "<group>"; };
+		072F040DADF5309EBE8DE055F2F09AE5 /* MotionTransition+Start.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "MotionTransition+Start.swift"; path = "Sources/Transition/MotionTransition+Start.swift"; sourceTree = "<group>"; };
+		07D85A7D1BAA6BAB81DA51AF364695D8 /* Pods-MovieSearchTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MovieSearchTests-Info.plist"; sourceTree = "<group>"; };
+		0CE13F6B286020BFDC248F9F4F83E450 /* Pods-MovieSearchTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-MovieSearchTests.modulemap"; sourceTree = "<group>"; };
+		115A20F3038DEEB6E7F5BF382299418A /* MotionCorePreprocessor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MotionCorePreprocessor.swift; path = Sources/Preprocessors/MotionCorePreprocessor.swift; sourceTree = "<group>"; };
+		11C1EA7D15C14AA22BD8C2D76E4487F2 /* Pods-MovieSearchTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MovieSearchTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		1222DF7689D399A7E87F954B079A182C /* Pods-MovieSearch-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MovieSearch-acknowledgements.plist"; sourceTree = "<group>"; };
+		14F7E56E7B7254A308FB0B92CA1C2EF2 /* MotionTransition+UIViewControllerTransitioningDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "MotionTransition+UIViewControllerTransitioningDelegate.swift"; path = "Sources/Transition/MotionTransition+UIViewControllerTransitioningDelegate.swift"; sourceTree = "<group>"; };
+		163EA29A8B9DF29D6DADC7BF7B3CD326 /* Motion+UIViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Motion+UIViewController.swift"; path = "Sources/Extensions/Motion+UIViewController.swift"; sourceTree = "<group>"; };
+		1768B39E1508F7A1A2B1CD460698AB10 /* MotionTransition+CustomTransition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "MotionTransition+CustomTransition.swift"; path = "Sources/Transition/MotionTransition+CustomTransition.swift"; sourceTree = "<group>"; };
+		192593B3488B329C3E9CA2319B3B2901 /* MotionAnimationFillMode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MotionAnimationFillMode.swift; path = Sources/Extensions/MotionAnimationFillMode.swift; sourceTree = "<group>"; };
+		1A5B137A9D658C99B5CA3C84035A62BB /* MotionAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MotionAnimator.swift; path = Sources/Animator/MotionAnimator.swift; sourceTree = "<group>"; };
+		1BAA17EE9B053057B83E9E75BE8020BB /* MotionTransition+Interactive.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "MotionTransition+Interactive.swift"; path = "Sources/Transition/MotionTransition+Interactive.swift"; sourceTree = "<group>"; };
+		1E160065B46844683B0CFE846883FEF2 /* Pods-MovieSearchTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MovieSearchTests-umbrella.h"; sourceTree = "<group>"; };
+		21909EDE769146D4F6CF7741629BC5E2 /* MotionViewOrderStrategy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MotionViewOrderStrategy.swift; path = Sources/MotionViewOrderStrategy.swift; sourceTree = "<group>"; };
+		255EF3DF862E5C15E0C64306FB1F5DB0 /* MotionCoreAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MotionCoreAnimator.swift; path = Sources/Animator/MotionCoreAnimator.swift; sourceTree = "<group>"; };
+		2ABE8105CF14CDD61761CE6A53AD5F20 /* MotionSnapshotType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MotionSnapshotType.swift; path = Sources/MotionSnapshotType.swift; sourceTree = "<group>"; };
+		2AC836301BAF4E54EB8EEC78FFA6DBF9 /* Pods-MovieSearch-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MovieSearch-frameworks.sh"; sourceTree = "<group>"; };
+		2D10AFB119A9C9A5266D3BAF31F53B07 /* Motion-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Motion-Info.plist"; sourceTree = "<group>"; };
+		2DD4117CD3AD9FEA8828862504481BA8 /* Pods-MovieSearchTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MovieSearchTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2E8C32C6A8C84DFEA00345F2F3E9DA77 /* IgnoreSubviewModifiersPreprocessor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IgnoreSubviewModifiersPreprocessor.swift; path = Sources/Preprocessors/IgnoreSubviewModifiersPreprocessor.swift; sourceTree = "<group>"; };
+		2F5F0892FAF6A94D5862A9BCBA78E0E3 /* Motion+CG.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Motion+CG.swift"; path = "Sources/Extensions/Motion+CG.swift"; sourceTree = "<group>"; };
+		314E6BE8604D74B7A8A7449CA3DBA33B /* Pods-MovieSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MovieSearch.debug.xcconfig"; sourceTree = "<group>"; };
+		3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		380A6E2149A42A2803D3AA15A6B6F7C8 /* Motion+CAMediaTimingFunction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Motion+CAMediaTimingFunction.swift"; path = "Sources/Extensions/Motion+CAMediaTimingFunction.swift"; sourceTree = "<group>"; };
+		3A280B51143B0914B40992A5A954FF37 /* Motion+Obj-C.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Motion+Obj-C.swift"; path = "Sources/Extensions/Motion+Obj-C.swift"; sourceTree = "<group>"; };
+		3C11C7A7D585B0AFFD1613E070DECF9D /* Motion-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Motion-prefix.pch"; sourceTree = "<group>"; };
+		42BAF00FCB26222FEEEBF5BF4A27C410 /* MotionProgressRunner.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MotionProgressRunner.swift; path = Sources/Transition/MotionProgressRunner.swift; sourceTree = "<group>"; };
+		48A627D1087341764EC29E71E83A7AED /* Pods-MovieSearch-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MovieSearch-dummy.m"; sourceTree = "<group>"; };
+		48ABDBEB96EE63A0B175C8C557F6B890 /* Pods-MovieSearchTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MovieSearchTests.release.xcconfig"; sourceTree = "<group>"; };
+		51C22E43CF4BA74DDD04A63ADDD6AC18 /* MatchPreprocessor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MatchPreprocessor.swift; path = Sources/Preprocessors/MatchPreprocessor.swift; sourceTree = "<group>"; };
+		568CAECA3CBED8D04A737F748BE41328 /* CascadePreprocessor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CascadePreprocessor.swift; path = Sources/Preprocessors/CascadePreprocessor.swift; sourceTree = "<group>"; };
+		5E874552CA91A210634D12F2CFE9E782 /* MotionContext.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MotionContext.swift; path = Sources/MotionContext.swift; sourceTree = "<group>"; };
+		632C243CBEE236F0F8AA56EC8DF9859F /* MotionTransitionObserver.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MotionTransitionObserver.swift; path = Sources/MotionTransitionObserver.swift; sourceTree = "<group>"; };
+		70ECAF7880D4050AD20D482A089A45B9 /* Pods_MovieSearchTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieSearchTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		71BBD0BC5C877528FD55BCAF11759684 /* Pods-MovieSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MovieSearch.release.xcconfig"; sourceTree = "<group>"; };
+		7C85047B6CCFDBA23A4FB8CAC34EDE54 /* Motion-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Motion-umbrella.h"; sourceTree = "<group>"; };
+		7CC7A03F48E793DF37A326E8D63361DB /* MotionAnimatorViewContext.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MotionAnimatorViewContext.swift; path = Sources/Animator/MotionAnimatorViewContext.swift; sourceTree = "<group>"; };
+		7DD9817E3CEB57723F94F2C4AAAAAAF5 /* MotionPlugin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MotionPlugin.swift; path = Sources/MotionPlugin.swift; sourceTree = "<group>"; };
+		7EE3104A57B936995C1CCE89FF8F1404 /* Pods-MovieSearchTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MovieSearchTests-dummy.m"; sourceTree = "<group>"; };
+		8997FA7A82C74A779A9AE9D2AF5FD468 /* MotionCAAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MotionCAAnimation.swift; path = Sources/MotionCAAnimation.swift; sourceTree = "<group>"; };
+		8D15466ACBD10AFD63453C33805648DF /* ConditionalPreprocessor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConditionalPreprocessor.swift; path = Sources/Preprocessors/ConditionalPreprocessor.swift; sourceTree = "<group>"; };
+		92F13228976AD131B973A7D90AC9A471 /* MotionPreprocessor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MotionPreprocessor.swift; path = Sources/Preprocessors/MotionPreprocessor.swift; sourceTree = "<group>"; };
+		969850A8F6CB9021903BA2D9A18496C2 /* Motion.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Motion.modulemap; sourceTree = "<group>"; };
+		9995144C55497E165B673AD08C8C8DB5 /* MotionTransition+Animate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "MotionTransition+Animate.swift"; path = "Sources/Transition/MotionTransition+Animate.swift"; sourceTree = "<group>"; };
+		9B092207CEB4E31EC0FC29DBA9612E51 /* MotionTransition+UINavigationControllerDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "MotionTransition+UINavigationControllerDelegate.swift"; path = "Sources/Transition/MotionTransition+UINavigationControllerDelegate.swift"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9DA9C69216B46EF8EF26B5D5D53C4CD4 /* Pods-MovieSearch-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MovieSearch-umbrella.h"; sourceTree = "<group>"; };
+		A0AA235506286CEEC9F6C36171FD2410 /* Pods-MovieSearch-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MovieSearch-Info.plist"; sourceTree = "<group>"; };
+		A95B31A24A970FBE508CC1F0356821A1 /* MotionTransition+UITabBarControllerDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "MotionTransition+UITabBarControllerDelegate.swift"; path = "Sources/Transition/MotionTransition+UITabBarControllerDelegate.swift"; sourceTree = "<group>"; };
+		AE1C870F445DF32CB895EEBD20E9D5BC /* MotionTargetState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MotionTargetState.swift; path = Sources/MotionTargetState.swift; sourceTree = "<group>"; };
+		B154A8C05CCCBBEA3024FC66EC64B9D1 /* SourcePreprocessor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SourcePreprocessor.swift; path = Sources/Preprocessors/SourcePreprocessor.swift; sourceTree = "<group>"; };
+		B22A6F9B3E6A6923EE8A66A93B896D54 /* MotionCoreAnimationViewContext.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MotionCoreAnimationViewContext.swift; path = Sources/Animator/MotionCoreAnimationViewContext.swift; sourceTree = "<group>"; };
+		BA1058B40B31098E4BF91F27CE878E08 /* MotionModifier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MotionModifier.swift; path = Sources/MotionModifier.swift; sourceTree = "<group>"; };
+		BC00BCCB52B5D9DB5AA37C2861A826D5 /* Pods-MovieSearchTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MovieSearchTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		C05DAD5440BFA7014373DA6A3DF52C14 /* Motion+UIView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Motion+UIView.swift"; path = "Sources/Extensions/Motion+UIView.swift"; sourceTree = "<group>"; };
+		C2078B50849FFA9EF168CFF16D9D8D37 /* TransitionPreprocessor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TransitionPreprocessor.swift; path = Sources/Preprocessors/TransitionPreprocessor.swift; sourceTree = "<group>"; };
+		C4AF8326B083C9ED25D4E5369C2387CB /* MotionViewPropertyViewContext.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MotionViewPropertyViewContext.swift; path = Sources/Animator/MotionViewPropertyViewContext.swift; sourceTree = "<group>"; };
+		C9AF1FCC595E6B88D54EB3EF6A38B0D3 /* MotionTransition+Complete.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "MotionTransition+Complete.swift"; path = "Sources/Transition/MotionTransition+Complete.swift"; sourceTree = "<group>"; };
+		CD8C2815C0F44CC26DAE7C03CF3D8082 /* Motion+Array.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Motion+Array.swift"; path = "Sources/Extensions/Motion+Array.swift"; sourceTree = "<group>"; };
+		D072A2A891E1200E0094DAE881D61A07 /* Pods-MovieSearch.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-MovieSearch.modulemap"; sourceTree = "<group>"; };
+		D0D5F20F32B20D19CCDB38FC1FE4748C /* Motion-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Motion-dummy.m"; sourceTree = "<group>"; };
+		D306702673EFA41CF79EA85900C6141A /* MotionAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MotionAnimation.swift; path = Sources/MotionAnimation.swift; sourceTree = "<group>"; };
+		D5F1D3855ABF6C792D06E1E461FF94E4 /* Pods_MovieSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D70E84F1AB347D7F7B39643FE3C91871 /* Motion+CALayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Motion+CALayer.swift"; path = "Sources/Extensions/Motion+CALayer.swift"; sourceTree = "<group>"; };
+		E94E6C342F4CC5687DBE014EFD10AF9E /* Pods-MovieSearch-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MovieSearch-acknowledgements.markdown"; sourceTree = "<group>"; };
+		E9E83947349F7E8028823F3766451329 /* Motion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Motion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE2545D2F70C5BDA762BF1E73F69FEAA /* Motion.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Motion.xcconfig; sourceTree = "<group>"; };
+		EE746E1501D96EECB0130925A8C49260 /* MotionTransition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MotionTransition.swift; path = Sources/Transition/MotionTransition.swift; sourceTree = "<group>"; };
+		F15FF0B1612FE2DC0887983F510626E2 /* MotionAnimationState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MotionAnimationState.swift; path = Sources/MotionAnimationState.swift; sourceTree = "<group>"; };
+		FB29759E936C6AEB6E06E07143E0126D /* MotionCoordinateSpace.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MotionCoordinateSpace.swift; path = Sources/MotionCoordinateSpace.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		08B90D550393D2429822C3FF2FF8F6F9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44B8E77B5CB96F5499DA38C2A8F3B8C3 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49ED12B61DC0D3DF397A4D1C34C31B22 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0CF12A17447503A0E9A375D1F18DD931 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A81BD7CE268A248D21A260B174D6FB2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A2B0B92FE76C47699561DF64C2732875 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		006FC031ACE5758FCC75F5D88C382CAC /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				1C0E4CDF3B8B5144BEA32CC28F1B9FF8 /* Pods-MovieSearch */,
+				7FA7C18125D7E4DE8EFD635378402B8B /* Pods-MovieSearchTests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		0500867A77575363594EB072912E45FD /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				568CAECA3CBED8D04A737F748BE41328 /* CascadePreprocessor.swift */,
+				8D15466ACBD10AFD63453C33805648DF /* ConditionalPreprocessor.swift */,
+				2E8C32C6A8C84DFEA00345F2F3E9DA77 /* IgnoreSubviewModifiersPreprocessor.swift */,
+				51C22E43CF4BA74DDD04A63ADDD6AC18 /* MatchPreprocessor.swift */,
+				CD8C2815C0F44CC26DAE7C03CF3D8082 /* Motion+Array.swift */,
+				D70E84F1AB347D7F7B39643FE3C91871 /* Motion+CALayer.swift */,
+				380A6E2149A42A2803D3AA15A6B6F7C8 /* Motion+CAMediaTimingFunction.swift */,
+				2F5F0892FAF6A94D5862A9BCBA78E0E3 /* Motion+CG.swift */,
+				3A280B51143B0914B40992A5A954FF37 /* Motion+Obj-C.swift */,
+				03BBD6833AA9625CBC476BFE4E4FFFAB /* Motion+UIKit.swift */,
+				C05DAD5440BFA7014373DA6A3DF52C14 /* Motion+UIView.swift */,
+				163EA29A8B9DF29D6DADC7BF7B3CD326 /* Motion+UIViewController.swift */,
+				D306702673EFA41CF79EA85900C6141A /* MotionAnimation.swift */,
+				192593B3488B329C3E9CA2319B3B2901 /* MotionAnimationFillMode.swift */,
+				F15FF0B1612FE2DC0887983F510626E2 /* MotionAnimationState.swift */,
+				1A5B137A9D658C99B5CA3C84035A62BB /* MotionAnimator.swift */,
+				7CC7A03F48E793DF37A326E8D63361DB /* MotionAnimatorViewContext.swift */,
+				8997FA7A82C74A779A9AE9D2AF5FD468 /* MotionCAAnimation.swift */,
+				5E874552CA91A210634D12F2CFE9E782 /* MotionContext.swift */,
+				FB29759E936C6AEB6E06E07143E0126D /* MotionCoordinateSpace.swift */,
+				B22A6F9B3E6A6923EE8A66A93B896D54 /* MotionCoreAnimationViewContext.swift */,
+				255EF3DF862E5C15E0C64306FB1F5DB0 /* MotionCoreAnimator.swift */,
+				115A20F3038DEEB6E7F5BF382299418A /* MotionCorePreprocessor.swift */,
+				BA1058B40B31098E4BF91F27CE878E08 /* MotionModifier.swift */,
+				7DD9817E3CEB57723F94F2C4AAAAAAF5 /* MotionPlugin.swift */,
+				92F13228976AD131B973A7D90AC9A471 /* MotionPreprocessor.swift */,
+				42BAF00FCB26222FEEEBF5BF4A27C410 /* MotionProgressRunner.swift */,
+				2ABE8105CF14CDD61761CE6A53AD5F20 /* MotionSnapshotType.swift */,
+				AE1C870F445DF32CB895EEBD20E9D5BC /* MotionTargetState.swift */,
+				EE746E1501D96EECB0130925A8C49260 /* MotionTransition.swift */,
+				9995144C55497E165B673AD08C8C8DB5 /* MotionTransition+Animate.swift */,
+				C9AF1FCC595E6B88D54EB3EF6A38B0D3 /* MotionTransition+Complete.swift */,
+				1768B39E1508F7A1A2B1CD460698AB10 /* MotionTransition+CustomTransition.swift */,
+				1BAA17EE9B053057B83E9E75BE8020BB /* MotionTransition+Interactive.swift */,
+				072F040DADF5309EBE8DE055F2F09AE5 /* MotionTransition+Start.swift */,
+				9B092207CEB4E31EC0FC29DBA9612E51 /* MotionTransition+UINavigationControllerDelegate.swift */,
+				A95B31A24A970FBE508CC1F0356821A1 /* MotionTransition+UITabBarControllerDelegate.swift */,
+				14F7E56E7B7254A308FB0B92CA1C2EF2 /* MotionTransition+UIViewControllerTransitioningDelegate.swift */,
+				632C243CBEE236F0F8AA56EC8DF9859F /* MotionTransitionObserver.swift */,
+				21909EDE769146D4F6CF7741629BC5E2 /* MotionViewOrderStrategy.swift */,
+				C4AF8326B083C9ED25D4E5369C2387CB /* MotionViewPropertyViewContext.swift */,
+				B154A8C05CCCBBEA3024FC66EC64B9D1 /* SourcePreprocessor.swift */,
+				C2078B50849FFA9EF168CFF16D9D8D37 /* TransitionPreprocessor.swift */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		1C0E4CDF3B8B5144BEA32CC28F1B9FF8 /* Pods-MovieSearch */ = {
+			isa = PBXGroup;
+			children = (
+				D072A2A891E1200E0094DAE881D61A07 /* Pods-MovieSearch.modulemap */,
+				E94E6C342F4CC5687DBE014EFD10AF9E /* Pods-MovieSearch-acknowledgements.markdown */,
+				1222DF7689D399A7E87F954B079A182C /* Pods-MovieSearch-acknowledgements.plist */,
+				48A627D1087341764EC29E71E83A7AED /* Pods-MovieSearch-dummy.m */,
+				2AC836301BAF4E54EB8EEC78FFA6DBF9 /* Pods-MovieSearch-frameworks.sh */,
+				A0AA235506286CEEC9F6C36171FD2410 /* Pods-MovieSearch-Info.plist */,
+				9DA9C69216B46EF8EF26B5D5D53C4CD4 /* Pods-MovieSearch-umbrella.h */,
+				314E6BE8604D74B7A8A7449CA3DBA33B /* Pods-MovieSearch.debug.xcconfig */,
+				71BBD0BC5C877528FD55BCAF11759684 /* Pods-MovieSearch.release.xcconfig */,
+			);
+			name = "Pods-MovieSearch";
+			path = "Target Support Files/Pods-MovieSearch";
+			sourceTree = "<group>";
+		};
+		40A52B22CF6FF655F957E14B37DD72A0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E9E83947349F7E8028823F3766451329 /* Motion.framework */,
+				D5F1D3855ABF6C792D06E1E461FF94E4 /* Pods_MovieSearch.framework */,
+				70ECAF7880D4050AD20D482A089A45B9 /* Pods_MovieSearchTests.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5D3834E43634AD0F9A495F871A77E155 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9F1AC45F3C8676EA5E059A45218B2A29 /* Motion */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7FA7C18125D7E4DE8EFD635378402B8B /* Pods-MovieSearchTests */ = {
+			isa = PBXGroup;
+			children = (
+				0CE13F6B286020BFDC248F9F4F83E450 /* Pods-MovieSearchTests.modulemap */,
+				BC00BCCB52B5D9DB5AA37C2861A826D5 /* Pods-MovieSearchTests-acknowledgements.markdown */,
+				11C1EA7D15C14AA22BD8C2D76E4487F2 /* Pods-MovieSearchTests-acknowledgements.plist */,
+				7EE3104A57B936995C1CCE89FF8F1404 /* Pods-MovieSearchTests-dummy.m */,
+				07D85A7D1BAA6BAB81DA51AF364695D8 /* Pods-MovieSearchTests-Info.plist */,
+				1E160065B46844683B0CFE846883FEF2 /* Pods-MovieSearchTests-umbrella.h */,
+				2DD4117CD3AD9FEA8828862504481BA8 /* Pods-MovieSearchTests.debug.xcconfig */,
+				48ABDBEB96EE63A0B175C8C557F6B890 /* Pods-MovieSearchTests.release.xcconfig */,
+			);
+			name = "Pods-MovieSearchTests";
+			path = "Target Support Files/Pods-MovieSearchTests";
+			sourceTree = "<group>";
+		};
+		9F1AC45F3C8676EA5E059A45218B2A29 /* Motion */ = {
+			isa = PBXGroup;
+			children = (
+				0500867A77575363594EB072912E45FD /* Core */,
+				F610F3D04A4409AE41FB32045E59A18F /* Support Files */,
+			);
+			path = Motion;
+			sourceTree = "<group>";
+		};
+		C0834CEBB1379A84116EF29F93051C60 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
+				5D3834E43634AD0F9A495F871A77E155 /* Pods */,
+				40A52B22CF6FF655F957E14B37DD72A0 /* Products */,
+				006FC031ACE5758FCC75F5D88C382CAC /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C0834CEBB1379A84116EF29F93051C60 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F610F3D04A4409AE41FB32045E59A18F /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				969850A8F6CB9021903BA2D9A18496C2 /* Motion.modulemap */,
+				EE2545D2F70C5BDA762BF1E73F69FEAA /* Motion.xcconfig */,
+				D0D5F20F32B20D19CCDB38FC1FE4748C /* Motion-dummy.m */,
+				2D10AFB119A9C9A5266D3BAF31F53B07 /* Motion-Info.plist */,
+				3C11C7A7D585B0AFFD1613E070DECF9D /* Motion-prefix.pch */,
+				7C85047B6CCFDBA23A4FB8CAC34EDE54 /* Motion-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Motion";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		093C49D444C3DEBE032A060BA0CEBE25 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24893B18CB82035EEE717B3CECA24B56 /* Pods-MovieSearchTests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3904A830932E40AA48BB99FE738F468A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				911A56B5702E8AE807417EB91CD0E7EA /* Motion-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D06DB3190C339567C1C33F3F8C4332F5 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E607521E4285D86BED09CA287667B4C /* Pods-MovieSearch-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		3D481AF0A19ACAE9B8F844626C7D5066 /* Pods-MovieSearchTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 51470335E8ED47DC4BAB0CABDCD9104B /* Build configuration list for PBXNativeTarget "Pods-MovieSearchTests" */;
+			buildPhases = (
+				093C49D444C3DEBE032A060BA0CEBE25 /* Headers */,
+				A03DB560F10CB9D7064FA75F77D71AFA /* Sources */,
+				9A81BD7CE268A248D21A260B174D6FB2 /* Frameworks */,
+				424FFA18733410FD22B4FC9359D59BA6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1D6B28F1D050E5433ACE1F22EEB7BB9D /* PBXTargetDependency */,
+			);
+			name = "Pods-MovieSearchTests";
+			productName = "Pods-MovieSearchTests";
+			productReference = 70ECAF7880D4050AD20D482A089A45B9 /* Pods_MovieSearchTests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		9312109646DF39EBE725AD8F96A8C18B /* Motion */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5C9CE8350B0B99D6B46BFB496E225BCB /* Build configuration list for PBXNativeTarget "Motion" */;
+			buildPhases = (
+				3904A830932E40AA48BB99FE738F468A /* Headers */,
+				C1B631F90DB0CBFAFDB4D724D2FB5D5D /* Sources */,
+				49ED12B61DC0D3DF397A4D1C34C31B22 /* Frameworks */,
+				769FEADE672CCD830D97A0EDEB3BF2CB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Motion;
+			productName = Motion;
+			productReference = E9E83947349F7E8028823F3766451329 /* Motion.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		9F651E5C00EB4C369BD9BC4B67E35D18 /* Pods-MovieSearch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 71DC6159146F963E96536BF79653CD70 /* Build configuration list for PBXNativeTarget "Pods-MovieSearch" */;
+			buildPhases = (
+				D06DB3190C339567C1C33F3F8C4332F5 /* Headers */,
+				C10DA1707008D112BCB48C6F49FEFD55 /* Sources */,
+				08B90D550393D2429822C3FF2FF8F6F9 /* Frameworks */,
+				98A53D5B1EE720ED2F1212221872A6BC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				55300DC7E10F8E9C7409ECF0C3F80A1E /* PBXTargetDependency */,
+			);
+			name = "Pods-MovieSearch";
+			productName = "Pods-MovieSearch";
+			productReference = D5F1D3855ABF6C792D06E1E461FF94E4 /* Pods_MovieSearch.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				TargetAttributes = {
+					9312109646DF39EBE725AD8F96A8C18B = {
+						LastSwiftMigration = 1020;
+					};
+				};
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = 40A52B22CF6FF655F957E14B37DD72A0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9312109646DF39EBE725AD8F96A8C18B /* Motion */,
+				9F651E5C00EB4C369BD9BC4B67E35D18 /* Pods-MovieSearch */,
+				3D481AF0A19ACAE9B8F844626C7D5066 /* Pods-MovieSearchTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		424FFA18733410FD22B4FC9359D59BA6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		769FEADE672CCD830D97A0EDEB3BF2CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		98A53D5B1EE720ED2F1212221872A6BC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A03DB560F10CB9D7064FA75F77D71AFA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B86C8F559683CFF6DEC6E4E00FF4FB71 /* Pods-MovieSearchTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C10DA1707008D112BCB48C6F49FEFD55 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D835F2E662DA83220CDB507D8A7BBB0F /* Pods-MovieSearch-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1B631F90DB0CBFAFDB4D724D2FB5D5D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63B0E00E5787B9C18E6853FEE8DF016A /* CascadePreprocessor.swift in Sources */,
+				34FBC4FFDE13EE399428ED76F9CDEFE9 /* ConditionalPreprocessor.swift in Sources */,
+				F6D4F682A05EFF42F2AC0B7F3CE907A2 /* IgnoreSubviewModifiersPreprocessor.swift in Sources */,
+				68A2B309CEEA4C09ACA5345D17A520CF /* MatchPreprocessor.swift in Sources */,
+				7B8D6F13A09A5466EC37C58A27AD0074 /* Motion+Array.swift in Sources */,
+				3149E82D584937805FDB488FDF1006B6 /* Motion+CALayer.swift in Sources */,
+				856FC3806FFF461F38510FB764F30FC3 /* Motion+CAMediaTimingFunction.swift in Sources */,
+				2530B0ED253F13DD7A474EF570781808 /* Motion+CG.swift in Sources */,
+				C1E67EB20931B6B8268BEE093F90422D /* Motion+Obj-C.swift in Sources */,
+				4B5659071099B551A059574695A033A8 /* Motion+UIKit.swift in Sources */,
+				1DE765935CF52B1514CFE6417CF66DE9 /* Motion+UIView.swift in Sources */,
+				89509A7EBD8C9982E43230AEAFD01961 /* Motion+UIViewController.swift in Sources */,
+				F841B74102E5DEA57D8F68F9FAAD4CBB /* Motion-dummy.m in Sources */,
+				D05A119E0CD2E736B9F7873DF7968E01 /* MotionAnimation.swift in Sources */,
+				7012EE583A736482841D353E46BC6E57 /* MotionAnimationFillMode.swift in Sources */,
+				BB81FD81106C3F02510C0DF4A3CF6111 /* MotionAnimationState.swift in Sources */,
+				8A418075B9AF60BE8DFA4BD36AF2AD55 /* MotionAnimator.swift in Sources */,
+				F24FE6E4C7333D262DE345150568E221 /* MotionAnimatorViewContext.swift in Sources */,
+				4E013B2FD8752F0206CDF73F74F38C34 /* MotionCAAnimation.swift in Sources */,
+				4EA296EA10F47FEA322C29E2D37D3EF3 /* MotionContext.swift in Sources */,
+				97834CDD179E0ED82731E6A157B1FEC9 /* MotionCoordinateSpace.swift in Sources */,
+				885864457868D8889559C849F7EFD7DB /* MotionCoreAnimationViewContext.swift in Sources */,
+				78271886B183AC2D8B4D3268673CD1AD /* MotionCoreAnimator.swift in Sources */,
+				F2CB1689C0DD288EFF0648C2DAD8A319 /* MotionCorePreprocessor.swift in Sources */,
+				13592507FF01B2D1C9DDA169F9B69906 /* MotionModifier.swift in Sources */,
+				A2A845A4389100B6D96CBD9423678166 /* MotionPlugin.swift in Sources */,
+				CCE5E506A7690EE350E2490ECAB10AEA /* MotionPreprocessor.swift in Sources */,
+				6335D0749D3FFBC5AC1B261622E5FC83 /* MotionProgressRunner.swift in Sources */,
+				A39368E1F18A862C217AFF9C71583BBD /* MotionSnapshotType.swift in Sources */,
+				4A4C8BCA38104FBF65889D0ADDB1DA2C /* MotionTargetState.swift in Sources */,
+				8F1C53F8EDDD74FEF80CA9E43E45F0A5 /* MotionTransition+Animate.swift in Sources */,
+				0AAEE8FC2A7E269CC60F6E5C3BE7A259 /* MotionTransition+Complete.swift in Sources */,
+				0BBE06678BEA779F31A0F521D0F541C6 /* MotionTransition+CustomTransition.swift in Sources */,
+				CA94EC9DCCA8123C736A59C36ADC7C24 /* MotionTransition+Interactive.swift in Sources */,
+				7E37E77A80FFB9D62E5C420CDF9AB158 /* MotionTransition+Start.swift in Sources */,
+				2FFD87982649E5219F886C78AE33E247 /* MotionTransition+UINavigationControllerDelegate.swift in Sources */,
+				628EDB1A83301CB6D4AA92D692DB0BEE /* MotionTransition+UITabBarControllerDelegate.swift in Sources */,
+				5B33042A23A84C3D205E677A799BD7CD /* MotionTransition+UIViewControllerTransitioningDelegate.swift in Sources */,
+				C0F9D06AC707BCD23C2F2E3501284C2E /* MotionTransition.swift in Sources */,
+				3CDBA6AC69734F8FE8A0A378B919F1FD /* MotionTransitionObserver.swift in Sources */,
+				62ED3FABFF35D6237097639EA3F1163D /* MotionViewOrderStrategy.swift in Sources */,
+				3D8C63AE123591E8E22770DCC284F31D /* MotionViewPropertyViewContext.swift in Sources */,
+				C3FC01B84CCE705E5921560AB60C8AB7 /* SourcePreprocessor.swift in Sources */,
+				A4CCEBD747BEBC018647F8BEE7BF308D /* TransitionPreprocessor.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1D6B28F1D050E5433ACE1F22EEB7BB9D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-MovieSearch";
+			target = 9F651E5C00EB4C369BD9BC4B67E35D18 /* Pods-MovieSearch */;
+			targetProxy = 82036A25272D546DA7BB93FC8F3B8931 /* PBXContainerItemProxy */;
+		};
+		55300DC7E10F8E9C7409ECF0C3F80A1E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Motion;
+			target = 9312109646DF39EBE725AD8F96A8C18B /* Motion */;
+			targetProxy = 4A4158DD207C291DEB8D60CE505734D4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		204B8AEA4AE90A551A1768B355C2F9F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		3CCC6195EDBEE5DA2A49DF962113BE16 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		490676BD80C66845D818390441DDEC14 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 71BBD0BC5C877528FD55BCAF11759684 /* Pods-MovieSearch.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-MovieSearch/Pods-MovieSearch-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MovieSearch/Pods-MovieSearch.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		52644BFD916C15F75095F944E0C753A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 314E6BE8604D74B7A8A7449CA3DBA33B /* Pods-MovieSearch.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-MovieSearch/Pods-MovieSearch-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MovieSearch/Pods-MovieSearch.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		63BA371C6E2F8F862D6DC9CF595471C2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE2545D2F70C5BDA762BF1E73F69FEAA /* Motion.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Motion/Motion-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Motion/Motion-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/Motion/Motion.modulemap";
+				PRODUCT_MODULE_NAME = Motion;
+				PRODUCT_NAME = Motion;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		DA34FE65D740B3E4E276F3977CC15DCB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2DD4117CD3AD9FEA8828862504481BA8 /* Pods-MovieSearchTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-MovieSearchTests/Pods-MovieSearchTests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MovieSearchTests/Pods-MovieSearchTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E17776E19550CF471A02F31F3FD997D2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE2545D2F70C5BDA762BF1E73F69FEAA /* Motion.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Motion/Motion-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Motion/Motion-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/Motion/Motion.modulemap";
+				PRODUCT_MODULE_NAME = Motion;
+				PRODUCT_NAME = Motion;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		FB510BC0B696B8C49C35D51E42C5BA15 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 48ABDBEB96EE63A0B175C8C557F6B890 /* Pods-MovieSearchTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-MovieSearchTests/Pods-MovieSearchTests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MovieSearchTests/Pods-MovieSearchTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				204B8AEA4AE90A551A1768B355C2F9F0 /* Debug */,
+				3CCC6195EDBEE5DA2A49DF962113BE16 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		51470335E8ED47DC4BAB0CABDCD9104B /* Build configuration list for PBXNativeTarget "Pods-MovieSearchTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA34FE65D740B3E4E276F3977CC15DCB /* Debug */,
+				FB510BC0B696B8C49C35D51E42C5BA15 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5C9CE8350B0B99D6B46BFB496E225BCB /* Build configuration list for PBXNativeTarget "Motion" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63BA371C6E2F8F862D6DC9CF595471C2 /* Debug */,
+				E17776E19550CF471A02F31F3FD997D2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		71DC6159146F963E96536BF79653CD70 /* Build configuration list for PBXNativeTarget "Pods-MovieSearch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52644BFD916C15F75095F944E0C753A5 /* Debug */,
+				490676BD80C66845D818390441DDEC14 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}
