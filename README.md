@@ -1,6 +1,6 @@
 # Movie Search
 
-Movie Search uses native technologies to create a simplistic user experience. A user can enter a search parameter, then view the results of a call to the **OMDB API** in a collection view. The user can then save the result for later viewing, or research a recent parameter. The data also persists between app restarts and works on both iPhone and iPad. I developed the application with the aim that another developer would be able to pick it up and understand and maintain it with minimal fuss all while retaining a solid architecture.
+Movie Search uses native technologies to create a simplistic user experience. A user can enter a search parameter, then view the results of a call to the **OMDB API** in a collection view. The user can then save the result for later viewing, or re-search a recent parameter. The data also persists between app restarts and works on both iPhone and iPad. I developed the application with the aim that another developer would be able to pick it up and understand and maintain it with minimal fuss all while retaining a solid architecture.
 
 ### Screenshots
 
@@ -14,9 +14,9 @@ The app architecture uses the coordinator pattern using MVC. The Coordinator pat
 
 The application utilises storyboard while the UI has been programmatically. I chose this route to provide flexibility to any other future developers working on the app.
 
-A hybrid approach allows for both styles of UI design. I wanted to be accommodating where I could for any future devs that work on this project. If they build in storyboard or programmatically, they would be able to add to this application.
+A hybrid approach allows for both styles of UI design. I wanted to be accommodating where I could for any future devs that work on this project. If they build in storyboard or programmatically, they would be able to add to this application with ease.
 
-The Coordinator pattern also helps reduce the problems that the MVC pattern has. The massive view controller. Each controller has a coordinator, which allows it to remain modular and independent. The Coordinator acts as a delegate in which the logic and flow of the application are determined. This provides a more flexible, readable, reusable and modular approach.
+The Coordinator pattern also helps reduce the problem that the MVC pattern has. The massive view controller. Each controller has a coordinator, which allows it to remain modular and independent. The Coordinator acts as a delegate in which the logic and flow of the application are determined. This provides a more flexible, readable, reusable and modular approach.
 
 ### Persistence
 
