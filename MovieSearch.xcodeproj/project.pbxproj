@@ -47,7 +47,6 @@
 		4A8A32AA229703B400022CC8 /* GradientImageContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8A32A9229703B400022CC8 /* GradientImageContainer.swift */; };
 		4A8A32AC22981E8D00022CC8 /* MovieInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8A32AB22981E8D00022CC8 /* MovieInfoView.swift */; };
 		4ABF383422A281E000ED55CE /* HUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABF383322A281E000ED55CE /* HUDView.swift */; };
-		4ABF383822A2A87600ED55CE /* testPrevSearchNoMoreThanThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABF383722A2A87600ED55CE /* testPrevSearchNoMoreThanThree.swift */; };
 		4ABF384922A2ADDE00ED55CE /* coordinatorSetTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABF384822A2ADDE00ED55CE /* coordinatorSetTest.swift */; };
 		4ADAADA922A2B4A00032EBDD /* MovieSearchSlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB045A229190FF00D08DE2 /* MovieSearchSlowTests.swift */; };
 		4AFB040E228EAD5900D08DE2 /* PrevResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB040D228EAD5900D08DE2 /* PrevResultTableViewCell.swift */; };
@@ -119,8 +118,6 @@
 		4A8A32A9229703B400022CC8 /* GradientImageContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientImageContainer.swift; sourceTree = "<group>"; };
 		4A8A32AB22981E8D00022CC8 /* MovieInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInfoView.swift; sourceTree = "<group>"; };
 		4ABF383322A281E000ED55CE /* HUDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDView.swift; sourceTree = "<group>"; };
-		4ABF383722A2A87600ED55CE /* testPrevSearchNoMoreThanThree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = testPrevSearchNoMoreThanThree.swift; path = MovieSearchTests/testPrevSearchNoMoreThanThree.swift; sourceTree = SOURCE_ROOT; };
-		4ABF384022A2A98300ED55CE /* MovieSearchTesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchTesting.swift; sourceTree = "<group>"; };
 		4ABF384822A2ADDE00ED55CE /* coordinatorSetTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = coordinatorSetTest.swift; sourceTree = "<group>"; };
 		4AFB040D228EAD5900D08DE2 /* PrevResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrevResultTableViewCell.swift; sourceTree = "<group>"; };
 		4AFB044122904D2700D08DE2 /* GradientContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientContainerView.swift; sourceTree = "<group>"; };
@@ -207,8 +204,6 @@
 			isa = PBXGroup;
 			children = (
 				4ABF383F22A2A98300ED55CE /* MovieSearchTesting */,
-				4AFB0459229190FF00D08DE2 /* MovieSearchSlowTest */,
-				4A167596228C0AC400127036 /* MovieSearchTests.swift */,
 			);
 			path = MovieSearchTests;
 			sourceTree = "<group>";
@@ -442,9 +437,9 @@
 		4ABF383F22A2A98300ED55CE /* MovieSearchTesting */ = {
 			isa = PBXGroup;
 			children = (
-				4ABF384022A2A98300ED55CE /* MovieSearchTesting.swift */,
 				4ABF384822A2ADDE00ED55CE /* coordinatorSetTest.swift */,
 				4AFB045A229190FF00D08DE2 /* MovieSearchSlowTests.swift */,
+				4A167596228C0AC400127036 /* MovieSearchTests.swift */,
 			);
 			path = MovieSearchTesting;
 			sourceTree = "<group>";
@@ -482,14 +477,6 @@
 				4A8A32A422958C5800022CC8 /* DownloadImage.swift */,
 			);
 			path = API;
-			sourceTree = "<group>";
-		};
-		4AFB0459229190FF00D08DE2 /* MovieSearchSlowTest */ = {
-			isa = PBXGroup;
-			children = (
-				4ABF383722A2A87600ED55CE /* testPrevSearchNoMoreThanThree.swift */,
-			);
-			path = MovieSearchSlowTest;
 			sourceTree = "<group>";
 		};
 		4AFB047A2292D97200D08DE2 /* CollectionView */ = {
@@ -768,7 +755,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4ABF383822A2A87600ED55CE /* testPrevSearchNoMoreThanThree.swift in Sources */,
 				4ABF384922A2ADDE00ED55CE /* coordinatorSetTest.swift in Sources */,
 				4A167597228C0AC400127036 /* MovieSearchTests.swift in Sources */,
 				4ADAADA922A2B4A00032EBDD /* MovieSearchSlowTests.swift in Sources */,
