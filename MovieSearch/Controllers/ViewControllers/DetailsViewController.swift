@@ -80,6 +80,7 @@ class DetailsViewController: UIViewController {
 			informationContainer?.mainTitle.text = details?.movieTitle
 			informationContainer?.actorsLabel.text = "Actor\(addSuffix(details!.movieActor!)): \(details?.movieActor ?? "")"
 			informationContainer?.directorLabel.text = "Director\(addSuffix(details!.movieDirector!)): \(details?.movieDirector ?? "")"
+			
 			informationContainer?.writersLabel.text = "Writer\(addSuffix(details!.movieWriters!)): \(details?.movieWriters ?? "")"
 			informationContainer?.plotInfo.text = details?.moviePlot
 			informationContainer?.ratingLabel.text = "imdb rating: \(details?.movieRating ?? "")"
@@ -98,7 +99,7 @@ class DetailsViewController: UIViewController {
 			detailsView?.gradientImageContainerView.mainImage.downloadImage(from: details!.poster)
 			informationContainer?.mainTitle.text = details?.title
 			informationContainer?.actorsLabel.text = "Actor\(addSuffix(details!.actors)): \(details?.actors ?? "")"
-			informationContainer?.directorLabel.text = "Director\(addSuffix(details!.director)): \(details?.director ?? ""))"
+			informationContainer?.directorLabel.text = "Director\(addSuffix(details!.director)): \(details?.director ?? "")"
 			informationContainer?.writersLabel.text = "Writer\(addSuffix(details!.writer)): \(details!.writer)"
 			informationContainer?.plotInfo.text = details?.plot
 			informationContainer?.ratingLabel.text = "imdb rating: \(details?.imdbRating ?? "")"
