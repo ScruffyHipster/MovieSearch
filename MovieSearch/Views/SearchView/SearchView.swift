@@ -72,9 +72,9 @@ class SearchView: UIView {
 
 	//Constraint for the tableview height so we can change this upon loading of data
 	var prevTableViewHeight: NSLayoutConstraint?
-	var orientationPortrait: Bool {
+	var orientation: Orientation {
 		get {
-			return UIDevice.current.orientation == .portrait ? true : false
+			return UIDevice.current.orientation.isLandscape == true ? Orientation.landscape : Orientation.portrait
 		}
 	}
 	var deviceType: UIUserInterfaceIdiom {
@@ -111,15 +111,15 @@ class SearchView: UIView {
 	
 	func moveSearchBar(searching: Bool) {
 		UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0.5, options: .curveEaseInOut, animations: {
-			if self.orientationPortrait && self.deviceType == .phone {
+			if self.orientation == .portrait && self.deviceType == .phone {
 				//portrait
 				self.searchStackViewTop?.constant = searching ? 60 : 200
 			}
-			if !self.orientationPortrait && self.deviceType == .phone {
+			if self.orientation == .landscape && self.deviceType == .phone {
 				//landscape
 				self.titleLabel.isHidden = searching
 			}
-			if !self.orientationPortrait && self.deviceType == .pad {
+			if self.orientation == .landscape && self.deviceType == .pad {
 				self.titleLabel.isHidden = searching
 				self.searchStackViewTop?.constant = searching ? 0 : 200
 			}

@@ -581,7 +581,7 @@
 						CreatedOnToolsVersion = 10.2.1;
 						SystemCapabilities = {
 							com.apple.Push = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.iCloud = {
 								enabled = 0;
@@ -912,7 +912,6 @@
 			baseConfigurationReference = A56E704969766101508D11F5 /* Pods-MovieSearch.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = MovieSearch/MovieSearch.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2392YT52CQ;
 				INFOPLIST_FILE = "$(SRCROOT)/MovieSearch/Misc/Info.plist";
@@ -932,7 +931,6 @@
 			baseConfigurationReference = CFCD45640E645D65421908E8 /* Pods-MovieSearch.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = MovieSearch/MovieSearch.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2392YT52CQ;
 				INFOPLIST_FILE = "$(SRCROOT)/MovieSearch/Misc/Info.plist";
