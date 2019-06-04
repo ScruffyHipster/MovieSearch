@@ -3,7 +3,6 @@
 //  MovieSearch
 //
 
-import Foundation
 import UIKit
 
 ///Image resizer. This uses CoreGraphics which is the most effiecent way to resize an image. Find more info here https://nshipster.com/image-resizing/.

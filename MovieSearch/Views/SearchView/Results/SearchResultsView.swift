@@ -52,7 +52,6 @@ class SearchResultsView: UIView {
 }
 
 extension SearchResultsView {
-	
 	private func setUpView() {
 		[backgroundContainerView].forEach({addSubview($0)})
 	  [collectionView].forEach({backgroundContainerView.addSubview($0)})

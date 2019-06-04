@@ -13,9 +13,9 @@ struct MovieDetails: Codable {
 	let poster: String
 	let ratings: [Rating]
 	let metascore, imdbRating, imdbVotes, imdbID: String
-	let type, dvd, boxOffice, production: String
-	let website: String
-	let response: String
+	let type, dvd, boxOffice, production: String?
+	let website: String?
+	let response: String?
 	
 	enum CodingKeys: String, CodingKey {
 		case title = "Title"

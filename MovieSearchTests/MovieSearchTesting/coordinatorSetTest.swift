@@ -29,7 +29,7 @@ class coordinatorSetTest: XCTestCase {
     }
 	
 	func testViewControllerAreCreated() {
-		
+		//Check view controllers are created properly at start
 		if mainTabCoordinator.viewControllers!.count == 2 {
 			XCTAssertEqual(mainTabCoordinator.viewControllers?.count, 2)
 		} else {
@@ -38,6 +38,7 @@ class coordinatorSetTest: XCTestCase {
 	}
 	
 	func testCoordinatorsCreated() {
+		//check the coordinators are created at start
 		if viewControllerOne.coordinator == nil, viewControllerTwo.coordinator == nil {
 			XCTAssert(true, "Passed")
 		} else {

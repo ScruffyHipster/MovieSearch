@@ -10,15 +10,13 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
+	var tabController: MainTabBarController?
 	
 	lazy var managedObject: NSManagedObjectContext = {
 		return persistentContainer.viewContext
 	}()
 	
-	var tabController: MainTabBarController?
-	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-		
 		//Setup of the storyboard - here we can make determinations whether device is iPhone or iPad so we can load accordingly.
 		window = UIWindow(frame: UIScreen.main.bounds)
 		window?.rootViewController = MainTabBarController()

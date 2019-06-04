@@ -3,7 +3,6 @@
 //  MovieSearch
 //
 
-import Foundation
 import UIKit
 
 ///Container for the info details of the selected movie

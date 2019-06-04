@@ -164,6 +164,5 @@ extension DetailsView {
 		
 		setUpTopImageView()
 		setUpBottomDetailsView()
-		
 	}
 }

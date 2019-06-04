@@ -5,9 +5,7 @@
 
 import UIKit
 
-
 class SearchResultCollectionViewCell: UICollectionViewCell {
-	
 	//MARK:- Properties
 	var orientation: Bool {
 		return UIDevice.current.orientation.isPortrait ? true : false
@@ -57,7 +55,6 @@ class SearchResultCollectionViewCell: UICollectionViewCell {
 }
 
 extension SearchResultCollectionViewCell {
-	
 	//MARK:- Methods
 	func configure() {
 		setUpStack()
@@ -67,10 +64,6 @@ extension SearchResultCollectionViewCell {
 	func configureCell(with results: SearchResults) {
 		titleLabel.text = results.title
 		mainImage.downloadImage(from: results.poster)
-	}
-	
-	private func configureImage(image: UIImage) {
-		self.mainImage.image = resizeImage(image: image, for: self.mainImage.bounds.size)
 	}
 	
 	private func setUpStack() {

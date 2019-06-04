@@ -3,7 +3,6 @@
 //  MovieSearch
 //
 
-import Foundation
 import UIKit
 
 var imageCache = NSCache<NSString, UIImage>()

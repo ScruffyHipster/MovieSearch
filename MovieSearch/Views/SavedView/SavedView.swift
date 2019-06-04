@@ -109,8 +109,9 @@ extension SavedView {
 	}
 }
 
-//MARK:- Orientation layout
+
 extension SavedView {
+	//MARK:- Orientation layout
 	func portrait() {
 		savedResultsTableViewTop?.isActive = false
 		savedResultsTableViewTrailing?.isActive = false

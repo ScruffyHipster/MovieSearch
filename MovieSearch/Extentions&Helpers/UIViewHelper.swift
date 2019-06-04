@@ -3,7 +3,6 @@
 //  MovieSearch
 //
 
-import Foundation
 import UIKit
 
 ///Helper method to deactivate constraints passed in.

@@ -94,7 +94,6 @@ class DetailsViewController: UIViewController {
 			let details = movieDetails as? MovieDetails
 			let informationContainer = detailsView?.informationContainerView
 			detailsView?.gradientImageContainerView.motionIdentifier = "\(details!.imdbID)"
-		
 			detailsView?.informationContainerView.mainTitle.motionIdentifier = "\(details!.title)"
 			detailsView?.gradientImageContainerView.mainImage.downloadImage(from: details!.poster)
 			informationContainer?.mainTitle.text = details?.title

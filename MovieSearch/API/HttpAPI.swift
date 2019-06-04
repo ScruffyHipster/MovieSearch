@@ -5,15 +5,11 @@
 
 import Foundation
 
-
+///HTTP class used to make network calls and requests
 class HttpAPI: NSObject {
-	
 	var dataTask: URLSessionDataTask?
-	
 	var apiKey = "apikey=592d6c41"
-	
 	var request: URLRequest?
-	
 	var activeDownload: [URL: URLSessionDownloadTask] = [:]
 	
 	lazy var session: URLSession = {
@@ -79,11 +75,9 @@ class HttpAPI: NSObject {
 		}
 		return result
 	}
-		
 }
 
 extension HttpAPI: URLSessionDownloadDelegate {
-	
 	///Downloads and saves the image to locally to disk using the image url
 	func downloadImage(_ imageUrl: String) {
 		let imageUrl = URL(string: imageUrl)
@@ -98,7 +92,6 @@ extension HttpAPI: URLSessionDownloadDelegate {
 		guard let sourceUrl = downloadTask.originalRequest?.url else {return}
 		//remove the download url from the dictionary once download is complete
 		activeDownload[sourceUrl] = nil
-		
 		let fileManager = FileManager.default
 		//create a url and move the item to it.
 		let destinationUrl = fileManager.localFileUrl(for: sourceUrl)
@@ -108,5 +101,4 @@ extension HttpAPI: URLSessionDownloadDelegate {
 		} catch {
 		}
 	}
-	
 }

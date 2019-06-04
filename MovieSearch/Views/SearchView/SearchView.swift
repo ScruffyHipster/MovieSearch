@@ -7,7 +7,6 @@ import UIKit
 
 ///View for the main search tab bar view
 class SearchView: UIView {
-	
 	//MARK:- Properties
 	var backgroundContainerView: GradientContainerView = {
 		let view = GradientContainerView(colorOne: nil, colorTwo: nil)
@@ -160,9 +159,9 @@ class SearchView: UIView {
 	}
 }
 
-//MARK:- View layer setups
+
 extension SearchView {
-	
+	//MARK:- View layer setups
 	func setUpViews() {
 		//add to view
 		[backgroundContainerView].forEach({addSubview($0)})
@@ -230,9 +229,8 @@ extension SearchView {
 	}
 }
 
-//MARK:- Orientation methods
 extension SearchView {
-	
+	//MARK:- Orientation methods
 	func landscape() {
 		let stack = searchGroupStackView
 		let title = titleLabel
@@ -276,6 +274,5 @@ extension SearchView {
 		setUpTitle()
 		setUpStackView()
 	}
-	
 }
 

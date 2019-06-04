@@ -3,12 +3,10 @@
 //  MovieSearch
 //
 
-import Foundation
 import UIKit
 
 ///This view has a gradient which overlays the image allowing the top buttons to be seen on all image colours. Primarlily white on white.
 class GradientImageContainer: UIView {
-
 	//Init Methods
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -33,7 +31,6 @@ class GradientImageContainer: UIView {
 	}()
 	
 	private func setupImageView() {
-		
 		addSubview(mainImage)
 		addSubview(gradientView)
 		

@@ -3,9 +3,7 @@
 //  MovieSearch
 //
 
-import Foundation
 import UIKit
-
 
 enum GradientColors {
 	case blue
