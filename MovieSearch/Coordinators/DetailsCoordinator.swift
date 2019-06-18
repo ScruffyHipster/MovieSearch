@@ -9,6 +9,7 @@ import CoreData
 
 ///Handles the details view controller. This is a child of Search Coordinator and Saved Coordinator.
 class DetailsCoordinator: Coordinator {
+	
 	//MARK:- Properties
 	weak var parentCoordinator: SearchCoordinator?
 	weak var savedParentCoordinator: SavedCoordinator?

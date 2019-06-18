@@ -16,6 +16,7 @@ class DetailsViewController: UIViewController {
 	var movieDetails: Any?
 	var liked: Bool = false
 	var hudView: HUDView?
+	var downloadTask: URLSessionDownloadTask?
 	var orientation: Orientation {
 		get {
 			return UIDevice.current.orientation.isPortrait ? Orientation.portrait : Orientation.landscape
@@ -73,7 +74,7 @@ class DetailsViewController: UIViewController {
 			
 			//retrive image from local file system
 			let image = coordinator?.retriveImages(url: posterUrl)
-			detailsView?.gradientImageContainerView.mainImage.downloadImage(from: image ?? details!.posterUrl!)
+			downloadTask = detailsView?.gradientImageContainerView.mainImage.downloadImage(from: image ?? details!.posterUrl!)
 			
 			detailsView?.likeButton.isHidden = true
 			
@@ -95,7 +96,7 @@ class DetailsViewController: UIViewController {
 			let informationContainer = detailsView?.informationContainerView
 			detailsView?.gradientImageContainerView.motionIdentifier = "\(details!.imdbID)"
 			detailsView?.informationContainerView.mainTitle.motionIdentifier = "\(details!.title)"
-			detailsView?.gradientImageContainerView.mainImage.downloadImage(from: details!.poster)
+			downloadTask = detailsView?.gradientImageContainerView.mainImage.downloadImage(from: details!.poster)
 			informationContainer?.mainTitle.text = details?.title
 			informationContainer?.actorsLabel.text = "Actor\(addSuffix(details!.actors)): \(details?.actors ?? "")"
 			informationContainer?.directorLabel.text = "Director\(addSuffix(details!.director)): \(details?.director ?? "")"

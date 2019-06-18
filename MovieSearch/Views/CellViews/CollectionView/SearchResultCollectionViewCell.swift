@@ -10,6 +10,7 @@ class SearchResultCollectionViewCell: UICollectionViewCell {
 	var orientation: Bool {
 		return UIDevice.current.orientation.isPortrait ? true : false
 	}
+	var downloadTask: URLSessionDownloadTask?
 	
 	var titleLabel: UILabel = {
 		var label = UILabel(frame: .zero)
@@ -52,6 +53,14 @@ class SearchResultCollectionViewCell: UICollectionViewCell {
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
+	
+	override func prepareForReuse() {
+		super.prepareForReuse()
+		print("here!!!")
+		downloadTask?.cancel()
+		downloadTask = nil
+	}
+	
 }
 
 extension SearchResultCollectionViewCell {
@@ -63,7 +72,7 @@ extension SearchResultCollectionViewCell {
 	
 	func configureCell(with results: SearchResults) {
 		titleLabel.text = results.title
-		mainImage.downloadImage(from: results.poster)
+		downloadTask = mainImage.downloadImage(from: results.poster)
 	}
 	
 	private func setUpStack() {
