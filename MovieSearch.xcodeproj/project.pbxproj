@@ -46,6 +46,8 @@
 		4A8A32A82297015400022CC8 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8A32A72297015400022CC8 /* DetailsView.swift */; };
 		4A8A32AA229703B400022CC8 /* GradientImageContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8A32A9229703B400022CC8 /* GradientImageContainer.swift */; };
 		4A8A32AC22981E8D00022CC8 /* MovieInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8A32AB22981E8D00022CC8 /* MovieInfoView.swift */; };
+		4A8B23E422C0F2290013369F /* ImageResizerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8B23E322C0F2290013369F /* ImageResizerTest.swift */; };
+		4AB3FE6522C0CC7E00A82277 /* HttpAPITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB3FE6422C0CC7E00A82277 /* HttpAPITest.swift */; };
 		4ABF383422A281E000ED55CE /* HUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABF383322A281E000ED55CE /* HUDView.swift */; };
 		4ABF384922A2ADDE00ED55CE /* coordinatorSetTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABF384822A2ADDE00ED55CE /* coordinatorSetTest.swift */; };
 		4ADAADA922A2B4A00032EBDD /* MovieSearchSlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB045A229190FF00D08DE2 /* MovieSearchSlowTests.swift */; };
@@ -117,6 +119,8 @@
 		4A8A32A72297015400022CC8 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 		4A8A32A9229703B400022CC8 /* GradientImageContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientImageContainer.swift; sourceTree = "<group>"; };
 		4A8A32AB22981E8D00022CC8 /* MovieInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInfoView.swift; sourceTree = "<group>"; };
+		4A8B23E322C0F2290013369F /* ImageResizerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResizerTest.swift; sourceTree = "<group>"; };
+		4AB3FE6422C0CC7E00A82277 /* HttpAPITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpAPITest.swift; sourceTree = "<group>"; };
 		4ABF383322A281E000ED55CE /* HUDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDView.swift; sourceTree = "<group>"; };
 		4ABF384822A2ADDE00ED55CE /* coordinatorSetTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = coordinatorSetTest.swift; sourceTree = "<group>"; };
 		4AFB040D228EAD5900D08DE2 /* PrevResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrevResultTableViewCell.swift; sourceTree = "<group>"; };
@@ -439,7 +443,9 @@
 			children = (
 				4ABF384822A2ADDE00ED55CE /* coordinatorSetTest.swift */,
 				4AFB045A229190FF00D08DE2 /* MovieSearchSlowTests.swift */,
+				4AB3FE6422C0CC7E00A82277 /* HttpAPITest.swift */,
 				4A167596228C0AC400127036 /* MovieSearchTests.swift */,
+				4A8B23E322C0F2290013369F /* ImageResizerTest.swift */,
 			);
 			path = MovieSearchTesting;
 			sourceTree = "<group>";
@@ -757,6 +763,8 @@
 			files = (
 				4ABF384922A2ADDE00ED55CE /* coordinatorSetTest.swift in Sources */,
 				4A167597228C0AC400127036 /* MovieSearchTests.swift in Sources */,
+				4AB3FE6522C0CC7E00A82277 /* HttpAPITest.swift in Sources */,
+				4A8B23E422C0F2290013369F /* ImageResizerTest.swift in Sources */,
 				4ADAADA922A2B4A00032EBDD /* MovieSearchSlowTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -915,6 +923,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2392YT52CQ;
 				INFOPLIST_FILE = "$(SRCROOT)/MovieSearch/Misc/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -934,6 +943,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2392YT52CQ;
 				INFOPLIST_FILE = "$(SRCROOT)/MovieSearch/Misc/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

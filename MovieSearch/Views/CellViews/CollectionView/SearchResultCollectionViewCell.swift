@@ -56,11 +56,9 @@ class SearchResultCollectionViewCell: UICollectionViewCell {
 	
 	override func prepareForReuse() {
 		super.prepareForReuse()
-		print("here!!!")
 		downloadTask?.cancel()
 		downloadTask = nil
 	}
-	
 }
 
 extension SearchResultCollectionViewCell {

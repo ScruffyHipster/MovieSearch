@@ -24,7 +24,7 @@ class MovieSearchSlowTests: XCTestCase {
 
 	func testValidCallToOMDBGetStatusCode200() {
 		//check the calls to the omdb db are correctly functioning when receiving response 200
-		let onlineUrl = URL(string: "https:www.omdbapi.com/?i=tt0848228&apikey=592d6c41")
+		let onlineUrl = URL(string: "https://www.omdbapi.com/?s=guardians&apikey=592d6c41")
 		let promise = expectation(description: "Status code: 200")
 		
 		let dataTask = sessionUnderTest.dataTask(with: onlineUrl!) { (data, response, error) in
@@ -40,12 +40,12 @@ class MovieSearchSlowTests: XCTestCase {
 			}
 		}
 		dataTask.resume()
-		waitForExpectations(timeout: 5, handler: nil)
+		waitForExpectations(timeout: 10, handler: nil)
 	}
 	
 	func testForCompletedCallToServer() {
 		//check that th call to the server invokes a handler
-		let url = URL(string: "https:www.omdbapi.com/?i=tt0848228&apikey=592d6c41")
+		let url = URL(string: "https://www.omdbapi.com/?s=guardians&apikey=592d6c41")
 		let promise = expectation(description: "completionHandler invoked")
 		var statusCode: Int?
 		var responseError: Error?
