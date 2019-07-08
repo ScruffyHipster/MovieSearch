@@ -21,6 +21,13 @@ class HttpAPI: NSObject {
 		return JSONDecoder()
 	}()
 	
+	
+	/// Creates URL for webcall
+	///
+	/// - Parameters:
+	///   - searchParam:
+	///   - searchTerm: Allows choice between .id & .search
+	/// - Returns: URLRequest
 	func createUrl(searchParam: SearchParam, searchTerm: String) -> URLRequest {
 		if !searchTerm.isEmpty {
 			let term = searchTerm.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: " ", with: "+").lowercased()
@@ -29,6 +36,13 @@ class HttpAPI: NSObject {
 		return request!
 	}
 	
+	
+	/// Creates a URLSession request to the passed in url request. Method uses generics for reusability.
+	///
+	/// - Parameters:
+	///   - request: urlRequest to be quieried
+	///   - dataStructure: Model of the expected JSON
+	///   - closure: Pass a boolean to indicate success, pass parsed data, Error if failed to create notification for the user.
 	func makeRequest<T: Codable>(url request: URLRequest, for dataStructure: T.Type, closure: @escaping (Bool, T?, Error?) -> (Void)) {
 		var success = false
 		dataTask?.cancel()
@@ -78,7 +92,9 @@ class HttpAPI: NSObject {
 }
 
 extension HttpAPI: URLSessionDownloadDelegate {
-	///Downloads and saves the image to locally to disk using the image url
+	/// Downloads and saves the image to locally to disk using the image url
+	///
+	/// - Parameter imageUrl: URL string where the image desired is found.
 	func downloadImage(_ imageUrl: String) {
 		let imageUrl = URL(string: imageUrl)
 		if let url = imageUrl {

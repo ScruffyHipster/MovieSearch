@@ -11,7 +11,16 @@ func deactivateConstraints(_ constraints: NSLayoutConstraint...) {
 }
 
 extension UIView {
-	///Helper method to add constraints to views quickly, this also applies the translatesAutoResizingMask for convienece
+	
+	/// Helper method to add constraints to views quickly, this also applies the translatesAutoResizingMask for convienece
+	///
+	/// - Parameters:
+	///   - top: top anchor of superview
+	///   - trailing: trailing anchor of superview
+	///   - bottom: bottom anchor of superview
+	///   - leading: leading anchor of superview
+	///   - padding: padding from superview
+	///   - size: size of view 
 	func anchor(top: NSLayoutYAxisAnchor?, trailing: NSLayoutXAxisAnchor?, bottom: NSLayoutYAxisAnchor?, leading: NSLayoutXAxisAnchor?, padding: UIEdgeInsets = .zero, size: CGSize = .zero) {
 		translatesAutoresizingMaskIntoConstraints = false
 		if let top = top {

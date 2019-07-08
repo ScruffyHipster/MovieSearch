@@ -104,7 +104,9 @@ extension SavedCoordinator: DismissCoordinatorProtocol {
 }
 
 extension SavedCoordinator: UINavigationControllerDelegate {
-	///This functions removes the child coordinator from the child array.
+	/// This functions removes the child coordinator from the child array.
+	///
+	/// - Parameter child: child to remove from the array
 	func childDidFinish(remove child: Coordinator?) {
 		for(index, coordinator) in childCoordinator.enumerated() {
 			if coordinator === child {

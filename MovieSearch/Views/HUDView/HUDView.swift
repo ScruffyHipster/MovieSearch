@@ -28,6 +28,14 @@ class HUDView: UIView {
 		text.draw(at: textPoint, withAttributes: attributes as [NSAttributedString.Key : Any])
 	}
 	
+	
+	/// Creates a HUD view for use on various screens where required
+	///
+	/// - Parameters:
+	///   - view: view in which to show HUD
+	///   - animated: whether the view is animated
+	///   - text: text to display
+	/// - Returns: HUDView
 	class func showHUDView(in view: UIView, animated: Bool, text: String) -> HUDView {
 		let hud = HUDView(frame: view.bounds)
 		hud.text = text

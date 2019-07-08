@@ -44,7 +44,6 @@ class SearchResultsCoordiantor: Coordinator {
 		}
 	}
 	
-	//Create API with this. 
 	func save(movie: MovieDetails, closure: @escaping (Bool) -> ()) {
 		parentCoordinator?.save(movie: movie, closure: { (success) in
 			if success {

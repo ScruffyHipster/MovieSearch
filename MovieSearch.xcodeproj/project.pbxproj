@@ -441,11 +441,11 @@
 		4ABF383F22A2A98300ED55CE /* MovieSearchTesting */ = {
 			isa = PBXGroup;
 			children = (
-				4ABF384822A2ADDE00ED55CE /* coordinatorSetTest.swift */,
-				4AFB045A229190FF00D08DE2 /* MovieSearchSlowTests.swift */,
 				4AB3FE6422C0CC7E00A82277 /* HttpAPITest.swift */,
-				4A167596228C0AC400127036 /* MovieSearchTests.swift */,
 				4A8B23E322C0F2290013369F /* ImageResizerTest.swift */,
+				4AFB045A229190FF00D08DE2 /* MovieSearchSlowTests.swift */,
+				4ABF384822A2ADDE00ED55CE /* coordinatorSetTest.swift */,
+				4A167596228C0AC400127036 /* MovieSearchTests.swift */,
 			);
 			path = MovieSearchTesting;
 			sourceTree = "<group>";

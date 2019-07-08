@@ -10,14 +10,18 @@ class ResultsDataHandler {
 	
 	///Used to store the populated results.
 	var resultsData: [AnyObject]?
-	
-	///Populates the resultsData array with data passed in.
+
+	/// Populates the resultsData array with data passed in.
+	///
+	/// - Parameter data: what data you would like to pass to the results handler. Generic to handle any data structure.
 	func populateDataWith<T>(data: [T]) {
 		clearArray()
 		resultsData = data as [AnyObject]
 	}
 	
-	///Returns results that are present in the resultsData array.
+	/// Returns results that are present in the resultsData array.
+	///
+	/// - Returns: Returns the currently held data in the resultsData array
 	func retriveDataFromHandeler<T>() -> [T] {
 		guard let data = resultsData else {return []}
 		return data as! [T]

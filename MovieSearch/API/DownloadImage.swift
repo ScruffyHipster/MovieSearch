@@ -11,7 +11,10 @@ class CustomImageView: UIImageView {
 	var imageUrl: String?
 	var downloadTask: URLSessionDownloadTask?
 	
-	///Will download and resize image according to its image view bounds.
+	/// Will download and resize image according to its image view bounds.
+	///
+	/// - Parameter urlString: Url from where the image is downloaded
+	/// - Returns: A url session task. This runs in the class scope to all other functions to ammend the session if required.
 	func downloadImage(from urlString: String) -> URLSessionDownloadTask? {
 		imageUrl = urlString
 		guard let url = URL(string: urlString) else {return nil}

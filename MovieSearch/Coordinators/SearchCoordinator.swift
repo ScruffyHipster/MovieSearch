@@ -63,7 +63,9 @@ class SearchCoordinator: NSObject, Coordinator {
 		monitor.start(queue: queue)
 	}
 	
-	///Sets up the search results view
+	/// Sets up the search results view
+	///
+	/// - Parameter results: The search results from OMDB data base.
 	func searchResultsInit(with results: InitialSearchResultDetails?) {
 		let child = SearchResultsCoordiantor(navController: navigationController)
 		child.managedObject = managedObject
@@ -75,7 +77,9 @@ class SearchCoordinator: NSObject, Coordinator {
 		childCoordinator.append(child)
 	}
 	
-	///Sets up the details view to see movie details
+	/// Sets up the details view to see movie details
+	///
+	/// - Parameter details: The details of an individual film
 	func detailsViewInit(with details: MovieDetails) {
 		let child = DetailsCoordinator(navController: navigationController, viewUse: .search, movieDetails: details)
 		child.parentCoordinator = self
@@ -99,7 +103,9 @@ class SearchCoordinator: NSObject, Coordinator {
 
 //SearchCoordinator Network requests
 extension SearchCoordinator {
-	///Used as the inital search for user inputted search term
+	/// Used as the inital search for user inputted search term
+	///
+	/// - Parameter searchTerm: String from user input
 	func searchForMovies(searchTerm: String) {
 		let url = http.createUrl(searchParam: .search, searchTerm: searchTerm)
 		self.saveSearch(search: searchTerm)
@@ -119,6 +125,10 @@ extension SearchCoordinator {
 		}
 	}
 	
+	
+	/// Saves to CoreData
+	///
+	/// - Parameter search: Search string to save
 	func saveSearch(search: String) {
 		//Save the search here for displaying in the prev search table
 		let term = formatSearch(searchTerm: search)
@@ -161,7 +171,10 @@ extension SearchCoordinator {
 		}
 	}
 	
-	///Used to fetch specific movie
+	
+	/// Used to fetch specific movie
+	///
+	/// - Parameter id: The id of a specific movie to display
 	func fetchDetailsForMovie(with id: String) {
 		let url = http.createUrl(searchParam: .id, searchTerm: id)
 		http.makeRequest(url: url, for: MovieDetails.self, closure: { (success, result: MovieDetails?, error) -> (Void) in
@@ -186,7 +199,9 @@ extension SearchCoordinator: DismissCoordinatorProtocol {
 }
 
 extension SearchCoordinator: UINavigationControllerDelegate {
-	///This functions removes the child coordinator from the child array.
+	/// This functions removes the child coordinator from the child array.
+	///
+	/// - Parameter child: The child coordinator to remove from the array
 	func childDidFinish(remove child: Coordinator?) {
 		for(index, coordinator) in childCoordinator.enumerated() {
 			if coordinator === child {
