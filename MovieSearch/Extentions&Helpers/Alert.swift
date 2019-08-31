@@ -32,7 +32,7 @@ extension UIAlertController {
 	///   - alertTitle: The alert title
 	///   - alertScenario: The scenario in which the alert is being produced
 	///   - actionTitle: Action title ("OK" / "Cancel" etc)
-	/// - Returns: <#return value description#>
+	/// - Returns: Alert controller
 	static func createAlert(alertTitle: String, alertScenario: AlertScenarios, actionTitle: String) -> UIAlertController {
 		let alert = UIAlertController(title: alertTitle, message: alertScenario.message, preferredStyle: .alert)
 		switch alertScenario {

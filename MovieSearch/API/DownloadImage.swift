@@ -5,9 +5,15 @@
 
 import UIKit
 
-var imageCache = NSCache<NSString, UIImage>()
+protocol ImageCacheProtocol where Self: CustomImageView {
+    var imageCache: Cache<String, UIImage> {get}
+}
 
-class CustomImageView: UIImageView {
+
+class CustomImageView: UIImageView, ImageCacheProtocol {
+    var imageCache: Cache<String, UIImage> {
+        return Cache<String, UIImage>()
+    }
 	var imageUrl: String?
 	var downloadTask: URLSessionDownloadTask?
 	
@@ -16,14 +22,11 @@ class CustomImageView: UIImageView {
 	/// - Parameter urlString: Url from where the image is downloaded
 	/// - Returns: A url session task. This runs in the class scope to all other functions to ammend the session if required.
 	func downloadImage(from urlString: String) -> URLSessionDownloadTask? {
-		imageUrl = urlString
 		guard let url = URL(string: urlString) else {return nil}
 		//Check if image is in cache and download if not.
-		if let imageFromCache = imageCache.object(forKey: urlString as NSString) {
+		if let imageFromCache = imageCache[urlString] {
 			DispatchQueue.main.async {
-				if self.imageUrl == urlString {
-					self.image = resizeImage(image: imageFromCache, for: self.frame.size)
-				}
+                self.image = resizeImage(image: imageFromCache, for: self.frame.size)
 			}
 		} else {
 			downloadTask = URLSession.shared.downloadTask(with: url) { [weak self] (url, response, error) in
@@ -38,7 +41,7 @@ class CustomImageView: UIImageView {
 							}
 						}
 						print("image is \(image), from url \(url)")
-						imageCache.setObject(image, forKey: urlString as NSString)
+                        self?.imageCache.insert(image, forKey: urlString)
 					}
 				}
 			}
@@ -46,4 +49,5 @@ class CustomImageView: UIImageView {
 		}
 		return downloadTask
 	}
+
 }

@@ -63,6 +63,7 @@
 		4AFB04792292D7CC00D08DE2 /* DataHandlerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB04782292D7CC00D08DE2 /* DataHandlerProtocol.swift */; };
 		4AFB047F2292DC4C00D08DE2 /* SearchResultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB047E2292DC4C00D08DE2 /* SearchResultCollectionViewCell.swift */; };
 		A5B3260F36A7873D0BB05EFC /* Pods_MovieSearchTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3510C102192ECF0ABE6AE2A8 /* Pods_MovieSearchTests.framework */; };
+		DB8E3B0C231AA513008A9ABA /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8E3B0B231AA513008A9ABA /* Cache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -141,6 +142,7 @@
 		A56E704969766101508D11F5 /* Pods-MovieSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieSearch.debug.xcconfig"; path = "Target Support Files/Pods-MovieSearch/Pods-MovieSearch.debug.xcconfig"; sourceTree = "<group>"; };
 		CFCD45640E645D65421908E8 /* Pods-MovieSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieSearch.release.xcconfig"; path = "Target Support Files/Pods-MovieSearch/Pods-MovieSearch.release.xcconfig"; sourceTree = "<group>"; };
 		DB0A536F4B35802B3385070A /* Pods_MovieSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB8E3B0B231AA513008A9ABA /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +168,7 @@
 		4A167572228C0AC300127036 = {
 			isa = PBXGroup;
 			children = (
+				DB8E3B0B231AA513008A9ABA /* Cache.swift */,
 				4A1675A2228C0ACC00127036 /* Frameworks */,
 				4A16757D228C0AC300127036 /* MovieSearch */,
 				4A167595228C0AC400127036 /* MovieSearchTests */,
@@ -728,6 +731,7 @@
 				4A8A32A122957C5300022CC8 /* DetailsViewController.swift in Sources */,
 				4A1675B6228C114A00127036 /* MainTabBarController.swift in Sources */,
 				4A1675B1228C0C2200127036 /* Storyboarded.swift in Sources */,
+				DB8E3B0C231AA513008A9ABA /* Cache.swift in Sources */,
 				4A692357229B1CAB00D3176D /* Movie+CoreDataClass.swift in Sources */,
 				4A584458229D6C2B00D7A3A3 /* PrevSearchDetails.swift in Sources */,
 				4A167587228C0AC300127036 /* MovieSearch.xcdatamodeld in Sources */,
